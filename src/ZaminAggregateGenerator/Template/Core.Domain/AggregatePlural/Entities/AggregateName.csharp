@@ -1,0 +1,27 @@
+﻿using ProjectName.Core.Domain.AggregatePlural.Events;
+using Zamin.Core.Domain.Entities;
+using Zamin.Core.Domain.ValueObjects;
+
+namespace ProjectName.Core.Domain.AggregatePlural.Entities;
+public class AggregateName : AggregateRoot
+{
+    #region Properties
+    public string FirstName { get; private set; }
+    public string LastName { get; private set; }
+    #endregion
+
+    #region Constructors
+
+    private AggregateName(BusinessId businessId, string firstName, string lastName)
+    {
+        BusinessId = businessId;
+        FirstName = firstName;
+        LastName = lastName;
+        new AggregateNameCreated(businessId.Value, firstName, lastName);
+    }
+    #endregion
+
+    #region Commands
+    public static AggregateName Create(BusinessId businessId, string firstName, string lastName) => new(businessId, firstName, lastName);
+    #endregion
+}
