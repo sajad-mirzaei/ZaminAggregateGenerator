@@ -12,6 +12,10 @@ public class AggregateName : AggregateRoot
 
     #region Constructors
 
+    private AggregateName()
+    {
+    }
+
     private AggregateName(BusinessId businessId, string firstName, string lastName)
     {
         BusinessId = businessId;
