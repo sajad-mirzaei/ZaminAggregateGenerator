@@ -1,4 +1,4 @@
-﻿namespace ZaminAggregateGenerator;
+﻿namespace ZaminAggregateGenerator.Tools;
 
 internal class FileTools
 {

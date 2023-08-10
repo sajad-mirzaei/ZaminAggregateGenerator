@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
 using System.Text;
 
-namespace ZaminAggregateGenerator;
+namespace ZaminAggregateGenerator.TemplateContentChange;
 
-internal class MoveTemplate
+internal class CopyWithReplacement
 {
     public string ProjectName { get; set; } //= "Voc";
     public string AggregatePlural { get; set; } //= "OldTable2s";
@@ -12,7 +12,7 @@ internal class MoveTemplate
     public string TemplateFolder { get; set; } //= "Endpoints.API";
     private string TemplatePath { get; set; }
 
-    public void Exex()
+    public void Exec()
     {
         //var thisProjectPath = GetProjectDirectoryPath();
         var thisProjectPath = "D:\\.NET\\Github\\MyGithub\\voc\\ZaminAggregateGenerator";

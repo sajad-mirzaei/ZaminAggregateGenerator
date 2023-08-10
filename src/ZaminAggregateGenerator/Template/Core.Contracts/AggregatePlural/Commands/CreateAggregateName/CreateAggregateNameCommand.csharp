@@ -4,6 +4,5 @@ namespace ProjectName.Core.Contracts.AggregatePlural.Commands.CreateAggregateNam
 
 public class CreateAggregateNameCommand : ICommand<Guid>
 {
-    public string FirstName { get; set; } = string.Empty;
-    public string LastName { get; set; } = string.Empty;
+    ContractsReplaceCreateAggregatePropertyCommand
 }

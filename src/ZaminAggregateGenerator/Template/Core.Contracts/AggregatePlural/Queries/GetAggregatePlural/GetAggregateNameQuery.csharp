@@ -7,8 +7,9 @@ public class GetAggregateNameQuery : PageQuery<PagedData<AggregateNameDto>>
 {
     public long Id { get; set; }
     public Guid BusinessId { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
+
+    ContractsReplaceGetAggregateGetQueryProperty
+
     public string? CreatedByUserId { get; set; }
     public string? CreatedByUserName { get; set; }
     public DateTime? CreatedDateTime { get; set; }

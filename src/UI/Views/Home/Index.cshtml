@@ -1,8 +1,43 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model AggregateGeneratorModel
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+<div class="container" dir="rtl">
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.AggregatePlural, new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.AggregatePlural, new { @class = "form-control", dir = "ltr", placeholder = "AggregatePlural" })
+            @Html.ValidationMessageFor(model => model.AggregatePlural, "فیلد ضروری", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AggregateName, new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.AggregateName, new { @class = "form-control", dir = "ltr", placeholder = "AggregateName" })
+            @Html.ValidationMessageFor(model => model.AggregatePlural, "فیلد ضروری", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProjectName, new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.ProjectName, new { @class = "form-control", dir = "ltr", placeholder = "ProjectName" })
+            @Html.ValidationMessageFor(model => model.AggregatePlural, "فیلد ضروری", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProjectPath, new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.ProjectPath, new { @class = "form-control", dir = "ltr", placeholder = "ProjectPath" })
+            @Html.ValidationMessageFor(model => model.AggregatePlural, "فیلد ضروری", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AggregateClass, new { @class = "form-label" })
+            @Html.TextAreaFor(model => model.AggregateClass, new { @class = "form-control", dir = "ltr", placeholder = "AggregateClass", rows = 10 })
+        </div>
+
+        <div class="form-group m-2 w-100">
+            <input type="submit" value="ثبت" class="btn btn-primary" />
+        </div>
+    }
 </div>

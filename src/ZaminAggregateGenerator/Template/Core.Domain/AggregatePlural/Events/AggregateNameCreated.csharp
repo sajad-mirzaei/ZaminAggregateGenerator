@@ -4,13 +4,11 @@ namespace ProjectName.Core.Domain.AggregatePlural.Events;
 public class AggregateNameCreated : IDomainEvent
 {
     public Guid BusinessId { get; private set; }
-    public string FirstName { get; private set; }
-    public string LastName { get; private set; }
+    DomainReplaceEventCreatedPropertyToReplace
 
-    public AggregateNameCreated(Guid businessId, string firstName, string lastName)
+    public AggregateNameCreated(Guid businessId, DomainReplaceEventCreatedConstructorInuptProperty)
     {
         BusinessId = businessId;
-        FirstName = firstName;
-        LastName = lastName;
+        DomainReplaceEventCreatedConstructorAssignedProperty
     }
 }

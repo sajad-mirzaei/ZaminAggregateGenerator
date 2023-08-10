@@ -1,26 +1,18 @@
-﻿namespace ZaminAggregateGenerator;
+﻿using ZaminAggregateGenerator.TemplateContentChange;
+
+namespace ZaminAggregateGenerator;
 
 public class AggregateGenerator
 {
-    List<string> LayersList = new() {
-        ".ApplicationService.csproj",
-        ".Contracts.csproj",
-        ".Domain.csproj",
-        ".Sql.Commands.csproj",
-        ".Sql.Queries.csproj",
-        ".Endpoints.API.csproj"
-    };
-
-    public string[] Main()
+    public void Run()
     {
-        string projectPath = "D:\\.NET\\Github\\MyGithub\\voc\\src";
-        var filesList = new FileTools().FilesList(projectPath, ".csproj", true, LayersList);
+        var filesList = new FileTools().FilesList(ProjectPath, ".csproj", true, LayersList);
 
-        MoveTemplate oMoveTemplate = new()
+        CopyWithReplacement oMoveTemplate = new()
         {
-            AggregatePlural = "OldTable2s",
-            AggregateName = "OldTable2",
-            ProjectName = "Voc"
+            AggregatePlural = AggregatePlural,
+            AggregateName = AggregateName,
+            ProjectName = ProjectName,
         };
 
         foreach (string file in filesList)
@@ -51,20 +43,21 @@ public class AggregateGenerator
                 default:
                     break;
             }
-
-            /*string v = fileName switch
-            {
-                fileName.Contains(".ApplicationService") => "Core.ApplicationService",
-                fileName.Contains(".Contracts") => "Core.ApplicationService",
-                fileName.Contains(".Domain") => "Core.ApplicationService",
-                fileName.Contains("Sql.Commands") => "Core.ApplicationService",
-                fileName.Contains("Sql.Queries") => "Core.ApplicationService",
-                fileName.Contains(".ApplicationService") => "Core.ApplicationService",
-
-            };
-            oMoveTemplate.TemplateFolder = v;*/
-            oMoveTemplate.Exex();
+            oMoveTemplate.Exec();
         }
-        return filesList;
     }
+    public string AggregatePlural { get; set; }
+    public string AggregateName { get; set; }
+    public string ProjectName { get; set; }
+    public string ProjectPath { get; set; }
+
+    public List<string> LayersList { get; set; } = new() {
+        ".ApplicationService.csproj",
+        ".Contracts.csproj",
+        ".Domain.csproj",
+        ".Sql.Commands.csproj",
+        ".Sql.Queries.csproj",
+        ".Endpoints.API.csproj"
+    };
 }
+

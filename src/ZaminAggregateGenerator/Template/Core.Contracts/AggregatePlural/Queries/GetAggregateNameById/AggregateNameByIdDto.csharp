@@ -3,8 +3,9 @@ public class AggregateNameByIdDto
 {
     public long Id { get; set; }
     public Guid BusinessId { get; set; }
-    public string? FirstName { get; set; }
-    public string? LastName { get; set; }
+
+    ContractsReplaceAggregateGetByIdDtoProperty
+
     public string? CreatedByUserId { get; set; }
     public string? CreatedByUserName { get; set; }
     public DateTime? CreatedDateTime { get; set; }
