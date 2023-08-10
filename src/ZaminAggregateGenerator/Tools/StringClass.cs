@@ -1,4 +1,8 @@
-﻿namespace ZaminAggregateGenerator.Tools;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+
+namespace ZaminAggregateGenerator.Tools;
 
 internal static class StringClass
 {
