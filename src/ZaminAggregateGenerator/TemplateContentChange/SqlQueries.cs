@@ -20,6 +20,7 @@ internal class SqlQueries
         _content = Method1();
         _content = Method2();
         _content = Method3();
+        _content = Method4();
         return _content;
     }
     string Method1()
@@ -45,11 +46,17 @@ internal class SqlQueries
         foreach (var a in _propertyArray)
         {
             var s = "";
-            switch (a.PropertyType)
+            var t = a.PropertyType.TrimEnd('?');
+            switch (t)
             {
                 case "string":
                     s = $"        entities = entities.WhereIf(dto.{a.PropertyName} != null, p => p.{a.PropertyName}.Contains(dto.{a.PropertyName}));\n";
                     break;
+                case "DateTime":
+                case "long":
+                case "float":
+                case "double":
+                case "bool":
                 case "int":
                     s = $"        entities = entities.WhereIf(dto.{a.PropertyName} != null, p => p.{a.PropertyName}.Contains(dto.{a.PropertyName}));\n";
                     break;
@@ -73,5 +80,18 @@ internal class SqlQueries
             newStr.Append(s);
         }
         return _content.Replace(oldStr, newStr.ToString()); ;
+    }
+
+    string Method4()
+    {
+        //public long Id { get; set; } //EnterNext
+        var oldStr = "SqlQueriesReplaceModelProperty";
+        var newStr = new StringBuilder();
+        foreach (var a in _propertyArray)
+        {
+            var s = $"    public {a.PropertyType} {a.PropertyName} {{ get; set; }}\n";
+            newStr.Append(s);
+        }
+        return _content.Replace(oldStr, newStr.ToString());
     }
 }

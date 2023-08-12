@@ -49,6 +49,7 @@ internal class TemplateCopy
             var templatePath = Configs.AggregateGeneratorPath + $"\\{Configs.TemplatePath}\\" + templateFolder;
             Exec(templatePath, targetPath);
         }
+        AddDbSetToDbContexts();
     }
 
     public void Exec(string templatePath, string targetPath)
@@ -56,7 +57,7 @@ internal class TemplateCopy
         try
         {
             CopyDirectory(templatePath, targetPath);
-            ReplaceTextInDirectory(targetPath);
+            //ReplaceTextInDirectory(targetPath);
         }
         catch (Exception ex)
         {
@@ -74,24 +75,32 @@ internal class TemplateCopy
         foreach (string sourceFilePath in Directory.GetFiles(templatePath, "*.*", SearchOption.AllDirectories))
         {
             var sourceFilePathReplaced = ReplaceAggregateName(sourceFilePath);
-            var destFileName = sourceFilePathReplaced.Replace(templatePath, targetPath);
-            destFileName = destFileName.Replace(".csharp", ".cs");
-            File.Copy(sourceFilePath, destFileName, true);
+            var destinationFilePath = sourceFilePathReplaced.Replace(templatePath, targetPath);
+            destinationFilePath = destinationFilePath.Replace(".csharp", ".cs");
+            File.Copy(sourceFilePath, destinationFilePath, true);
+
+
+            string fileContent = File.ReadAllText(destinationFilePath, Encoding.UTF8);
+            fileContent = ReplaceAggregateName(fileContent);
+            fileContent = TemplateContentChange(fileContent);
+            string newDestinationFilePath = ReplaceAggregateName(destinationFilePath);
+            File.WriteAllText(newDestinationFilePath, fileContent, Encoding.UTF8);
         }
     }
-    void ReplaceTextInDirectory(string targetPath)
+    void AddDbSetToDbContexts()
     {
-        var newTargetPath = targetPath + "\\" + _aggregateGeneratorModel.AggregatePlural;
-        foreach (string file in Directory.GetFiles(newTargetPath, "*.*", SearchOption.AllDirectories))
-        {
-            string content = File.ReadAllText(file, Encoding.UTF8);
+        //CommandDbContext
+        var commandDbContextPath = _aggregateGeneratorModel.ProjectPath + "\\2.Infra\\Data\\" + _aggregateGeneratorModel.ProjectName + ".Infra.Data.Sql.Commands\\Common\\" + _aggregateGeneratorModel.ProjectName + "CommandDbContext.cs";
+        var queryDbContextPath = _aggregateGeneratorModel.ProjectPath + "\\2.Infra\\Data\\" + _aggregateGeneratorModel.ProjectName + ".Infra.Data.Sql.Queries\\Common\\" + _aggregateGeneratorModel.ProjectName + "QueryDbContext.cs";
 
-            content = ReplaceAggregateName(content);
-            content = TemplateContentChange(content);
-            string newFile = ReplaceAggregateName(file);
+        string content1 = File.ReadAllText(commandDbContextPath, Encoding.UTF8);
+        content1 = content1.Replace("//SqlCommandsCommandDbContextDbSet", "public DbSet<" + _aggregateGeneratorModel.AggregateName + "> " + _aggregateGeneratorModel.AggregatePlural + " { get; set; }\n//SqlCommandsCommandDbContextDbSet");
+        content1 = content1.Replace("//SqlCommandsCommandDbContextUsing", "using " + _aggregateGeneratorModel.ProjectName + ".Core.Domain.Drafts.Entities;\n//SqlCommandsCommandDbContextUsing");
+        File.WriteAllText(commandDbContextPath, content1, Encoding.UTF8);
 
-            File.WriteAllText(newFile, content, Encoding.UTF8);
-        }
+        string content2 = File.ReadAllText(queryDbContextPath, Encoding.UTF8);
+        content2 = content2.Replace("//SqlQueriesQueryDbContextDbSet", "public DbSet<" + _aggregateGeneratorModel.AggregateName + "> " + _aggregateGeneratorModel.AggregatePlural + " { get; set; }\n//SqlQueriesQueryDbContextDbSet");
+        File.WriteAllText(queryDbContextPath, content2, Encoding.UTF8);
     }
     internal string ReplaceAggregateName(string input)
     {
