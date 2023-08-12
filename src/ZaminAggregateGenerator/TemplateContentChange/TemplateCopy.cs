@@ -99,7 +99,7 @@ internal class TemplateCopy
         File.WriteAllText(commandDbContextPath, content1, Encoding.UTF8);
 
         string content2 = File.ReadAllText(queryDbContextPath, Encoding.UTF8);
-        content2 = content2.Replace("//SqlQueriesQueryDbContextDbSet", "public DbSet<" + _aggregateGeneratorModel.AggregateName + "> " + _aggregateGeneratorModel.AggregatePlural + " { get; set; }\n//SqlQueriesQueryDbContextDbSet");
+        content2 = content2.Replace("//SqlQueriesQueryDbContextDbSet", "public virtual DbSet<" + _aggregateGeneratorModel.AggregateName + "> " + _aggregateGeneratorModel.AggregatePlural + " { get; set; }\n//SqlQueriesQueryDbContextDbSet");
         File.WriteAllText(queryDbContextPath, content2, Encoding.UTF8);
     }
     internal string ReplaceAggregateName(string input)

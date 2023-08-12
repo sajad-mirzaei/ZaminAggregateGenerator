@@ -58,7 +58,7 @@ internal class SqlQueries
                 case "double":
                 case "bool":
                 case "int":
-                    s = $"        entities = entities.WhereIf(dto.{a.PropertyName} != null, p => p.{a.PropertyName}.Contains(dto.{a.PropertyName}));\n";
+                    s = $"        entities = entities.WhereIf(dto.{a.PropertyName} != null, m => m.{a.PropertyName} == dto.{a.PropertyName});\n";
                     break;
                 default:
                     break;
