@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using UI.Models;
+using ZaminAggregateGenerator;
+using ZaminAggregateGenerator.Models;
 
 namespace UI.Controllers
 {
@@ -15,7 +17,30 @@ namespace UI.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            AggregateGeneratorModel model = new AggregateGeneratorModel();
+            return View(model);
+            //return View();
+        }
+
+        [HttpPost]
+        //public IActionResult Index(string aggregatePlural, string aggregateName, string projectName, string ProjectPath)
+        public IActionResult Index(AggregateGeneratorModel aggregateGeneratorModel)
+        {
+            if (ModelState.IsValid)
+            {
+                AggregateGeneratorModel oAggregateGeneratorModel = new AggregateGeneratorModel()
+                {
+                    AggregatePlural = aggregateGeneratorModel.AggregatePlural,
+                    AggregateName = aggregateGeneratorModel.AggregateName,
+                    ProjectName = aggregateGeneratorModel.ProjectName,
+                    ProjectPath = aggregateGeneratorModel.ProjectPath,
+                    AggregateClass = aggregateGeneratorModel.AggregateClass
+                };
+                AggregateGenerator oAggregateGenerator = new AggregateGenerator(oAggregateGeneratorModel);
+                oAggregateGenerator.Generate();
+                return View(oAggregateGeneratorModel);
+            }
+            return View(new AggregateGeneratorModel());
         }
 
         public IActionResult Privacy()
