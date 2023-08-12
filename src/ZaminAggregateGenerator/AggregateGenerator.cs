@@ -11,7 +11,7 @@ public class AggregateGenerator
 
     public AggregateGenerator(AggregateGeneratorModel aggregateGeneratorModel)
     {
-        aggregateGeneratorPath = "D:\\.NET\\Github\\MyGithub\\voc\\ZaminAggregateGenerator";
+        aggregateGeneratorPath = "D:\\.NET\\Github\\MyGithub\\ZaminAggregateGenerator\\src\\ZaminAggregateGenerator";
         templateCopy = new TemplateCopy(aggregateGeneratorModel);
     }
 

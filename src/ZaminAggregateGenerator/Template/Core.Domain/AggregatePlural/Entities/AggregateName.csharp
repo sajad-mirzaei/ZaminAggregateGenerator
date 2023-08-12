@@ -6,7 +6,7 @@ namespace ProjectName.Core.Domain.AggregatePlural.Entities;
 public class AggregateName : AggregateRoot
 {
     #region Properties
-    DomainReplaceEntityPropertyToReplace
+DomainReplaceEntityProperty
     #endregion
 
     #region Constructors
@@ -16,17 +16,26 @@ public class AggregateName : AggregateRoot
     }
 
     private AggregateName(BusinessId businessId, 
-        DomainReplacePrivateEntityConstructorInputProperty
+DomainReplacePrivateEntityConstructorInputProperty
     )
     {
         BusinessId = businessId;
-        DomainReplacePrivateEntityConstructorAssignedProperty
-        new AggregateNameCreated(businessId.Value, DomainReplacePrivateEntityConstructorSendEvent);
+DomainReplacePrivateEntityConstructorAssignedProperty
+            new AggregateNameCreated(
+                businessId.Value, 
+DomainReplacePrivateEntityConstructorSendEvent
+        );
     }
     #endregion
 
     #region Commands
-    public static AggregateName Create(BusinessId businessId, DomainReplacePublicEntityCreateInputProperty) 
-        => new(businessId, DomainReplacePublicEntityCreateOutputProperty);
+    public static AggregateName Create(
+        BusinessId businessId, 
+DomainReplacePublicEntityCreateInputProperty
+        ) 
+        => new(
+            businessId, 
+DomainReplacePublicEntityCreateOutputProperty
+        );
     #endregion
 }

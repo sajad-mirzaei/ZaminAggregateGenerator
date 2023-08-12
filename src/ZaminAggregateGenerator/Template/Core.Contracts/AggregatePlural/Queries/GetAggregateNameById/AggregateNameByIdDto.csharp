@@ -4,7 +4,7 @@ public class AggregateNameByIdDto
     public long Id { get; set; }
     public Guid BusinessId { get; set; }
 
-    ContractsReplaceAggregateGetByIdDtoProperty
+ContractsReplaceAggregateGetByIdDtoProperty
 
     public string? CreatedByUserId { get; set; }
     public string? CreatedByUserName { get; set; }

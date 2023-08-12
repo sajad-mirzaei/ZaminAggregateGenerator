@@ -29,8 +29,8 @@ internal class SqlQueries
         var newStr = new StringBuilder();
         foreach (var a in _propertyArray)
         {
-            var s = $"{a.PropertyName} = c.{a.PropertyName},";
-            newStr.Append(s + ",");
+            var s = $"            {a.PropertyName} = c.{a.PropertyName},\n";
+            newStr.Append(s);
         }
         var ns = newStr.ToString().TrimEnd().TrimEnd(new char[] { ',' });
         return _content.Replace(oldStr, ns);
@@ -48,16 +48,16 @@ internal class SqlQueries
             switch (a.PropertyType)
             {
                 case "string":
-                    s = $"entities = entities.WhereIf(dto.{a.PropertyName} != null, p => p.{a.PropertyName}.Contains(dto.{a.PropertyName}));";
+                    s = $"        entities = entities.WhereIf(dto.{a.PropertyName} != null, p => p.{a.PropertyName}.Contains(dto.{a.PropertyName}));\n";
                     break;
                 case "int":
-                    s = $"entities = entities.WhereIf(dto.{a.PropertyName} != null, p => p.{a.PropertyName}.Contains(dto.{a.PropertyName}));";
+                    s = $"        entities = entities.WhereIf(dto.{a.PropertyName} != null, p => p.{a.PropertyName}.Contains(dto.{a.PropertyName}));\n";
                     break;
                 default:
                     break;
             }
             if (s != "")
-                newStr.Append(s + "\n");
+                newStr.Append(s);
         }
         return _content.Replace(oldStr, newStr.ToString());
     }
@@ -69,8 +69,8 @@ internal class SqlQueries
         var newStr = new StringBuilder();
         foreach (var a in _propertyArray)
         {
-            var s = $"{a.PropertyName} = c.{a.PropertyName},";
-            newStr.Append(s + ",\n");
+            var s = $"            {a.PropertyName} = c.{a.PropertyName},\n";
+            newStr.Append(s);
         }
         return _content.Replace(oldStr, newStr.ToString()); ;
     }

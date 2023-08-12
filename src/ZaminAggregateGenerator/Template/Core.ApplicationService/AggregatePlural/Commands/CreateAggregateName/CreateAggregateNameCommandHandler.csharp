@@ -19,7 +19,7 @@ public class CreateAggregateNameCommandHandler : CommandHandler<CreateAggregateN
         var businessId = Guid.NewGuid();
         AggregateName aggregateName = AggregateName.Create(
             businessId,
-            ApplicationServiceReplaceHandlerAssignedProperty
+ApplicationServiceReplaceHandlerAssignedProperty
         );
         await _aggregateNameCommandRepository.InsertAsync(aggregateName);
         await _aggregateNameCommandRepository.CommitAsync();

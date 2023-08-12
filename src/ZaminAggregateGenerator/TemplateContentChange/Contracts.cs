@@ -30,7 +30,7 @@ internal class Contracts
         var newStr = new StringBuilder();
         foreach (var a in _propertyArray)
         {
-            var s = $"public {a.PropertyType} {a.PropertyName} {{ get; set; }}\n";
+            var s = $"    public {a.PropertyType} {a.PropertyName} {{ get; set; }}\n";
             newStr.Append(s);
         }
         return _content.Replace(oldStr, newStr.ToString());
@@ -42,7 +42,7 @@ internal class Contracts
         var newStr = new StringBuilder();
         foreach (var a in _propertyArray)
         {
-            var s = $"public {a.PropertyType} {a.PropertyName} {{ get; set; }}\n";
+            var s = $"    public {a.PropertyType} {a.PropertyName} {{ get; set; }}\n";
             newStr.Append(s);
         }
         return _content.Replace(oldStr, newStr.ToString());
@@ -55,7 +55,7 @@ internal class Contracts
         var newStr = new StringBuilder();
         foreach (var a in _propertyArray)
         {
-            var s = $"public {a.PropertyType} {a.PropertyName} {{ get; set; }}\n";
+            var s = $"    public {a.PropertyType} {a.PropertyName} {{ get; set; }}\n";
             newStr.Append(s);
         }
         return _content.Replace(oldStr, newStr.ToString());
@@ -68,7 +68,7 @@ internal class Contracts
         var newStr = new StringBuilder();
         foreach (var a in _propertyArray)
         {
-            var s = $"public {a.PropertyType} {a.PropertyName} {{ get; set; }}\n";
+            var s = $"    public {a.PropertyType} {a.PropertyName} {{ get; set; }}\n";
             newStr.Append(s);
         }
         return _content.Replace(oldStr, newStr.ToString());

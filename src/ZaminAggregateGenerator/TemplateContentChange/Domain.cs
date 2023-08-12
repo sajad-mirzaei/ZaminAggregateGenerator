@@ -36,7 +36,7 @@ internal class Domain
         var newStr = new StringBuilder();
         foreach (var a in _propertyArray)
         {
-            var s = $"public {a.PropertyType} {a.PropertyName} {{ get; private set; }}\n";
+            var s = $"    public {a.PropertyType} {a.PropertyName} {{ get; private set; }}\n";
             newStr.Append(s);
         }
         return _content.Replace(oldStr, newStr.ToString());
@@ -49,7 +49,7 @@ internal class Domain
         var newStr = new StringBuilder();
         foreach (var a in _propertyArray)
         {
-            newStr.Append(a.PropertyType + " " + a.PropertyName.ToLowerFirstChar() + ",");
+            newStr.Append("        " + a.PropertyType + " " + a.PropertyName.ToLowerFirstChar() + ",\n");
         }
         var ns = newStr.ToString().TrimEnd().TrimEnd(new char[] { ',' });
         return _content.Replace(oldStr, ns);
@@ -62,7 +62,7 @@ internal class Domain
         var newStr = new StringBuilder();
         foreach (var a in _propertyArray)
         {
-            newStr.Append(a.PropertyName + " = " + a.PropertyName.ToLowerFirstChar() + ";\n");
+            newStr.Append("        " + a.PropertyName + " = " + a.PropertyName.ToLowerFirstChar() + ";\n");
         }
         return _content.Replace(oldStr, newStr.ToString());
     }
@@ -74,7 +74,7 @@ internal class Domain
         var newStr = new StringBuilder();
         foreach (var a in _propertyArray)
         {
-            newStr.Append(a.PropertyName.ToLowerFirstChar() + ",");
+            newStr.Append("                " + a.PropertyName.ToLowerFirstChar() + ",\n");
         }
         var ns = newStr.ToString().TrimEnd().TrimEnd(new char[] { ',' });
         return _content.Replace(oldStr, ns);
@@ -87,7 +87,7 @@ internal class Domain
         var newStr = new StringBuilder();
         foreach (var a in _propertyArray)
         {
-            newStr.Append(a.PropertyType + " " + a.PropertyName.ToLowerFirstChar() + ",");
+            newStr.Append("        " + a.PropertyType + " " + a.PropertyName.ToLowerFirstChar() + ",\n");
         }
         var ns = newStr.ToString().TrimEnd().TrimEnd(new char[] { ',' });
         return _content.Replace(oldStr, ns);
@@ -100,7 +100,7 @@ internal class Domain
         var newStr = new StringBuilder();
         foreach (var a in _propertyArray)
         {
-            newStr.Append(a.PropertyName.ToLowerFirstChar() + ",");
+            newStr.Append("            " + a.PropertyName.ToLowerFirstChar() + ",\n");
         }
         var ns = newStr.ToString().TrimEnd().TrimEnd(new char[] { ',' });
         return _content.Replace(oldStr, ns);
@@ -113,7 +113,7 @@ internal class Domain
         var newStr = new StringBuilder();
         foreach (var a in _propertyArray)
         {
-            var s = $"public {a.PropertyType} {a.PropertyName} {{ get; private set; }}\n";
+            var s = $"    public {a.PropertyType} {a.PropertyName} {{ get; private set; }}\n";
             newStr.Append(s);
         }
         return _content.Replace(oldStr, newStr.ToString());
@@ -126,7 +126,7 @@ internal class Domain
         var newStr = new StringBuilder();
         foreach (var a in _propertyArray)
         {
-            newStr.Append(a.PropertyType + " " + a.PropertyName.ToLowerFirstChar() + ",");
+            newStr.Append("        " + a.PropertyType + " " + a.PropertyName.ToLowerFirstChar() + ",\n");
         }
         var ns = newStr.ToString().TrimEnd().TrimEnd(new char[] { ',' });
         return _content.Replace(oldStr, ns);
@@ -139,7 +139,7 @@ internal class Domain
         var newStr = new StringBuilder();
         foreach (var a in _propertyArray)
         {
-            newStr.Append(a.PropertyName + " = " + a.PropertyName.ToLowerFirstChar() + ";\n");
+            newStr.Append("        " + a.PropertyName + " = " + a.PropertyName.ToLowerFirstChar() + ";\n");
         }
         return _content.Replace(oldStr, newStr.ToString());
     }

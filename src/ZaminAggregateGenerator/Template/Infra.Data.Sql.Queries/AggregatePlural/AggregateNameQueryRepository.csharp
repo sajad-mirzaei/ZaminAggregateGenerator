@@ -25,7 +25,7 @@ public class AggregateNameQueryRepository : BaseQueryRepository<ProjectNameQuery
         {
             Id = c.Id,
             BusinessId = c.BusinessId,
-            SqlQueriesReplaceSelectAsyncProperty
+SqlQueriesReplaceSelectAsyncProperty
         }).FirstOrDefaultAsync(c => c.BusinessId.Equals(query.BusinessId));
     }
     public async Task<PagedData<AggregateNameDto>> SelectAsync(GetAggregateNameQuery dto)
@@ -35,7 +35,7 @@ public class AggregateNameQueryRepository : BaseQueryRepository<ProjectNameQuery
         #endregion
 
         #region Filters
-        SqlQueriesReplaceSelectAsyncWhereIfConditions
+SqlQueriesReplaceSelectAsyncWhereIfConditions
         entities = entities.WhereIf(dto.BusinessId != Guid.Empty, m => m.BusinessId == dto.BusinessId);
 
         entities = entities.WhereIf(dto.CreatedDateTime != null, m => m.CreatedDateTime == dto.CreatedDateTime);
@@ -50,7 +50,7 @@ public class AggregateNameQueryRepository : BaseQueryRepository<ProjectNameQuery
         {
             Id = c.Id,
             BusinessId = c.BusinessId,
-            SqlQueriesReplaceSelectAsyncToPagedDataProperty
+SqlQueriesReplaceSelectAsyncToPagedDataProperty
 
             CreatedByUserId = c.CreatedByUserId,
             CreatedByUserName = null,
