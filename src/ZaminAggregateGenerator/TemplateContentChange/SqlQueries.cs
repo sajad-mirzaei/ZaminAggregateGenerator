@@ -3,29 +3,46 @@ using ZaminAggregateGenerator.Models;
 
 namespace ZaminAggregateGenerator.TemplateContentChange;
 
-internal static class SqlQueries
+internal class SqlQueries
 {
-    static string SqlQueriesReplaceSelectAsyncProperty(string input, List<PropertyReplacementModel> propertyArray, AggregateGeneratorModel aggregateGeneratorModel)
+    private readonly List<PropertyReplacementModel> _propertyArray;
+    private readonly AggregateGeneratorModel _aggregateGeneratorModel;
+    private string _content;
+
+    public SqlQueries(string content, List<PropertyReplacementModel> propertyArray, AggregateGeneratorModel aggregateGeneratorModel)
+    {
+        _content = content;
+        _propertyArray = propertyArray;
+        _aggregateGeneratorModel = aggregateGeneratorModel;
+    }
+    public string Invoke()
+    {
+        _content = Method1();
+        _content = Method2();
+        _content = Method3();
+        return _content;
+    }
+    string Method1()
     {
         //FirstName = c.FirstName, LastName = c.LastName //EnterNext
         var oldStr = "SqlQueriesReplaceSelectAsyncProperty";
         var newStr = new StringBuilder();
-        foreach (var a in propertyArray)
+        foreach (var a in _propertyArray)
         {
             var s = $"{a.PropertyName} = c.{a.PropertyName},";
             newStr.Append(s + ",");
         }
         var ns = newStr.ToString().TrimEnd().TrimEnd(new char[] { ',' });
-        return input.Replace(oldStr, ns);
+        return _content.Replace(oldStr, ns);
     }
 
-    static string SqlQueriesReplaceSelectAsyncWhereIfConditions(string input, List<PropertyReplacementModel> propertyArray, AggregateGeneratorModel aggregateGeneratorModel)
+    string Method2()
     {
         //entities = entities.WhereIf(dto.FirstName != null, p => p.FirstName.Contains(dto.FirstName)); //EnterNext
         //entities = entities.WhereIf(dto.LastName != null, p => p.LastName.Contains(dto.LastName)); //EnterNext
         var oldStr = "SqlQueriesReplaceSelectAsyncWhereIfConditions";
         var newStr = new StringBuilder();
-        foreach (var a in propertyArray)
+        foreach (var a in _propertyArray)
         {
             var s = "";
             switch (a.PropertyType)
@@ -42,19 +59,19 @@ internal static class SqlQueries
             if (s != "")
                 newStr.Append(s + "\n");
         }
-        return input.Replace(oldStr, newStr.ToString());
+        return _content.Replace(oldStr, newStr.ToString());
     }
 
-    static string SqlQueriesReplaceSelectAsyncToPagedDataProperty(string input, List<PropertyReplacementModel> propertyArray, AggregateGeneratorModel aggregateGeneratorModel)
+    string Method3()
     {
         //FirstName = c.FirstName, LastName = c.LastName, //EnterNext
         var oldStr = "SqlQueriesReplaceSelectAsyncToPagedDataProperty";
         var newStr = new StringBuilder();
-        foreach (var a in propertyArray)
+        foreach (var a in _propertyArray)
         {
             var s = $"{a.PropertyName} = c.{a.PropertyName},";
             newStr.Append(s + ",\n");
         }
-        return input.Replace(oldStr, newStr.ToString()); ;
+        return _content.Replace(oldStr, newStr.ToString()); ;
     }
 }
