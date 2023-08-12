@@ -74,7 +74,7 @@ internal class Domain
         var newStr = new StringBuilder();
         foreach (var a in _propertyArray)
         {
-            newStr.Append("                " + a.PropertyName.ToLowerFirstChar() + ",\n");
+            newStr.Append("            " + a.PropertyName.ToLowerFirstChar() + ",\n");
         }
         var ns = newStr.ToString().TrimEnd().TrimEnd(new char[] { ',' });
         return _content.Replace(oldStr, ns);

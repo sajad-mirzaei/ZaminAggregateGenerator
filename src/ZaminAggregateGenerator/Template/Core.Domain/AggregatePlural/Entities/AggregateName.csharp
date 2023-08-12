@@ -21,8 +21,8 @@ DomainReplacePrivateEntityConstructorInputProperty
     {
         BusinessId = businessId;
 DomainReplacePrivateEntityConstructorAssignedProperty
-            new AggregateNameCreated(
-                businessId.Value, 
+        new AggregateNameCreated(
+            businessId.Value, 
 DomainReplacePrivateEntityConstructorSendEvent
         );
     }
@@ -32,8 +32,7 @@ DomainReplacePrivateEntityConstructorSendEvent
     public static AggregateName Create(
         BusinessId businessId, 
 DomainReplacePublicEntityCreateInputProperty
-        ) 
-        => new(
+        ) => new(
             businessId, 
 DomainReplacePublicEntityCreateOutputProperty
         );

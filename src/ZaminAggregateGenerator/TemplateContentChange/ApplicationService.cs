@@ -27,7 +27,7 @@ internal class ApplicationService
         var newStr = new StringBuilder();
         foreach (var a in _propertyArray)
         {
-            var s = $"            create{_aggregateGeneratorModel.AggregateName}Command.{a.PropertyName},";
+            var s = $"            create{_aggregateGeneratorModel.AggregateName}Command.{a.PropertyName},\n";
             newStr.Append(s);
         }
         var ns = newStr.ToString().TrimEnd().TrimEnd(new char[] { ',' });
