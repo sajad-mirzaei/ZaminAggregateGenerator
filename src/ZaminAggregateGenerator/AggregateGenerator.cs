@@ -1,5 +1,5 @@
 ﻿using ZaminAggregateGenerator.Models;
-using ZaminAggregateGenerator.TemplateContentChange;
+using ZaminAggregateGenerator.TemplateManage;
 using ZaminAggregateGenerator.Tools;
 
 namespace ZaminAggregateGenerator;

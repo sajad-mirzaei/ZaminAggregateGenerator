@@ -1,8 +1,9 @@
 ﻿using System.Text;
 using ZaminAggregateGenerator.Models;
+using ZaminAggregateGenerator.TemplateContentChange;
 using ZaminAggregateGenerator.Tools;
 
-namespace ZaminAggregateGenerator.TemplateContentChange;
+namespace ZaminAggregateGenerator.TemplateManage;
 
 internal class TemplateCopy
 {
@@ -80,11 +81,11 @@ internal class TemplateCopy
             File.Copy(sourceFilePath, destinationFilePath, true);
 
 
-            string fileContent = File.ReadAllText(destinationFilePath, Encoding.UTF8);
+            string fileContent = File.ReadAllText(destinationFilePath, Encoding.Default);
             fileContent = ReplaceAggregateName(fileContent);
             fileContent = TemplateContentChange(fileContent);
             string newDestinationFilePath = ReplaceAggregateName(destinationFilePath);
-            File.WriteAllText(newDestinationFilePath, fileContent, Encoding.UTF8);
+            File.WriteAllText(newDestinationFilePath, fileContent, Encoding.Default);
         }
     }
     void AddDbSetToDbContexts()
@@ -93,14 +94,14 @@ internal class TemplateCopy
         var commandDbContextPath = _aggregateGeneratorModel.ProjectPath + "\\2.Infra\\Data\\" + _aggregateGeneratorModel.ProjectName + ".Infra.Data.Sql.Commands\\Common\\" + _aggregateGeneratorModel.ProjectName + "CommandDbContext.cs";
         var queryDbContextPath = _aggregateGeneratorModel.ProjectPath + "\\2.Infra\\Data\\" + _aggregateGeneratorModel.ProjectName + ".Infra.Data.Sql.Queries\\Common\\" + _aggregateGeneratorModel.ProjectName + "QueryDbContext.cs";
 
-        string content1 = File.ReadAllText(commandDbContextPath, Encoding.UTF8);
+        string content1 = File.ReadAllText(commandDbContextPath, Encoding.Default);
         content1 = content1.Replace("//SqlCommandsCommandDbContextDbSet", "public DbSet<" + _aggregateGeneratorModel.AggregateName + "> " + _aggregateGeneratorModel.AggregatePlural + " { get; set; }\n//SqlCommandsCommandDbContextDbSet");
-        content1 = content1.Replace("//SqlCommandsCommandDbContextUsing", "using " + _aggregateGeneratorModel.ProjectName + ".Core.Domain.Drafts.Entities;\n//SqlCommandsCommandDbContextUsing");
-        File.WriteAllText(commandDbContextPath, content1, Encoding.UTF8);
+        content1 = content1.Replace("//SqlCommandsCommandDbContextUsing", "using " + _aggregateGeneratorModel.ProjectName + ".Core.Domain." + _aggregateGeneratorModel.AggregatePlural + ".Entities;\n//SqlCommandsCommandDbContextUsing");
+        File.WriteAllText(commandDbContextPath, content1, Encoding.Default);
 
-        string content2 = File.ReadAllText(queryDbContextPath, Encoding.UTF8);
+        string content2 = File.ReadAllText(queryDbContextPath, Encoding.Default);
         content2 = content2.Replace("//SqlQueriesQueryDbContextDbSet", "public virtual DbSet<" + _aggregateGeneratorModel.AggregateName + "> " + _aggregateGeneratorModel.AggregatePlural + " { get; set; }\n//SqlQueriesQueryDbContextDbSet");
-        File.WriteAllText(queryDbContextPath, content2, Encoding.UTF8);
+        File.WriteAllText(queryDbContextPath, content2, Encoding.Default);
     }
     internal string ReplaceAggregateName(string input)
     {
