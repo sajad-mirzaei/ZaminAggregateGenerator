@@ -17,15 +17,18 @@ namespace UI.Controllers
 
         public IActionResult Index()
         {
-            AggregateGeneratorModel model = new AggregateGeneratorModel();
-            return View(model);
-            //return View();
+            return View(new IndexViewModel());
         }
 
         [HttpPost]
-        //public IActionResult Index(string aggregatePlural, string aggregateName, string projectName, string ProjectPath)
         public IActionResult Index(AggregateGeneratorModel aggregateGeneratorModel)
         {
+            IndexViewModel indexViewModel = new()
+            {
+                FormMessage = "مشکلی وجود دارد",
+                FormSubmit = true,
+                FormValidation = false
+            };
             if (ModelState.IsValid)
             {
                 AggregateGeneratorModel oAggregateGeneratorModel = new AggregateGeneratorModel()
@@ -36,11 +39,14 @@ namespace UI.Controllers
                     ProjectPath = aggregateGeneratorModel.ProjectPath,
                     AggregateClass = aggregateGeneratorModel.AggregateClass
                 };
-                AggregateGenerator oAggregateGenerator = new AggregateGenerator(oAggregateGeneratorModel);
+                AggregateGenerator oAggregateGenerator = new(oAggregateGeneratorModel);
                 oAggregateGenerator.Generate();
-                return View(oAggregateGeneratorModel);
+                indexViewModel.FormMessage = "فایل ها با موفقیت ساخته شدند";
+                indexViewModel.FormValidation = true;
+                indexViewModel.AlertClass = "alert alert-success";
+                indexViewModel.AggregateGeneratorModel = oAggregateGeneratorModel;
             }
-            return View(new AggregateGeneratorModel());
+            return View(indexViewModel);
         }
 
         public IActionResult Privacy()
