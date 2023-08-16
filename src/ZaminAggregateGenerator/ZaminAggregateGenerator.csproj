@@ -10,4 +10,70 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Template\Core.ApplicationService\AggregatePlural\Commands\CreateAggregateName\CreateAggregateNameCommandHandler.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Core.ApplicationService\AggregatePlural\Commands\CreateAggregateName\CreateAggregateNameValidator.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Core.ApplicationService\AggregatePlural\Queries\GetAggregateNameById\GetAggregateNameByIdHandler.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Core.ApplicationService\AggregatePlural\Queries\GetAggregateNameById\GetAggregateNameByIdValidator.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Core.ApplicationService\AggregatePlural\Queries\GetAggregatePlural\GetAggregateNameQueryHandler.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Core.ApplicationService\AggregatePlural\Queries\GetAggregatePlural\GetAggregateNameQueryValidator.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Core.Contracts\AggregatePlural\Commands\CreateAggregateName\CreateAggregateNameCommand.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Core.Contracts\AggregatePlural\Commands\IAggregateNameCommandRepository.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Core.Contracts\AggregatePlural\IAggregateNameDomainService.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Core.Contracts\AggregatePlural\Queries\GetAggregateNameById\AggregateNameByIdDto.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Core.Contracts\AggregatePlural\Queries\GetAggregateNameById\GetAggregateNameByIdQuery.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Core.Contracts\AggregatePlural\Queries\GetAggregatePlural\AggregateNameDto.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Core.Contracts\AggregatePlural\Queries\GetAggregatePlural\GetAggregateNameQuery.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Core.Contracts\AggregatePlural\Queries\IAggregateNameQueryRepository.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Core.Domain\AggregatePlural\Entities\AggregateName.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Core.Domain\AggregatePlural\Events\AggregateNameCreated.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Endpoints.API\AggregatePlural\AggregateNameController.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Infra.Data.Sql.Commands\AggregatePlural\AggregateNameCommandRepository.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Infra.Data.Sql.Commands\AggregatePlural\Configs\AggregateNameConfig.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Infra.Data.Sql.Queries\AggregatePlural\AggregateNameQueryRepository.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Template\Infra.Data.Sql.Queries\Common\Models\AggregateName.csharp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

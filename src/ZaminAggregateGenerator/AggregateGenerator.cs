@@ -11,7 +11,7 @@ public class AggregateGenerator
 
     public AggregateGenerator(AggregateGeneratorModel aggregateGeneratorModel)
     {
-        aggregateGeneratorPath = "D:\\.NET\\Github\\MyGithub\\ZaminAggregateGenerator\\src\\ZaminAggregateGenerator";
+        aggregateGeneratorPath = ClassFilePath;
         templateCopy = new TemplateCopy(aggregateGeneratorModel);
     }
 
@@ -20,4 +20,8 @@ public class AggregateGenerator
         Configs.AggregateGeneratorPath = aggregateGeneratorPath;
         templateCopy.PerformCopy();
     }
+
+    //در صورتی این فیلد مسیر درست را ارسال میکند که مورد زیر برای فایل های سمپل انجام شود
+    //.csharp file -> click right -> Properties -> Copy to Output Directory -> Copy if newer
+    private static string ClassFilePath => Path.GetDirectoryName(typeof(AggregateGenerator).Assembly.Location);
 }
