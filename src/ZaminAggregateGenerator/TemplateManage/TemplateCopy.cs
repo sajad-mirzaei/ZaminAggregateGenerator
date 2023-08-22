@@ -1,6 +1,5 @@
 ﻿using System.Text;
 using ZaminAggregateGenerator.Models;
-using ZaminAggregateGenerator.TemplateContentChange;
 using ZaminAggregateGenerator.Tools;
 
 namespace ZaminAggregateGenerator.TemplateManage;
@@ -115,10 +114,10 @@ internal class TemplateCopy
     }
     internal string TemplateContentChange(string c)
     {
-        c = new ApplicationService(c, _propertyArray, _aggregateGeneratorModel).Invoke();
-        c = new Contracts(c, _propertyArray, _aggregateGeneratorModel).Invoke();
-        c = new Domain(c, _propertyArray, _aggregateGeneratorModel).Invoke();
-        c = new SqlQueries(c, _propertyArray, _aggregateGeneratorModel).Invoke();
+        c = new ApplicationService(c, _propertyArray, _aggregateGeneratorModel).Exec();
+        c = new Contracts(c, _propertyArray, _aggregateGeneratorModel).Exec();
+        c = new Domain(c, _propertyArray, _aggregateGeneratorModel).Exec();
+        c = new SqlQueries(c, _propertyArray, _aggregateGeneratorModel).Exec();
         return c;
     }
 

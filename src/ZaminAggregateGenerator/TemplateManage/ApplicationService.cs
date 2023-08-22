@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using ZaminAggregateGenerator.Models;
 
-namespace ZaminAggregateGenerator.TemplateContentChange;
+namespace ZaminAggregateGenerator.TemplateManage;
 
 internal class ApplicationService
 {
@@ -9,18 +9,28 @@ internal class ApplicationService
     private readonly AggregateGeneratorModel _aggregateGeneratorModel;
     private string _content;
 
+    private delegate string MethodDelegate();
+    private List<MethodDelegate> _methods = new();
     public ApplicationService(string content, List<PropertyReplacementModel> propertyArray, AggregateGeneratorModel aggregateGeneratorModel)
     {
         _content = content;
         _propertyArray = propertyArray;
         _aggregateGeneratorModel = aggregateGeneratorModel;
+        InitializeMethods();
     }
-    public string Invoke()
+    private void InitializeMethods()
     {
-        _content = Method1();
+        _methods.Add(Method1);
+    }
+    public string Exec()
+    {
+        foreach (MethodDelegate method in _methods)
+        {
+            _content = method();
+        }
         return _content;
     }
-    string Method1()
+    private string Method1()
     {
         //createAggregateNameCommand.FirstName, createAggregateNameCommand.LastName //~EnterNext
         var oldStr = "ApplicationServiceReplaceHandlerAssignedProperty";

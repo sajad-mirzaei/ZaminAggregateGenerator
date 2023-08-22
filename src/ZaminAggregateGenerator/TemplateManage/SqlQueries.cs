@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using ZaminAggregateGenerator.Models;
 
-namespace ZaminAggregateGenerator.TemplateContentChange;
+namespace ZaminAggregateGenerator.TemplateManage;
 
 internal class SqlQueries
 {
@@ -9,21 +9,31 @@ internal class SqlQueries
     private readonly AggregateGeneratorModel _aggregateGeneratorModel;
     private string _content;
 
+    private delegate string MethodDelegate();
+    private List<MethodDelegate> _methods = new();
     public SqlQueries(string content, List<PropertyReplacementModel> propertyArray, AggregateGeneratorModel aggregateGeneratorModel)
     {
         _content = content;
         _propertyArray = propertyArray;
         _aggregateGeneratorModel = aggregateGeneratorModel;
+        InitializeMethods();
     }
-    public string Invoke()
+    private void InitializeMethods()
     {
-        _content = Method1();
-        _content = Method2();
-        _content = Method3();
-        _content = Method4();
+        _methods.Add(Method1);
+        _methods.Add(Method2);
+        _methods.Add(Method3);
+        _methods.Add(Method4);
+    }
+    public string Exec()
+    {
+        foreach (MethodDelegate method in _methods)
+        {
+            _content = method();
+        }
         return _content;
     }
-    string Method1()
+    private string Method1()
     {
         //FirstName = c.FirstName, LastName = c.LastName //EnterNext
         var oldStr = "SqlQueriesReplaceSelectAsyncProperty";
@@ -37,7 +47,7 @@ internal class SqlQueries
         return _content.Replace(oldStr, ns);
     }
 
-    string Method2()
+    private string Method2()
     {
         //entities = entities.WhereIf(dto.FirstName != null, p => p.FirstName.Contains(dto.FirstName)); //EnterNext
         //entities = entities.WhereIf(dto.LastName != null, p => p.LastName.Contains(dto.LastName)); //EnterNext
@@ -69,7 +79,7 @@ internal class SqlQueries
         return _content.Replace(oldStr, newStr.ToString());
     }
 
-    string Method3()
+    private string Method3()
     {
         //FirstName = c.FirstName, LastName = c.LastName, //EnterNext
         var oldStr = "SqlQueriesReplaceSelectAsyncToPagedDataProperty";
@@ -82,7 +92,7 @@ internal class SqlQueries
         return _content.Replace(oldStr, newStr.ToString()); ;
     }
 
-    string Method4()
+    private string Method4()
     {
         //public long Id { get; set; } //EnterNext
         var oldStr = "SqlQueriesReplaceModelProperty";

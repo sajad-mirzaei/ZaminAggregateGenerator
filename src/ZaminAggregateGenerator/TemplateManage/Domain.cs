@@ -2,7 +2,7 @@
 using ZaminAggregateGenerator.Models;
 using ZaminAggregateGenerator.Tools;
 
-namespace ZaminAggregateGenerator.TemplateContentChange;
+namespace ZaminAggregateGenerator.TemplateManage;
 
 internal class Domain
 {
@@ -10,26 +10,36 @@ internal class Domain
     private readonly AggregateGeneratorModel _aggregateGeneratorModel;
     private string _content;
 
+    private delegate string MethodDelegate();
+    private List<MethodDelegate> _methods = new();
     public Domain(string content, List<PropertyReplacementModel> propertyArray, AggregateGeneratorModel aggregateGeneratorModel)
     {
         _content = content;
         _propertyArray = propertyArray;
         _aggregateGeneratorModel = aggregateGeneratorModel;
+        InitializeMethods();
     }
-    public string Invoke()
+    private void InitializeMethods()
     {
-        _content = Method1();
-        _content = Method2();
-        _content = Method3();
-        _content = Method4();
-        _content = Method5();
-        _content = Method6();
-        _content = Method7();
-        _content = Method8();
-        _content = Method9();
+        _methods.Add(Method1);
+        _methods.Add(Method2);
+        _methods.Add(Method3);
+        _methods.Add(Method4);
+        _methods.Add(Method5);
+        _methods.Add(Method6);
+        _methods.Add(Method7);
+        _methods.Add(Method8);
+        _methods.Add(Method9);
+    }
+    public string Exec()
+    {
+        foreach (MethodDelegate method in _methods)
+        {
+            _content = method();
+        }
         return _content;
     }
-    string Method1()
+    private string Method1()
     {
         //public string FirstName { get; private set; } //EnterNext
         var oldStr = "DomainReplaceEntityProperty";
@@ -42,7 +52,7 @@ internal class Domain
         return _content.Replace(oldStr, newStr.ToString());
     }
 
-    string Method2()
+    private string Method2()
     {
         //string firstName, string lastName //~EnterNext
         var oldStr = "DomainReplacePrivateEntityConstructorInputProperty";
@@ -55,7 +65,7 @@ internal class Domain
         return _content.Replace(oldStr, ns);
     }
 
-    string Method3()
+    private string Method3()
     {
         //FirstName = firstName; LastName = lastName; //~EnterNext
         var oldStr = "DomainReplacePrivateEntityConstructorAssignedProperty";
@@ -67,7 +77,7 @@ internal class Domain
         return _content.Replace(oldStr, newStr.ToString());
     }
 
-    string Method4()
+    private string Method4()
     {
         //firstName, lastName //~EnterNext
         var oldStr = "DomainReplacePrivateEntityConstructorSendEvent";
@@ -80,7 +90,7 @@ internal class Domain
         return _content.Replace(oldStr, ns);
     }
 
-    string Method5()
+    private string Method5()
     {
         //string firstName, string lastName //~EnterNext
         var oldStr = "DomainReplacePublicEntityCreateInputProperty";
@@ -93,7 +103,7 @@ internal class Domain
         return _content.Replace(oldStr, ns);
     }
 
-    string Method6()
+    private string Method6()
     {
         //firstName, lastName //~EnterNext
         var oldStr = "DomainReplacePublicEntityCreateOutputProperty";
@@ -106,7 +116,7 @@ internal class Domain
         return _content.Replace(oldStr, ns);
     }
 
-    string Method7()
+    private string Method7()
     {
         //public string FirstName { get; private set; } //EnterNext
         var oldStr = "DomainReplaceEventCreatedProperty";
@@ -119,7 +129,7 @@ internal class Domain
         return _content.Replace(oldStr, newStr.ToString());
     }
 
-    string Method8()
+    private string Method8()
     {
         //string firstName, string lastName //~EnterNext
         var oldStr = "DomainReplaceEventCreatedConstructorInuptProperty";
@@ -132,7 +142,7 @@ internal class Domain
         return _content.Replace(oldStr, ns);
     }
 
-    string Method9()
+    private string Method9()
     {
         //FirstName = firstName; LastName = lastName; //~EnterNext
         var oldStr = "DomainReplaceEventCreatedConstructorAssignedProperty";
