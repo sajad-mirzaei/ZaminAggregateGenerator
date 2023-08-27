@@ -3,7 +3,9 @@
 ################################################################################
 
 /.vs
-/src/UI/bin/Debug/net7.0
-/src/UI/obj
-/src/ZaminAggregateGenerator/bin/Debug/net7.0
+/src/ZaminAggregateGenerator/bin
 /src/ZaminAggregateGenerator/obj
+/sample/UI/obj
+/sample/UI/bin
+/src/ZaminAggregateGenerator/obj
+/src/ZaminAggregateGenerator/bin
