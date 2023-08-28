@@ -16,7 +16,7 @@ AggregationGenerator is a NuGet package designed to streamline and accelerate th
 Getting started with AggregationGenerator is straightforward. Simply install the NuGet package into your API project and follow the provided documentation to configure and utilize the package effectively. With AggregationGenerator, you'll experience improved code organization, enhanced data retrieval capabilities, and an optimized development workflow.
 Getting started with Aggregation Gen is simple. Simply install the NuGet package into your API project and follow these steps:
 
-**If we have an aggregate with "Users" names and two properties p1 p2::**
+**If we have an aggregate with "Users" names and two properties p1 and p2::**
 
 1- The expression "//SqlCommandsCommandDbContextDbSet" and "//SqlCommandsCommandDbContextUsing" add to the ProjectNameCommandDbContext file as follows:
 ```C#
