@@ -31,7 +31,7 @@ DomainReplacementText4
     #region Commands
     public static AggregateName Create(
         BusinessId businessId, 
-DomainReplacementText5
+DomainReplacementText2
         ) => new(
             businessId, 
 DomainReplacementText4

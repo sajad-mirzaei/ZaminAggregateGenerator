@@ -50,7 +50,7 @@ SqlQueriesReplacementText2
         {
             Id = c.Id,
             BusinessId = c.BusinessId,
-SqlQueriesReplacementText1
+SqlQueriesReplacementText1 ,
 
             CreatedByUserId = c.CreatedByUserId,
             CreatedByUserName = null,
