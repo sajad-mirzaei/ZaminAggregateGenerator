@@ -19,66 +19,66 @@ Getting started with Aggregation Gen is simple. Simply install the NuGet package
 
 1- The expression "//SqlCommandsCommandDbContextDbSet" and "//SqlCommandsCommandDbContextUsing" add to the ProjectNameCommandDbContext file as follows:
 ```C#
-	//SqlCommandsCommandDbContextUsing
+//SqlCommandsCommandDbContextUsing
 
-	namespace ProjectName.Infra.Data.Sql.Commands.Common
-	{
-		 public class ProjectNameCommandDbContext : BaseOutboxCommandDbContext
+namespace ProjectName.Infra.Data.Sql.Commands.Common
+{
+	 public class ProjectNameCommandDbContext : BaseOutboxCommandDbContext
+	 {
+//SqlCommandsCommandDbContextDbSet
+		 public ProjectNameCommandDbContext(DbContextOptions<ProjectNameCommandDbContext> options) : base(options)
 		 {
-	//SqlCommandsCommandDbContextDbSet
-			 public ProjectNameCommandDbContext(DbContextOptions<ProjectNameCommandDbContext> options) : base(options)
-			 {
-			 }
-			 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-			 {
-				 base.OnConfiguring(optionsBuilder);
-			 }
-			 protected override void OnModelCreating(ModelBuilder builder)
-			 {
-			 }
 		 }
-	}
+		 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		 {
+			 base.OnConfiguring(optionsBuilder);
+		 }
+		 protected override void OnModelCreating(ModelBuilder builder)
+		 {
+		 }
+	 }
+}
 ```
 
 1- The expression "//SqlQueriesQueryDbContextDbSet" add to the ProjectNameQueryDbContext file as follows:
 ```C#
-	namespace ProjectName.Infra.Data.Sql.Queries.Common
+namespace ProjectName.Infra.Data.Sql.Queries.Common
+{
+	public partial class ProjectNameQueryDbContext : BaseQueryDbContext
 	{
-		public partial class ProjectNameQueryDbContext : BaseQueryDbContext
+		public ProjectNameQueryDbContext(DbContextOptions<ProjectNameQueryDbContext> options)
+			: base(options)
 		{
-			public ProjectNameQueryDbContext(DbContextOptions<ProjectNameQueryDbContext> options)
-				: base(options)
-			{
-			}
+		}
 
-	//SqlQueriesQueryDbContextDbSet
+//SqlQueriesQueryDbContextDbSet
 
-			protected override void OnModelCreating(ModelBuilder modelBuilder)
-			{
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
 
-			}
 		}
 	}
+}
 ```
 
 3- use as follows:
 ```C#
-	AggregateGeneratorModel oAggregateGeneratorModel = new AggregateGeneratorModel()
-	{
-		AggregatePlural = "Users",
-		AggregateName = "User",
-		ProjectName = "ProjectName",
-		ProjectPath = "ProjectPath",
-		AggregateClass = "class User {\n    public int P1 { get; set; }\n    public string P2 { get; set; }\n}"
-	};
-	AggregateGenerator oAggregateGenerator = new(oAggregateGeneratorModel);
-	oAggregateGenerator.Generate();
+AggregateGeneratorModel oAggregateGeneratorModel = new AggregateGeneratorModel()
+{
+	AggregatePlural = "Users",
+	AggregateName = "User",
+	ProjectName = "ProjectName",
+	ProjectPath = "ProjectPath",
+	AggregateClass = "class User {\n    public int P1 { get; set; }\n    public string P2 { get; set; }\n}"
+};
+AggregateGenerator oAggregateGenerator = new(oAggregateGeneratorModel);
+oAggregateGenerator.Generate();
 ```
 
 ## Project Structure:
 
 This repository contains a Class Library project that is designed to work within the following directory structure:
-```Json
+```Tree
 ├───1.Core
 │   ├───ProjectName.Core.ApplicationService
 │   │   └───Users
