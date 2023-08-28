@@ -4,5 +4,5 @@ namespace ProjectName.Core.Contracts.AggregatePlural.Commands.CreateAggregateNam
 
 public class CreateAggregateNameCommand : ICommand<Guid>
 {
-ContractsReplaceCreateAggregatePropertyCommand
+ContractsReplacementText1
 }

@@ -2,12 +2,12 @@
 using ZaminAggregateGenerator.Models;
 using ZaminAggregateGenerator.Tools;
 
-namespace ZaminAggregateGenerator.TemplateManage;
+namespace ZaminAggregateGenerator;
 
 internal class TemplateCopy
 {
     private AggregateGeneratorModel _aggregateGeneratorModel { get; set; }
-    private List<PropertyReplacementModel> _propertyArray { get; set; }
+    private List<PropertyModel> _propertyArray { get; set; }
     private string[] FilesList { get; set; }
     public TemplateCopy(AggregateGeneratorModel aggregateGeneratorModel)
     {
@@ -57,7 +57,6 @@ internal class TemplateCopy
         try
         {
             CopyDirectory(templatePath, targetPath);
-            //ReplaceTextInDirectory(targetPath);
         }
         catch (Exception ex)
         {
@@ -94,12 +93,12 @@ internal class TemplateCopy
         var queryDbContextPath = _aggregateGeneratorModel.ProjectPath + "\\2.Infra\\Data\\" + _aggregateGeneratorModel.ProjectName + ".Infra.Data.Sql.Queries\\Common\\" + _aggregateGeneratorModel.ProjectName + "QueryDbContext.cs";
 
         string content1 = File.ReadAllText(commandDbContextPath, Encoding.Default);
-        content1 = content1.Replace("//SqlCommandsCommandDbContextDbSet", "public DbSet<" + _aggregateGeneratorModel.AggregateName + "> " + _aggregateGeneratorModel.AggregatePlural + " { get; set; }\n//SqlCommandsCommandDbContextDbSet");
+        content1 = content1.Replace("//SqlCommandsCommandDbContextDbSet", "        public DbSet<" + _aggregateGeneratorModel.AggregateName + "> " + _aggregateGeneratorModel.AggregatePlural + " { get; set; }\n//SqlCommandsCommandDbContextDbSet");
         content1 = content1.Replace("//SqlCommandsCommandDbContextUsing", "using " + _aggregateGeneratorModel.ProjectName + ".Core.Domain." + _aggregateGeneratorModel.AggregatePlural + ".Entities;\n//SqlCommandsCommandDbContextUsing");
         File.WriteAllText(commandDbContextPath, content1, Encoding.Default);
 
         string content2 = File.ReadAllText(queryDbContextPath, Encoding.Default);
-        content2 = content2.Replace("//SqlQueriesQueryDbContextDbSet", "public virtual DbSet<" + _aggregateGeneratorModel.AggregateName + "> " + _aggregateGeneratorModel.AggregatePlural + " { get; set; }\n//SqlQueriesQueryDbContextDbSet");
+        content2 = content2.Replace("//SqlQueriesQueryDbContextDbSet", "        public virtual DbSet<" + _aggregateGeneratorModel.AggregateName + "> " + _aggregateGeneratorModel.AggregatePlural + " { get; set; }\n//SqlQueriesQueryDbContextDbSet");
         File.WriteAllText(queryDbContextPath, content2, Encoding.Default);
     }
     internal string ReplaceAggregateName(string input)
@@ -114,39 +113,7 @@ internal class TemplateCopy
     }
     internal string TemplateContentChange(string c)
     {
-        c = new ApplicationService(c, _propertyArray, _aggregateGeneratorModel).Exec();
-        c = new Contracts(c, _propertyArray, _aggregateGeneratorModel).Exec();
-        c = new Domain(c, _propertyArray, _aggregateGeneratorModel).Exec();
-        c = new SqlQueries(c, _propertyArray, _aggregateGeneratorModel).Exec();
-        return c;
+        ReplacementMethods replacementMethods = new(c, _propertyArray, _aggregateGeneratorModel);
+        return replacementMethods.Exec();
     }
-
-    /*public string GetTemplateFilePath()
-    {
-        Assembly assembly = Assembly.GetExecutingAssembly();
-        string resourceName = "Template";
-
-        using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-        {
-            if (stream == null)
-            {
-                throw new ArgumentException("Template file not found: ");
-            }
-
-            string tempPath = Path.Combine(Path.GetTempPath(), "");
-            using (FileStream fileStream = File.Create(tempPath))
-            {
-                stream.CopyTo(fileStream);
-            }
-
-            return tempPath;
-        }
-    }
-    public string GetProjectDirectoryPath()
-    {
-        string codeBase = Assembly.GetExecutingAssembly().CodeBase;
-        UriBuilder uri = new UriBuilder(codeBase);
-        string path = Uri.UnescapeDataString(uri.Path);
-        return Path.GetDirectoryName(path);
-    }*/
 }

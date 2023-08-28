@@ -4,6 +4,8 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+	<Authors>Sajad Mirzaei Manesh</Authors>
+	<RepositoryUrl>https://github.com/sajad-mirzaei/ZaminAggregateGenerator</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ZaminAggregateGenerator\ZaminAggregateGenerator.csproj" />
+    <ProjectReference Include="..\..\src\ZaminAggregateGenerator\ZaminAggregateGenerator.csproj" />
   </ItemGroup>
 
 </Project>

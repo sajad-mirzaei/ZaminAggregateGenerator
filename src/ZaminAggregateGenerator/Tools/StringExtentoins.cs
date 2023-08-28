@@ -15,11 +15,11 @@ internal static class StringExtentoins
         return char.ToLower(input[0]) + input.Substring(1);
     }
 
-    public static List<PropertyReplacementModel> ClassParse(string stringClass)
+    public static List<PropertyModel> ClassParse(string stringClass)
     {
         SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(stringClass);
         var root = syntaxTree.GetRoot();
-        List<PropertyReplacementModel> propertyArray = new();
+        List<PropertyModel> propertyArray = new();
 
         var classNode = root.DescendantNodes().OfType<ClassDeclarationSyntax>().FirstOrDefault();
         if (classNode != null)
@@ -29,7 +29,7 @@ internal static class StringExtentoins
             var properties = classNode.DescendantNodes().OfType<PropertyDeclarationSyntax>();
             foreach (var property in properties)
             {
-                PropertyReplacementModel oPropertyReplacementModel = new PropertyReplacementModel
+                PropertyModel oPropertyReplacementModel = new PropertyModel
                 {
                     PropertyName = property.Identifier.ValueText.ToString(),
                     PropertyType = property.Type.ToString()

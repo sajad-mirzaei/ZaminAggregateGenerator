@@ -1,5 +1,4 @@
 ﻿using ZaminAggregateGenerator.Models;
-using ZaminAggregateGenerator.TemplateManage;
 using ZaminAggregateGenerator.Tools;
 
 namespace ZaminAggregateGenerator;
