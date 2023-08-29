@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -23,89 +23,75 @@
 	<PackageTags>Zamin Aggregate Generator</PackageTags>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<SignAssembly>False</SignAssembly>
-	<Version>1.0.1</Version>
+	<Version>1.0.4</Version>
 	<IncludeSymbols>False</IncludeSymbols>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <Optimize>False</Optimize>
+    <Optimize>True</Optimize>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Template\Core.ApplicationService\AggregatePlural\Commands\CreateAggregateName\CreateAggregateNameCommandHandler.cs" />
+    <Compile Remove="Template\Core.ApplicationService\AggregatePlural\Commands\CreateAggregateName\CreateAggregateNameValidator.cs" />
+    <Compile Remove="Template\Core.ApplicationService\AggregatePlural\Queries\GetAggregateNameById\GetAggregateNameByIdHandler.cs" />
+    <Compile Remove="Template\Core.ApplicationService\AggregatePlural\Queries\GetAggregateNameById\GetAggregateNameByIdValidator.cs" />
+    <Compile Remove="Template\Core.ApplicationService\AggregatePlural\Queries\GetAggregatePlural\GetAggregateNameQueryHandler.cs" />
+    <Compile Remove="Template\Core.ApplicationService\AggregatePlural\Queries\GetAggregatePlural\GetAggregateNameQueryValidator.cs" />
+    <Compile Remove="Template\Core.Contracts\AggregatePlural\Commands\CreateAggregateName\CreateAggregateNameCommand.cs" />
+    <Compile Remove="Template\Core.Contracts\AggregatePlural\Commands\IAggregateNameCommandRepository.cs" />
+    <Compile Remove="Template\Core.Contracts\AggregatePlural\IAggregateNameDomainService.cs" />
+    <Compile Remove="Template\Core.Contracts\AggregatePlural\Queries\GetAggregateNameById\AggregateNameByIdDto.cs" />
+    <Compile Remove="Template\Core.Contracts\AggregatePlural\Queries\GetAggregateNameById\GetAggregateNameByIdQuery.cs" />
+    <Compile Remove="Template\Core.Contracts\AggregatePlural\Queries\GetAggregatePlural\AggregateNameDto.cs" />
+    <Compile Remove="Template\Core.Contracts\AggregatePlural\Queries\GetAggregatePlural\GetAggregateNameQuery.cs" />
+    <Compile Remove="Template\Core.Contracts\AggregatePlural\Queries\IAggregateNameQueryRepository.cs" />
+    <Compile Remove="Template\Core.Domain\AggregatePlural\Entities\AggregateName.cs" />
+    <Compile Remove="Template\Core.Domain\AggregatePlural\Events\AggregateNameCreated.cs" />
+    <Compile Remove="Template\Endpoints.API\AggregatePlural\AggregateNameController.cs" />
+    <Compile Remove="Template\Infra.Data.Sql.Commands\AggregatePlural\AggregateNameCommandRepository.cs" />
+    <Compile Remove="Template\Infra.Data.Sql.Commands\AggregatePlural\Configs\AggregateNameConfig.cs" />
+    <Compile Remove="Template\Infra.Data.Sql.Queries\AggregatePlural\AggregateNameQueryRepository.cs" />
+    <Compile Remove="Template\Infra.Data.Sql.Queries\Common\Models\AggregateName.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <None Include="Template\Core.ApplicationService\AggregatePlural\Commands\CreateAggregateName\CreateAggregateNameCommandHandler.cs" />
+    <None Include="Template\Core.ApplicationService\AggregatePlural\Commands\CreateAggregateName\CreateAggregateNameValidator.cs" />
+    <None Include="Template\Core.ApplicationService\AggregatePlural\Queries\GetAggregateNameById\GetAggregateNameByIdHandler.cs" />
+    <None Include="Template\Core.ApplicationService\AggregatePlural\Queries\GetAggregateNameById\GetAggregateNameByIdValidator.cs" />
+    <None Include="Template\Core.ApplicationService\AggregatePlural\Queries\GetAggregatePlural\GetAggregateNameQueryHandler.cs" />
+    <None Include="Template\Core.ApplicationService\AggregatePlural\Queries\GetAggregatePlural\GetAggregateNameQueryValidator.cs" />
+    <None Include="Template\Core.Contracts\AggregatePlural\Commands\CreateAggregateName\CreateAggregateNameCommand.cs" />
+    <None Include="Template\Core.Contracts\AggregatePlural\Commands\IAggregateNameCommandRepository.cs" />
+    <None Include="Template\Core.Contracts\AggregatePlural\IAggregateNameDomainService.cs" />
+    <None Include="Template\Core.Contracts\AggregatePlural\Queries\GetAggregateNameById\AggregateNameByIdDto.cs" />
+    <None Include="Template\Core.Contracts\AggregatePlural\Queries\GetAggregateNameById\GetAggregateNameByIdQuery.cs" />
+    <None Include="Template\Core.Contracts\AggregatePlural\Queries\GetAggregatePlural\AggregateNameDto.cs" />
+    <None Include="Template\Core.Contracts\AggregatePlural\Queries\GetAggregatePlural\GetAggregateNameQuery.cs" />
+    <None Include="Template\Core.Contracts\AggregatePlural\Queries\IAggregateNameQueryRepository.cs" />
+    <None Include="Template\Core.Domain\AggregatePlural\Entities\AggregateName.cs" />
+    <None Include="Template\Core.Domain\AggregatePlural\Events\AggregateNameCreated.cs" />
+    <None Include="Template\Endpoints.API\AggregatePlural\AggregateNameController.cs" />
+    <None Include="Template\Infra.Data.Sql.Commands\AggregatePlural\AggregateNameCommandRepository.cs" />
+    <None Include="Template\Infra.Data.Sql.Commands\AggregatePlural\Configs\AggregateNameConfig.cs" />
+    <None Include="Template\Infra.Data.Sql.Queries\AggregatePlural\AggregateNameQueryRepository.cs" />
+    <None Include="Template\Infra.Data.Sql.Queries\Common\Models\AggregateName.cs" />
+	  
   </ItemGroup>
-
-  <ItemGroup>
+	<ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Template\Core.ApplicationService\AggregatePlural\Commands\CreateAggregateName\CreateAggregateNameCommandHandler.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Core.ApplicationService\AggregatePlural\Commands\CreateAggregateName\CreateAggregateNameValidator.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Core.ApplicationService\AggregatePlural\Queries\GetAggregateNameById\GetAggregateNameByIdHandler.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Core.ApplicationService\AggregatePlural\Queries\GetAggregateNameById\GetAggregateNameByIdValidator.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Core.ApplicationService\AggregatePlural\Queries\GetAggregatePlural\GetAggregateNameQueryHandler.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Core.ApplicationService\AggregatePlural\Queries\GetAggregatePlural\GetAggregateNameQueryValidator.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Core.Contracts\AggregatePlural\Commands\CreateAggregateName\CreateAggregateNameCommand.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Core.Contracts\AggregatePlural\Commands\IAggregateNameCommandRepository.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Core.Contracts\AggregatePlural\IAggregateNameDomainService.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Core.Contracts\AggregatePlural\Queries\GetAggregateNameById\AggregateNameByIdDto.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Core.Contracts\AggregatePlural\Queries\GetAggregateNameById\GetAggregateNameByIdQuery.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Core.Contracts\AggregatePlural\Queries\GetAggregatePlural\AggregateNameDto.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Core.Contracts\AggregatePlural\Queries\GetAggregatePlural\GetAggregateNameQuery.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Core.Contracts\AggregatePlural\Queries\IAggregateNameQueryRepository.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Core.Domain\AggregatePlural\Entities\AggregateName.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Core.Domain\AggregatePlural\Events\AggregateNameCreated.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Endpoints.API\AggregatePlural\AggregateNameController.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Infra.Data.Sql.Commands\AggregatePlural\AggregateNameCommandRepository.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Infra.Data.Sql.Commands\AggregatePlural\Configs\AggregateNameConfig.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Infra.Data.Sql.Queries\AggregatePlural\AggregateNameQueryRepository.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Template\Infra.Data.Sql.Queries\Common\Models\AggregateName.csharp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Update="Template\**\*.csharp">
+			<Pack>true</Pack>
+			<PackagePath>contentFiles\%(RecursiveDir)%(FileName)%(Extension)</PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>

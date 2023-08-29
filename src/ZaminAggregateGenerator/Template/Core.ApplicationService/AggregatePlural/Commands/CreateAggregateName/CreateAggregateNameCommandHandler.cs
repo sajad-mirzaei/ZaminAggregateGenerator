@@ -1,7 +1,6 @@
-﻿public class CreateAggregateNameCommandHandler
+﻿public class CreateAggregateNameCommandHandler : ISourceCode
 {
-    public int SourceCode = @"
-using ProjectName.Core.Contracts.AggregatePlural.Commands;
+    public string GetSourceCode() => @"using ProjectName.Core.Contracts.AggregatePlural.Commands;
 using ProjectName.Core.Contracts.AggregatePlural.Commands.CreateAggregateName;
 using ProjectName.Core.Domain.AggregatePlural.Entities;
 using Zamin.Core.ApplicationServices.Commands;

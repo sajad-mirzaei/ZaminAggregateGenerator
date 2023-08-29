@@ -1,4 +1,6 @@
-﻿using FluentValidation;
+﻿public class CreateAggregateNameValidator : ISourceCode
+{
+    public string GetSourceCode() => @"using FluentValidation;
 using ProjectName.Core.Contracts.AggregatePlural.Commands;
 using ProjectName.Core.Contracts.AggregatePlural.Commands.CreateAggregateName;
 using ProjectName.Core.Domain.Common;
@@ -15,4 +17,6 @@ public class CreateAggregateNameValidator : AbstractValidator<CreateAggregateNam
         /*RuleFor(p => p.FirstName).NotNull().WithMessage(translator[ResourceKeys.MustNotNullError]);
         RuleFor(p => p.LastName).NotNull().WithMessage(translator[ResourceKeys.MustNotNullError]);*/
     }
+}
+";
 }

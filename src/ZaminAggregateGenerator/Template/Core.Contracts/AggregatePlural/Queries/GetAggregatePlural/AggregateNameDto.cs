@@ -1,4 +1,6 @@
-﻿namespace ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateName;
+﻿public class AggregateNameDto : ISourceCode
+{
+    public string GetSourceCode() => @"namespace ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateName;
 public class AggregateNameDto
 {
     public long Id { get; set; }
@@ -12,4 +14,6 @@ ContractsReplacementText1
     public string? ModifiedByUserId { get; set; }
     public string? ModifiedByUserName { get; set; }
     public DateTime? ModifiedDateTime { get; set; }
+}
+";
 }

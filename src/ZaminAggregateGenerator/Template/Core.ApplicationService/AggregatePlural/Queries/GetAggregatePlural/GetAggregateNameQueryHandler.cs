@@ -1,4 +1,6 @@
-﻿using ProjectName.Core.Contracts.AggregatePlural.Queries;
+﻿public class GetAggregateNameQueryHandler : ISourceCode
+{
+    public string GetSourceCode() => @"using ProjectName.Core.Contracts.AggregatePlural.Queries;
 using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregatePlural;
 using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateName;
 using Zamin.Core.ApplicationServices.Queries;
@@ -21,4 +23,6 @@ public class GetAggregateNameQueryHandler : QueryHandler<GetAggregateNameQuery, 
         var aggregatePlural = await _aggregateNameQueryRepository.SelectAsync(query);
         return await ResultAsync(aggregatePlural);
     }
+}
+";
 }

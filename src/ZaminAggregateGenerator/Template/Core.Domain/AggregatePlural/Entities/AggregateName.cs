@@ -1,4 +1,6 @@
-﻿using ProjectName.Core.Domain.AggregatePlural.Events;
+﻿public class AggregateName : ISourceCode
+{
+    public string GetSourceCode() => @"using ProjectName.Core.Domain.AggregatePlural.Events;
 using Zamin.Core.Domain.Entities;
 using Zamin.Core.Domain.ValueObjects;
 
@@ -37,4 +39,6 @@ DomainReplacementText2
 DomainReplacementText4
         );
     #endregion
+}
+";
 }

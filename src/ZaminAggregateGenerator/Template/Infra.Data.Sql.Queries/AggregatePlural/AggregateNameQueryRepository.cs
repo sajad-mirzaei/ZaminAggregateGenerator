@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿public class AggregateNameQueryRepository : ISourceCode
+{
+    public string GetSourceCode() => @"using Microsoft.EntityFrameworkCore;
 using ProjectName.Core.Contracts.AggregatePlural.Queries;
 using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregatePlural;
 using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateName;
@@ -63,4 +65,6 @@ SqlQueriesReplacementText1 ,
         return result;
         #endregion
     }
+}
+";
 }

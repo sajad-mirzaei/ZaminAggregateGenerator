@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿public class AggregateNameController : ISourceCode
+{
+    public string GetSourceCode() => @"using Microsoft.AspNetCore.Mvc;
 using ProjectName.Core.Contracts.AggregatePlural.Commands.CreateAggregateName;
 using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregatePlural;
 using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateName;
@@ -8,24 +10,26 @@ using Zamin.EndPoints.Web.Controllers;
 
 namespace ProjectName.Endpoints.API.AggregatePlural;
 
-[Route("api/[controller]")]
+[Route(""api/[controller]"")]
 public class AggregateNameController : BaseController
 {
-    [HttpPost("[action]")]
+    [HttpPost(""[action]"")]
     public async Task<IActionResult> CreateAggregateName([FromBody] CreateAggregateNameCommand createAggregateName)
     {
         return await Create<CreateAggregateNameCommand, Guid>(createAggregateName);
     }
 
-    [HttpGet("[action]")]
+    [HttpGet(""[action]"")]
     public async Task<IActionResult> GetAggregateName([FromQuery] GetAggregateNameQuery query)
     {
         return await Query<GetAggregateNameQuery, PagedData<AggregateNameDto>>(query);
     }
 
-    [HttpGet("[action]")]
+    [HttpGet(""[action]"")]
     public async Task<IActionResult> GetAggregateNameById([FromQuery] GetAggregateNameByIdQuery query)
     {
         return await Query<GetAggregateNameByIdQuery, AggregateNameByIdDto>(query);
     }
+}
+";
 }

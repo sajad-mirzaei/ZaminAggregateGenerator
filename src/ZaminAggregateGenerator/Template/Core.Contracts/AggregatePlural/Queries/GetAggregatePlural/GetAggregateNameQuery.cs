@@ -1,4 +1,6 @@
-﻿using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateName;
+﻿public class GetAggregateNameQuery : ISourceCode
+{
+    public string GetSourceCode() => @"using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateName;
 using Zamin.Core.Contracts.ApplicationServices.Queries;
 using Zamin.Core.Contracts.Data.Queries;
 
@@ -15,4 +17,6 @@ ContractsReplacementText1
     public DateTime? CreatedDateTime { get; set; }
     public string? ModifiedByUserId { get; set; }
     public DateTime? ModifiedDateTime { get; set; }
+}
+";
 }

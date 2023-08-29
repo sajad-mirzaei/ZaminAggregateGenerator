@@ -1,4 +1,6 @@
-﻿namespace ProjectName.Infra.Data.Sql.Queries.Common.Models;
+﻿public class AggregateName : ISourceCode
+{
+    public string GetSourceCode() => @"namespace ProjectName.Infra.Data.Sql.Queries.Common.Models;
 
 public partial class AggregateName
 {
@@ -11,4 +13,6 @@ SqlQueriesReplacementText3
     public string? ModifiedByUserId { get; set; }
     public DateTime? ModifiedDateTime { get; set; }
     public Guid BusinessId { get; set; }
+}
+";
 }

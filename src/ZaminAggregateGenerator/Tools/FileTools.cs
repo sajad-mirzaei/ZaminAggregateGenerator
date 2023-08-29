@@ -1,10 +1,10 @@
 ﻿namespace ZaminAggregateGenerator.Tools;
 
-internal class FileTools
+internal static class FileTools
 {
-    List<string> files = new List<string>();
-    public string[] FilesList(string projectPath, string format, bool withSubFolders, List<string> checkContain, int indent = 0)
+    public static string[] FilesList(string projectPath, string format, bool withSubFolders, List<string> checkContain, int indent = 0)
     {
+        List<string> files = new();
         try
         {
             // List all directories and files in the current directory
@@ -46,7 +46,7 @@ internal class FileTools
         return filesList;
     }
 
-    public string[] SortListForRunTimeError(List<string> collection)
+    public static string[] SortListForRunTimeError(List<string> collection)
     {
         if (collection.Count() > 0)
         {
@@ -81,7 +81,7 @@ internal class FileTools
         }
         return null;
     }
-    public bool CheckArrayItemsInStatement(List<string> collection, string statement)
+    public static bool CheckArrayItemsInStatement(List<string> collection, string statement)
     {
         foreach (var item in collection)
         {

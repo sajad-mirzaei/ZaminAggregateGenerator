@@ -1,4 +1,6 @@
-﻿using FluentValidation;
+﻿public class GetAggregateNameByIdValidator : ISourceCode
+{
+    public string GetSourceCode() => @"using FluentValidation;
 using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateNameById;
 using Zamin.Extensions.Translations.Abstractions;
 
@@ -11,4 +13,6 @@ public class GetAggregateNameByIdValidator : AbstractValidator<GetAggregateNameB
             .NotEmpty()
             .WithMessage(translator["Required", nameof(GetAggregateNameByIdQuery.BusinessId)]);
     }
+}
+";
 }

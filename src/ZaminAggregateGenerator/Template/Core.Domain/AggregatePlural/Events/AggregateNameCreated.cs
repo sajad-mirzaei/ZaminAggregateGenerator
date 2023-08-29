@@ -1,4 +1,6 @@
-﻿using Zamin.Core.Domain.Events;
+﻿public class AggregateNameCreated : ISourceCode
+{
+    public string GetSourceCode() => @"using Zamin.Core.Domain.Events;
 
 namespace ProjectName.Core.Domain.AggregatePlural.Events;
 public class AggregateNameCreated : IDomainEvent
@@ -14,4 +16,6 @@ DomainReplacementText2
         BusinessId = businessId;
 DomainReplacementText3
     }
+}
+";
 }
