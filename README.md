@@ -1,18 +1,9 @@
-# a Package to quickly create the files of an aggregate in the Zamin project
+# A Package to quickly create the files of an aggregate in the Zamin project
 
 
-AggregationGenerator is a NuGet package designed to streamline and accelerate the process of creating Aggregation files across various layers of your API project. Aggregation files play a crucial role in combining related data and facilitating efficient data retrieval in modern software systems. However, generating these files manually can be time-consuming and error-prone. AggregationGenerator aims to provide a seamless solution to this challenge by automating
-
-## Key Features:
-
-1. **Effortless Aggregation File Creation:** With AggregationGenerator, you can effortlessly create Aggregation files that consolidate and structure your data from various sources within your API project. This reduces the need for manual file creation, saving you valuable development time.
-
-2. **Layer-Agnostic Integration:** AggregationGenerator seamlessly integrates with all layers of your API project, whether it's the data access layer, business logic layer, or presentation layer. This cross-layer compatibility ensures that your Aggregation files are consistently generated throughout the application.
-
-3. **Performance Boost:** By automating the Aggregation file generation process, AggregationGenerator contributes to improved project build speed. You'll experience quicker development cycles and reduced turnaround time.
+AggregationGenerator is a NuGet package designed to streamline and accelerate the process of creating Aggregation files across various layers of your API project. Aggregation files play a crucial role in combining related data and facilitating efficient data retrieval in modern software systems. However, generating these files manually can be time-consuming and error-prone. AggregationGenerator aims to provide a seamless solution to this challenge by automating.
 
 ## Getting Started:
-
 Getting started with AggregationGenerator is straightforward. Simply install the NuGet package into your API project and follow the provided documentation to configure and utilize the package effectively. With AggregationGenerator, you'll experience improved code organization, enhanced data retrieval capabilities, and an optimized development workflow.
 Getting started with Aggregation Gen is simple. Simply install the NuGet package into your API project and follow these steps:
 
