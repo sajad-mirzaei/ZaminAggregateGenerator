@@ -1,4 +1,7 @@
-﻿using ProjectName.Core.Contracts.AggregatePlural.Commands;
+﻿public class CreateAggregateNameCommandHandler
+{
+    public int SourceCode = @"
+using ProjectName.Core.Contracts.AggregatePlural.Commands;
 using ProjectName.Core.Contracts.AggregatePlural.Commands.CreateAggregateName;
 using ProjectName.Core.Domain.AggregatePlural.Entities;
 using Zamin.Core.ApplicationServices.Commands;
@@ -25,4 +28,6 @@ ApplicationServiceReplacementText1
         await _aggregateNameCommandRepository.CommitAsync();
         return await OkAsync(businessId);
     }
+}
+";
 }
