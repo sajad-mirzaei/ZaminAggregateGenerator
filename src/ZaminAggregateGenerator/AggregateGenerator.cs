@@ -42,27 +42,6 @@ public class AggregateGenerator
 
                 File.WriteAllText(targetFilePath, sourceCode, Encoding.Default);
             }
-
-            /*foreach (string dirPath in Directory.GetDirectories(templatePath, "*", SearchOption.AllDirectories))
-            {
-                var newDirPath = ReplaceAggregateName(dirPath);
-                Directory.CreateDirectory(newDirPath.Replace(templatePath, targetPath));
-            }
-
-            foreach (string sourceFilePath in Directory.GetFiles(templatePath, "*.*", SearchOption.AllDirectories))
-            {
-                var sourceFilePathReplaced = ReplaceAggregateName(sourceFilePath);
-                var destinationFilePath = sourceFilePathReplaced.Replace(templatePath, targetPath);
-                destinationFilePath = destinationFilePath.Replace(".csharp", ".cs");
-                File.Copy(sourceFilePath, destinationFilePath, true);
-
-
-                string fileContent = File.ReadAllText(destinationFilePath, Encoding.Default);
-                fileContent = ReplaceAggregateName(fileContent);
-                fileContent = TemplateContentChange(fileContent);
-                string newDestinationFilePath = ReplaceAggregateName(destinationFilePath);
-                File.WriteAllText(newDestinationFilePath, fileContent, Encoding.Default);
-            }*/
         }
         AddDbSetToDbContexts();
     }
