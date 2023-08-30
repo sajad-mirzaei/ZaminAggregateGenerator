@@ -1,5 +1,8 @@
-﻿public class AggregateNameController : ISourceCode
+﻿using ZaminAggregateGenerator;
+
+internal class AggregateNameController : ISourceCode
 {
+    public string GetClassPath() => @"Endpoints.API\AggregatePlural";
     public string GetSourceCode() => @"using Microsoft.AspNetCore.Mvc;
 using ProjectName.Core.Contracts.AggregatePlural.Commands.CreateAggregateName;
 using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregatePlural;

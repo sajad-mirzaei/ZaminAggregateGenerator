@@ -1,5 +1,8 @@
-﻿public class GetAggregateNameByIdValidator : ISourceCode
+﻿using ZaminAggregateGenerator;
+
+internal class GetAggregateNameByIdValidator : ISourceCode
 {
+    public string GetClassPath() => @"Core.ApplicationService\AggregatePlural\Queries\GetAggregateNameById";
     public string GetSourceCode() => @"using FluentValidation;
 using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateNameById;
 using Zamin.Extensions.Translations.Abstractions;
@@ -11,7 +14,7 @@ public class GetAggregateNameByIdValidator : AbstractValidator<GetAggregateNameB
     {
         RuleFor(query => query.BusinessId)
             .NotEmpty()
-            .WithMessage(translator["Required", nameof(GetAggregateNameByIdQuery.BusinessId)]);
+            .WithMessage(translator[""Required"", nameof(GetAggregateNameByIdQuery.BusinessId)]);
     }
 }
 ";

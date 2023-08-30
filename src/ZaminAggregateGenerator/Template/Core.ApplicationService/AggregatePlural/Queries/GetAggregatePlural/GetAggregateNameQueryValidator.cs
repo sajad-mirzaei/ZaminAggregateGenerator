@@ -1,5 +1,8 @@
-﻿public class GetAggregateNameQueryValidator : ISourceCode
+﻿using ZaminAggregateGenerator;
+
+internal class GetAggregateNameQueryValidator : ISourceCode
 {
+    public string GetClassPath() => @"Core.ApplicationService\AggregatePlural\Queries\GetAggregatePlural";
     public string GetSourceCode() => @"using FluentValidation;
 using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregatePlural;
 using ProjectName.Core.Domain.Common;

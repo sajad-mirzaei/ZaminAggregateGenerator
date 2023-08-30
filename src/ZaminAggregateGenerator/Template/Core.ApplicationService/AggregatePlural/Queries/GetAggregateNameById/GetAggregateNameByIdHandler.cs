@@ -1,5 +1,8 @@
-﻿public class GetAggregateNameByIdHandler : ISourceCode
+﻿using ZaminAggregateGenerator;
+
+internal class GetAggregateNameByIdHandler : ISourceCode
 {
+    public string GetClassPath() => @"Core.ApplicationService\AggregatePlural\Queries\GetAggregateNameById";
     public string GetSourceCode() => @"using ProjectName.Core.Contracts.AggregatePlural.Queries;
 using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateNameById;
 using Zamin.Core.ApplicationServices.Queries;

@@ -14,7 +14,7 @@ public class AggregateGenerator
     {
         GenModel = genModel;
         PropertyArray = StringExtentoins.ClassParse(GenModel.AggregateClass);
-        CsprojFilesList = FileTools.FilesList(GenModel.ProjectPath, ".csproj", true, Configs.LayersList);
+        CsprojFilesList = FileTools.FilesList(GenModel.ProjectPath, ".csproj", true, Configs.CsprojList);
     }
 
     public void Generate()

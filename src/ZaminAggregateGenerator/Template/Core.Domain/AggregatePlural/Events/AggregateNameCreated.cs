@@ -1,5 +1,8 @@
-﻿public class AggregateNameCreated : ISourceCode
+﻿using ZaminAggregateGenerator;
+
+internal class AggregateNameCreated : ISourceCode
 {
+    public string GetClassPath() => @"Core.Domain\AggregatePlural\Events";
     public string GetSourceCode() => @"using Zamin.Core.Domain.Events;
 
 namespace ProjectName.Core.Domain.AggregatePlural.Events;

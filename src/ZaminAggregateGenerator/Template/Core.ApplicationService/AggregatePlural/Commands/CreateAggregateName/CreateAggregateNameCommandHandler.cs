@@ -1,5 +1,8 @@
-﻿public class CreateAggregateNameCommandHandler : ISourceCode
+﻿using ZaminAggregateGenerator;
+
+internal class CreateAggregateNameCommandHandler : ISourceCode
 {
+    public string GetClassPath() => @"Core.ApplicationService\AggregatePlural\Commands\CreateAggregateName";
     public string GetSourceCode() => @"using ProjectName.Core.Contracts.AggregatePlural.Commands;
 using ProjectName.Core.Contracts.AggregatePlural.Commands.CreateAggregateName;
 using ProjectName.Core.Domain.AggregatePlural.Entities;

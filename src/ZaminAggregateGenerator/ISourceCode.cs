@@ -1,6 +1,7 @@
 ﻿namespace ZaminAggregateGenerator;
 
-public interface ISourceCode
+internal interface ISourceCode
 {
+    string GetClassPath();
     string GetSourceCode();
 }
