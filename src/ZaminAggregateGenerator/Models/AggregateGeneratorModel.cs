@@ -17,4 +17,6 @@ public class AggregateGeneratorModel
     public string ProjectPath { get; set; } = string.Empty;
 
     public string AggregateClass { get; set; } = string.Empty;
+    public string CommandDbContextPath { get; set; } = string.Empty;
+    public string QueryDbContextPath { get; set; } = string.Empty;
 }

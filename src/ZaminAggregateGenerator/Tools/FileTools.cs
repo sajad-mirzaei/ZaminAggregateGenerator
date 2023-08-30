@@ -2,7 +2,7 @@
 
 internal static class FileTools
 {
-    public static string[] FilesList(string projectPath, string format, bool withSubFolders, List<string> checkContain, int indent = 0)
+    public static List<string> FilesList(string projectPath, string format, bool withSubFolders, List<string> checkContain, int indent = 0)
     {
         List<string> files = new();
         try
@@ -42,26 +42,25 @@ internal static class FileTools
         {
             Console.WriteLine("Error: " + ex.Message);
         }
-        var filesList = SortListForRunTimeError(files);
+        var filesList = GenerateFilesInSafeOrder(files);
         return filesList;
     }
-
-    public static string[] SortListForRunTimeError(List<string> collection)
+    private static List<string> GenerateFilesInSafeOrder(List<string> collection)
     {
-        if (collection.Count() > 0)
+        if (collection.Count > 0)
         {
             string[] sortedList = new string[6];
             foreach (var item in collection)
             {
                 switch (item)
                 {
-                    case string s when s.Contains(".Domain"):
+                    case string s when s.Contains("Core.Domain"):
                         sortedList[0] = s;
                         break;
-                    case string s when s.Contains(".Contracts"):
+                    case string s when s.Contains("Core.Contracts"):
                         sortedList[1] = s;
                         break;
-                    case string s when s.Contains(".ApplicationService"):
+                    case string s when s.Contains("Core.ApplicationService"):
                         sortedList[2] = s;
                         break;
                     case string s when s.Contains("Sql.Commands"):
@@ -77,11 +76,11 @@ internal static class FileTools
                         break;
                 }
             }
-            return sortedList;
+            return sortedList.ToList();
         }
-        return null;
+        return new List<string>();
     }
-    public static bool CheckArrayItemsInStatement(List<string> collection, string statement)
+    private static bool CheckArrayItemsInStatement(List<string> collection, string statement)
     {
         foreach (var item in collection)
         {
@@ -89,5 +88,13 @@ internal static class FileTools
                 return true;
         }
         return false;
+    }
+
+    public static string GetCurrectClassName(string className)
+    {
+        if (!className.Contains('_'))
+            return className;
+        var splited = className.Split('_');
+        return splited[0];
     }
 }

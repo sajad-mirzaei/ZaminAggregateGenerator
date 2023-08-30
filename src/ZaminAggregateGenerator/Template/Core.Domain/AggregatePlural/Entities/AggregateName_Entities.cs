@@ -2,7 +2,7 @@
 
 internal class AggregateName_Entities : ISourceCode
 {
-    public string GetClassPath() => @"Core.Domain\AggregatePlural\Entities";
+    public string GetClassPath() => @"AggregatePlural\Entities";
     public string GetSourceCode() => @"using ProjectName.Core.Domain.AggregatePlural.Events;
 using Zamin.Core.Domain.Entities;
 using Zamin.Core.Domain.ValueObjects;

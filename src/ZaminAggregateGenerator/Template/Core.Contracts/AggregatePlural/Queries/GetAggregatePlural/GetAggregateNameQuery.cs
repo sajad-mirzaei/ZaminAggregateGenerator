@@ -2,7 +2,7 @@
 
 internal class GetAggregateNameQuery : ISourceCode
 {
-    public string GetClassPath() => @"Core.Contracts\AggregatePlural\Queries\GetAggregatePlural";
+    public string GetClassPath() => @"AggregatePlural\Queries\GetAggregatePlural";
     public string GetSourceCode() => @"using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateName;
 using Zamin.Core.Contracts.ApplicationServices.Queries;
 using Zamin.Core.Contracts.Data.Queries;

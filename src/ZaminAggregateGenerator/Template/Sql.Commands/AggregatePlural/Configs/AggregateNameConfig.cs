@@ -2,7 +2,7 @@
 
 internal class AggregateNameConfig : ISourceCode
 {
-    public string GetClassPath() => @"Infra.Data.Sql.Commands\AggregatePlural\Configs";
+    public string GetClassPath() => @"AggregatePlural\Configs";
     public string GetSourceCode() => @"using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ProjectName.Core.Domain.AggregatePlural.Entities;

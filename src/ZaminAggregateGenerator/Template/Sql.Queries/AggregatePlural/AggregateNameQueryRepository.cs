@@ -2,7 +2,7 @@
 
 internal class AggregateNameQueryRepository : ISourceCode
 {
-    public string GetClassPath() => @"Infra.Data.Sql.Queries\AggregatePlural";
+    public string GetClassPath() => @"AggregatePlural";
     public string GetSourceCode() => @"using Microsoft.EntityFrameworkCore;
 using ProjectName.Core.Contracts.AggregatePlural.Queries;
 using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregatePlural;

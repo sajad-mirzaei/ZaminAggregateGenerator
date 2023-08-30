@@ -2,7 +2,7 @@
 
 internal class GetAggregateNameByIdValidator : ISourceCode
 {
-    public string GetClassPath() => @"Core.ApplicationService\AggregatePlural\Queries\GetAggregateNameById";
+    public string GetClassPath() => @"AggregatePlural\Queries\GetAggregateNameById";
     public string GetSourceCode() => @"using FluentValidation;
 using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateNameById;
 using Zamin.Extensions.Translations.Abstractions;

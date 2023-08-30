@@ -2,7 +2,7 @@
 
 internal class IAggregateNameDomainService : ISourceCode
 {
-    public string GetClassPath() => @"Core.Contracts\AggregatePlural";
+    public string GetClassPath() => @"AggregatePlural";
     public string GetSourceCode() => @"using Zamin.Extensions.DependencyInjection.Abstractions;
 
 namespace ProjectName.Core.Contracts.AggregatePlural;

@@ -2,7 +2,7 @@
 
 internal class AggregateName_Models : ISourceCode
 {
-    public string GetClassPath() => @"Infra.Data.Sql.Queries\Common\Models";
+    public string GetClassPath() => @"Common\Models";
     public string GetSourceCode() => @"namespace ProjectName.Infra.Data.Sql.Queries.Common.Models;
 
 public partial class AggregateName
