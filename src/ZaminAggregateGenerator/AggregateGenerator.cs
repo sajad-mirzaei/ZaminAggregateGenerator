@@ -46,7 +46,6 @@ public class AggregateGenerator
                 }
             }
             AddDbSetToDbContexts();
-            return resultModel.GetString();
         }
 
         return resultModel.GetString();
@@ -68,18 +67,14 @@ public class AggregateGenerator
     }
     void AddDbSetToDbContexts()
     {
-        //CommandDbContext
-        var commandDbContextPath = !string.IsNullOrWhiteSpace(GenModel.CommandDbContextPath.Trim()) ? GenModel.CommandDbContextPath.Trim() : GenModel.ProjectPath + "\\2.Infra\\Data\\" + GenModel.ProjectName + ".Infra.Data.Sql.Commands\\Common\\" + GenModel.ProjectName + "CommandDbContext.cs";
-        var queryDbContextPath = !string.IsNullOrWhiteSpace(GenModel.CommandDbContextPath.Trim()) ? GenModel.CommandDbContextPath.Trim() : GenModel.ProjectPath + "\\2.Infra\\Data\\" + GenModel.ProjectName + ".Infra.Data.Sql.Queries\\Common\\" + GenModel.ProjectName + "QueryDbContext.cs";
-
-        string content1 = File.ReadAllText(commandDbContextPath, Encoding.Default);
+        string content1 = File.ReadAllText(GenModel.CommandDbContextPath, Encoding.Default);
         content1 = content1.Replace("//SqlCommandsCommandDbContextDbSet", "        public DbSet<" + GenModel.AggregateName + "> " + GenModel.AggregatePlural + " { get; set; }\n//SqlCommandsCommandDbContextDbSet");
         content1 = content1.Replace("//SqlCommandsCommandDbContextUsing", "using " + GenModel.ProjectName + ".Core.Domain." + GenModel.AggregatePlural + ".Entities;\n//SqlCommandsCommandDbContextUsing");
-        File.WriteAllText(commandDbContextPath, content1, Encoding.Default);
+        File.WriteAllText(GenModel.CommandDbContextPath, content1, Encoding.Default);
 
-        string content2 = File.ReadAllText(queryDbContextPath, Encoding.Default);
+        string content2 = File.ReadAllText(GenModel.QueryDbContextPath, Encoding.Default);
         content2 = content2.Replace("//SqlQueriesQueryDbContextDbSet", "        public virtual DbSet<" + GenModel.AggregateName + "> " + GenModel.AggregatePlural + " { get; set; }\n//SqlQueriesQueryDbContextDbSet");
-        File.WriteAllText(queryDbContextPath, content2, Encoding.Default);
+        File.WriteAllText(GenModel.QueryDbContextPath, content2, Encoding.Default);
     }
     internal string ReplaceAggregateName(string input)
     {
