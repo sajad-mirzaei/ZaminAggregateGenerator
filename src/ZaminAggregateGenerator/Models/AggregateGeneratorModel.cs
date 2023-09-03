@@ -17,12 +17,6 @@ public class AggregateGeneratorModel
     public string ProjectPath { get; set; } = string.Empty;
 
     public string AggregateClass { get; set; } = string.Empty;
-    public string CommandDbContextPath { get; set; }
-    public string QueryDbContextPath { get; set; }
-
-    public AggregateGeneratorModel()
-    {
-        CommandDbContextPath = $"{ProjectPath}\\2.Infra\\Data\\{ProjectName}.Infra.Data.Sql.Commands\\Common\\{ProjectName}CommandDbContext.cs";
-        QueryDbContextPath = $"{ProjectPath}\\2.Infra\\Data\\{ProjectName}.Infra.Data.Sql.Queries\\Common\\{ProjectName}QueryDbContext.cs";
-    }
+    public string? CommandDbContextPath { get; set; }
+    public string? QueryDbContextPath { get; set; }
 }

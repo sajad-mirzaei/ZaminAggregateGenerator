@@ -23,7 +23,7 @@
 	<PackageTags>Zamin Aggregate Generator</PackageTags>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<SignAssembly>False</SignAssembly>
-	<Version>2.0.2</Version>
+	<Version>2.0.3</Version>
 	<IncludeSymbols>False</IncludeSymbols>
   </PropertyGroup>
 
