@@ -1,16 +1,15 @@
 ﻿using System.Text;
 using ZaminAggregateGenerator.Models;
-using ZaminAggregateGenerator.Tools;
 
-namespace ZaminAggregateGenerator;
+namespace ZaminAggregateGenerator.Services;
 
-internal class ReplacementMethods
+internal class AggregatePropertyAdder
 {
     private readonly AggregateGeneratorModel _aggregateGeneratorModel;
     private readonly List<PropertyModel> _propertyArray;
     private string _content;
 
-    public ReplacementMethods(
+    public AggregatePropertyAdder(
         string content,
         List<PropertyModel> propertyArray,
         AggregateGeneratorModel aggregateGeneratorModel)
@@ -21,7 +20,7 @@ internal class ReplacementMethods
         InitializeMethods();
     }
 
-    internal string Exec()
+    internal string AddProperties()
     {
         foreach (var (method, textReplacementModel) in _methods)
         {

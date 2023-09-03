@@ -1,11 +1,12 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Text.Json;
 using ZaminAggregateGenerator.Models;
 
-namespace ZaminAggregateGenerator.Tools;
+namespace ZaminAggregateGenerator.Services;
 
-internal static class StringExtentoins
+internal static class Extentoins
 {
     public static string ToLowerFirstChar(this string input)
     {
@@ -38,5 +39,10 @@ internal static class StringExtentoins
             }
         }
         return propertyArray;
+    }
+
+    public static string GetResult(this ResultModel resultModel)
+    {
+        return JsonSerializer.Serialize(resultModel);
     }
 }

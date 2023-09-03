@@ -1,4 +1,4 @@
-﻿namespace ZaminAggregateGenerator.Tools;
+﻿namespace ZaminAggregateGenerator.Services;
 
 internal static class FileTools
 {
@@ -28,19 +28,14 @@ internal static class FileTools
             // Display the directories and files
             foreach (string dir in dirs)
             {
-                Console.WriteLine(new string(' ', indent) + Path.GetFileName(dir));
+                //Console.WriteLine(new string(' ', indent) + Path.GetFileName(dir));
                 if (withSubFolders)
                     FilesList(dir, format, withSubFolders, checkContain, indent + 2); // Call the method recursively for each directory
-            }
-
-            foreach (string file in files)
-            {
-                Console.WriteLine(new string(' ', indent) + Path.GetFileName(file));
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine("Error: " + ex.Message);
+            new Exception("Error: " + ex.Message);
         }
         var filesList = GenerateFilesInSafeOrder(files);
         return filesList;

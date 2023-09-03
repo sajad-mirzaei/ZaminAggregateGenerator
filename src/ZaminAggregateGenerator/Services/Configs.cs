@@ -1,4 +1,4 @@
-﻿namespace ZaminAggregateGenerator.Tools;
+﻿namespace ZaminAggregateGenerator.Services;
 
 internal static class Configs
 {

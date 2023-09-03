@@ -1,8 +1,8 @@
-﻿namespace ZaminAggregateGenerator.Tools;
+﻿namespace ZaminAggregateGenerator.Services;
 
 internal static class DirectoryTools
 {
-    public static void CreatePathDirectories(string path, string csprojFileDirectoryPath)
+    public static void CreateNestedDirectories(string path, string csprojFileDirectoryPath)
     {
         var directoryList = path.Split('\\');
         CreateSubdirectories(csprojFileDirectoryPath, directoryList, 0);

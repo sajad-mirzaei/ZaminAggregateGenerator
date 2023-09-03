@@ -1,4 +1,4 @@
-﻿using ZaminAggregateGenerator;
+﻿using ZaminAggregateGenerator.Services;
 
 internal class AggregateName_Models : ISourceCode
 {

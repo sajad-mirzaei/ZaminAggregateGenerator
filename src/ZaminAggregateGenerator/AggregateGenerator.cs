@@ -1,24 +1,27 @@
 ﻿using System.Text;
 using ZaminAggregateGenerator.Models;
-using ZaminAggregateGenerator.Tools;
+using ZaminAggregateGenerator.Services;
 
 namespace ZaminAggregateGenerator;
 
 public class AggregateGenerator
 {
-    private AggregateGeneratorModel GenModel { get; set; }
-    private List<PropertyModel> PropertyArray { get; set; }
-    private List<string> CsprojFilesList { get; set; }
+    internal AggregateGeneratorModel GenModel { get; set; }
+    internal List<PropertyModel> PropertyArray { get; set; }
+    internal List<string> CsprojFilesList { get; set; }
 
     public AggregateGenerator(AggregateGeneratorModel genModel)
     {
         GenModel = genModel;
-        PropertyArray = StringExtentoins.ClassParse(GenModel.AggregateClass);
+        PropertyArray = Extentoins.ClassParse(GenModel.AggregateClass);
         CsprojFilesList = FileTools.FilesList(GenModel.ProjectPath, ".csproj", true, Configs.TargetCsprojFiles);
     }
 
-    public void Generate()
+    public string Generate()
     {
+        //if (!this.AggregateGeneratorValidation())
+        //  return "";
+
         foreach (string csprojFilePath in CsprojFilesList)
         {
             var csprojFileDirectoryPath = Path.GetDirectoryName(csprojFilePath) ?? "";
@@ -32,7 +35,7 @@ public class AggregateGenerator
                 classPath = ReplaceAggregateName(classPath);
                 sourceCode = ReplaceAggregateName(sourceCode);
 
-                DirectoryTools.CreatePathDirectories(classPath, csprojFileDirectoryPath);
+                DirectoryTools.CreateNestedDirectories(classPath, csprojFileDirectoryPath);
 
                 var targetDirectoryPath = Path.Combine(csprojFileDirectoryPath, classPath);
 
@@ -44,6 +47,7 @@ public class AggregateGenerator
             }
         }
         AddDbSetToDbContexts();
+        return "";
     }
 
     static List<ISourceCode> GetTemplateLayerFiles(string fileName)
@@ -63,8 +67,8 @@ public class AggregateGenerator
     void AddDbSetToDbContexts()
     {
         //CommandDbContext
-        var commandDbContextPath = string.IsNullOrWhiteSpace(GenModel.CommandDbContextPath.Trim()) ? GenModel.CommandDbContextPath.Trim() : GenModel.ProjectPath + "\\2.Infra\\Data\\" + GenModel.ProjectName + ".Infra.Data.Sql.Commands\\Common\\" + GenModel.ProjectName + "CommandDbContext.cs";
-        var queryDbContextPath = string.IsNullOrWhiteSpace(GenModel.CommandDbContextPath.Trim()) ? GenModel.CommandDbContextPath.Trim() : GenModel.ProjectPath + "\\2.Infra\\Data\\" + GenModel.ProjectName + ".Infra.Data.Sql.Queries\\Common\\" + GenModel.ProjectName + "QueryDbContext.cs";
+        var commandDbContextPath = !string.IsNullOrWhiteSpace(GenModel.CommandDbContextPath.Trim()) ? GenModel.CommandDbContextPath.Trim() : GenModel.ProjectPath + "\\2.Infra\\Data\\" + GenModel.ProjectName + ".Infra.Data.Sql.Commands\\Common\\" + GenModel.ProjectName + "CommandDbContext.cs";
+        var queryDbContextPath = !string.IsNullOrWhiteSpace(GenModel.CommandDbContextPath.Trim()) ? GenModel.CommandDbContextPath.Trim() : GenModel.ProjectPath + "\\2.Infra\\Data\\" + GenModel.ProjectName + ".Infra.Data.Sql.Queries\\Common\\" + GenModel.ProjectName + "QueryDbContext.cs";
 
         string content1 = File.ReadAllText(commandDbContextPath, Encoding.Default);
         content1 = content1.Replace("//SqlCommandsCommandDbContextDbSet", "        public DbSet<" + GenModel.AggregateName + "> " + GenModel.AggregatePlural + " { get; set; }\n//SqlCommandsCommandDbContextDbSet");
@@ -87,7 +91,7 @@ public class AggregateGenerator
     }
     internal string TemplateContentChange(string c)
     {
-        ReplacementMethods replacementMethods = new(c, PropertyArray, GenModel);
-        return replacementMethods.Exec();
+        AggregatePropertyAdder replacementMethods = new(c, PropertyArray, GenModel);
+        return replacementMethods.AddProperties();
     }
 }

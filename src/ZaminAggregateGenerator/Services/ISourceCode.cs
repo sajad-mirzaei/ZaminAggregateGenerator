@@ -1,4 +1,4 @@
-﻿namespace ZaminAggregateGenerator;
+﻿namespace ZaminAggregateGenerator.Services;
 
 internal interface ISourceCode
 {
