@@ -10,10 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.8" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\ZaminAggregateGenerator\ZaminAggregateGenerator.csproj" />
+    <PackageReference Include="ZaminAggregateGenerator" Version="2.0.3" />
   </ItemGroup>
 
 </Project>
