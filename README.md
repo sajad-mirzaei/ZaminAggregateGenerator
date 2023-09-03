@@ -61,7 +61,13 @@ AggregateGeneratorModel oAggregateGeneratorModel = new AggregateGeneratorModel()
 	AggregateName = "User",
 	ProjectName = "ProjectName",
 	ProjectPath = "ProjectPath",
-	AggregateClass = "class User {\n    public int P1 { get; set; }\n    public string P2 { get; set; }\n}"
+	AggregateClass = "class User {\n    public int P1 { get; set; }\n    public string P2 { get; set; }\n}",
+	
+	//Optional, if your CommandDbContextPath path is different.
+	CommandDbContextPath = "ProjectPath\\2.Infra\\Data\\ProjectName.Infra.Data.Sql.Commands\\Common\\ProjectNameCommandDbContext.cs",
+	
+	//Optional, if your QueryDbContextPath path is different.
+	QueryDbContextPath = "ProjectPath\\2.Infra\\Data\\ProjectName.Infra.Data.Sql.Queries\\Common\\ProjectNameQueryDbContext.cs"
 };
 AggregateGenerator oAggregateGenerator = new(oAggregateGeneratorModel);
 oAggregateGenerator.Generate();
