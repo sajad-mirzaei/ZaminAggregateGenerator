@@ -41,7 +41,7 @@ internal static class Extentoins
         return propertyArray;
     }
 
-    public static string GetResult(this ResultModel resultModel)
+    public static string GetString(this ResultModel resultModel)
     {
         return JsonSerializer.Serialize(resultModel);
     }

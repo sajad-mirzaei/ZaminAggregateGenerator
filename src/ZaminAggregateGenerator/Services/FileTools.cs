@@ -2,78 +2,49 @@
 
 internal static class FileTools
 {
-    public static List<string> FilesList(string projectPath, string format, bool withSubFolders, List<string> checkContain, int indent = 0)
+    public static List<string> CsprojFilesList(string projectPath)
     {
-        List<string> files = new();
+        var resultFiles = new List<string>();
         try
         {
-            // List all directories and files in the current directory
-            string[] dirs = Directory.GetDirectories(projectPath);
-            var c = Directory.GetFiles(projectPath).ToList();
-            if (c.Count > 0)
+            foreach (var filePath in Directory.EnumerateFiles(projectPath, "*.csproj", SearchOption.AllDirectories))
             {
-                foreach (var item in c)
-                {
-                    if (item.EndsWith(format, StringComparison.OrdinalIgnoreCase))
-                    {
-                        if (checkContain.Count == 0 || checkContain.Count != 0 && CheckArrayItemsInStatement(checkContain, item))
-                        {
-                            files.Add(item);
-                        }
-                    }
-                }
-
-            }
-
-            // Display the directories and files
-            foreach (string dir in dirs)
-            {
-                //Console.WriteLine(new string(' ', indent) + Path.GetFileName(dir));
-                if (withSubFolders)
-                    FilesList(dir, format, withSubFolders, checkContain, indent + 2); // Call the method recursively for each directory
+                resultFiles.Add(filePath);
             }
         }
         catch (Exception ex)
         {
-            new Exception("Error: " + ex.Message);
+            throw new Exception("Error: " + ex.Message);
         }
-        var filesList = GenerateFilesInSafeOrder(files);
+
+        var filesList = GenerateFilesInSafeOrder(resultFiles);
         return filesList;
     }
     private static List<string> GenerateFilesInSafeOrder(List<string> collection)
     {
-        if (collection.Count > 0)
+        if (collection.Count == 0)
         {
-            string[] sortedList = new string[6];
-            foreach (var item in collection)
-            {
-                switch (item)
-                {
-                    case string s when s.Contains("Core.Domain"):
-                        sortedList[0] = s;
-                        break;
-                    case string s when s.Contains("Core.Contracts"):
-                        sortedList[1] = s;
-                        break;
-                    case string s when s.Contains("Core.ApplicationService"):
-                        sortedList[2] = s;
-                        break;
-                    case string s when s.Contains("Sql.Commands"):
-                        sortedList[3] = s;
-                        break;
-                    case string s when s.Contains("Sql.Queries"):
-                        sortedList[4] = s;
-                        break;
-                    case string s when s.Contains("Endpoints"):
-                        sortedList[5] = s;
-                        break;
-                    default:
-                        break;
-                }
-            }
-            return sortedList.ToList();
+            return new List<string>();
         }
-        return new List<string>();
+
+        var orderedList = collection.OrderBy(item =>
+        {
+            if (item.Contains("Core.Domain"))
+                return 0;
+            if (item.Contains("Core.Contracts"))
+                return 1;
+            if (item.Contains("Core.ApplicationService"))
+                return 2;
+            if (item.Contains("Sql.Commands"))
+                return 3;
+            if (item.Contains("Sql.Queries"))
+                return 4;
+            if (item.Contains("Endpoints"))
+                return 5;
+            return 6;
+        }).ToList();
+
+        return orderedList;
     }
     private static bool CheckArrayItemsInStatement(List<string> collection, string statement)
     {
@@ -83,13 +54,5 @@ internal static class FileTools
                 return true;
         }
         return false;
-    }
-
-    public static string GetCurrectClassName(string className)
-    {
-        if (!className.Contains('_'))
-            return className;
-        var splited = className.Split('_');
-        return splited[0];
     }
 }

@@ -14,40 +14,42 @@ public class AggregateGenerator
     {
         GenModel = genModel;
         PropertyArray = Extentoins.ClassParse(GenModel.AggregateClass);
-        CsprojFilesList = FileTools.FilesList(GenModel.ProjectPath, ".csproj", true, Configs.TargetCsprojFiles);
+        CsprojFilesList = FileTools.CsprojFilesList(GenModel.ProjectPath);
     }
 
     public string Generate()
     {
-        //if (!this.AggregateGeneratorValidation())
-        //  return "";
-
-        foreach (string csprojFilePath in CsprojFilesList)
+        ResultModel resultModel = this.AggregateGeneratorValidation();
+        if (resultModel.Result)
         {
-            var csprojFileDirectoryPath = Path.GetDirectoryName(csprojFilePath) ?? "";
-            string csprojFileName = Path.GetFileName(csprojFilePath);
-            List<ISourceCode> templateLayerFiles = GetTemplateLayerFiles(csprojFileName);
-            foreach (ISourceCode templateLayerFile in templateLayerFiles)
+            foreach (string csprojFilePath in CsprojFilesList)
             {
-                var classPath = templateLayerFile.GetClassPath();
-                var sourceCode = templateLayerFile.GetSourceCode();
+                var csprojFileDirectoryPath = Path.GetDirectoryName(csprojFilePath) ?? "";
+                string csprojFileName = Path.GetFileName(csprojFilePath);
+                List<ISourceCode> templateLayerFiles = GetTemplateLayerFiles(csprojFileName);
+                foreach (ISourceCode templateLayerFile in templateLayerFiles)
+                {
+                    var classPath = templateLayerFile.GetClassPath();
+                    var sourceCode = templateLayerFile.GetSourceCode();
 
-                classPath = ReplaceAggregateName(classPath);
-                sourceCode = ReplaceAggregateName(sourceCode);
+                    classPath = ReplaceAggregateName(classPath);
+                    sourceCode = ReplaceAggregateName(sourceCode);
+                    sourceCode = TemplateContentChange(sourceCode);
+                    var targetFileName = GetCurrectClassName(templateLayerFile.GetType().Name);
 
-                DirectoryTools.CreateNestedDirectories(classPath, csprojFileDirectoryPath);
+                    DirectoryTools.CreateNestedDirectories(classPath, csprojFileDirectoryPath);
 
-                var targetDirectoryPath = Path.Combine(csprojFileDirectoryPath, classPath);
+                    var targetDirectoryPath = Path.Combine(csprojFileDirectoryPath, classPath);
+                    var targetFilePath = Path.Combine(targetDirectoryPath, targetFileName);
 
-                string targetFileName = FileTools.GetCurrectClassName(templateLayerFile.GetType().Name);
-
-                var targetFilePath = Path.Combine(targetDirectoryPath, targetFileName);
-
-                File.WriteAllText(targetFilePath, sourceCode, Encoding.Default);
+                    File.WriteAllText(targetFilePath, sourceCode, Encoding.Default);
+                }
             }
+            AddDbSetToDbContexts();
+            return resultModel.GetString();
         }
-        AddDbSetToDbContexts();
-        return "";
+
+        return resultModel.GetString();
     }
 
     static List<ISourceCode> GetTemplateLayerFiles(string fileName)
@@ -93,5 +95,10 @@ public class AggregateGenerator
     {
         AggregatePropertyAdder replacementMethods = new(c, PropertyArray, GenModel);
         return replacementMethods.AddProperties();
+    }
+    public string GetCurrectClassName(string className)
+    {
+        var name = className.Contains('_') ? className.Split('_')[0] + ".cs" : className + ".cs";
+        return ReplaceAggregateName(name);
     }
 }
