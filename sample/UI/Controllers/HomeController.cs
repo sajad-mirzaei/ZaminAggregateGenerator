@@ -38,7 +38,7 @@ public class HomeController : Controller
         };
         if (ModelState.IsValid)
         {
-            AggregateGeneratorModel oAggregateGeneratorModel = new AggregateGeneratorModel()
+            AggregateGeneratorModel oAggregateGeneratorModel = new()
             {
                 AggregatePlural = aggregateGeneratorModel.AggregatePlural,
                 AggregateName = aggregateGeneratorModel.AggregateName,
@@ -54,11 +54,6 @@ public class HomeController : Controller
             indexViewModel.AggregateGeneratorModel = oAggregateGeneratorModel;
         }
         return View(indexViewModel);
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

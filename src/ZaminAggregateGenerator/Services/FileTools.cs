@@ -4,12 +4,13 @@ internal static class FileTools
 {
     public static List<string> CsprojFilesList(string projectPath)
     {
-        var resultFiles = new List<string>();
+        var csprojFiles = new List<string>();
+        var dbContextFiles = new List<string>();
         try
         {
             foreach (var filePath in Directory.EnumerateFiles(projectPath, "*.csproj", SearchOption.AllDirectories))
             {
-                resultFiles.Add(filePath);
+                csprojFiles.Add(filePath);
             }
         }
         catch (Exception ex)
@@ -17,8 +18,25 @@ internal static class FileTools
             throw new Exception("Error: " + ex.Message);
         }
 
-        var filesList = GenerateFilesInSafeOrder(resultFiles);
+        var filesList = GenerateFilesInSafeOrder(csprojFiles);
         return filesList;
+    }
+    public static Dictionary<string, string> DbContextFilesList(string projectPath)
+    {
+        Dictionary<string, string> dbContextFiles = new();
+        try
+        {
+            var commandDbContext = (Directory.EnumerateFiles(projectPath, "*CommandDbContext.cs", SearchOption.AllDirectories)).ToList();
+            dbContextFiles.Add("CommandDbContext", commandDbContext.Count() > 0 ? commandDbContext[0] : "");
+            var queryDbContext = (Directory.EnumerateFiles(projectPath, "*QueryDbContext.cs", SearchOption.AllDirectories)).ToList();
+            dbContextFiles.Add("QueryDbContext", queryDbContext.Count() > 0 ? queryDbContext[0] : "");
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error: " + ex.Message);
+        }
+
+        return dbContextFiles;
     }
     private static List<string> GenerateFilesInSafeOrder(List<string> collection)
     {
