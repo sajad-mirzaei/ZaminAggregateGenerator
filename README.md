@@ -1,7 +1,7 @@
 # A Package to quickly create the files of an aggregate in the [Zamin project](https://github.com/oroumand/Zamin)
 
 
-AggregationGenerator is a NuGet package designed to streamline and accelerate the process of creating Aggregation files across various layers of your API project. Aggregation files play a crucial role in combining related data and facilitating efficient data retrieval in modern software systems. However, generating these files manually can be time-consuming and error-prone. AggregationGenerator aims to provide a seamless solution to this challenge by automating.
+[Zamin](https://github.com/oroumand/Zamin)AggregationGenerator is a NuGet package designed to streamline and accelerate the process of creating Aggregation files across various layers of your API project. Aggregation files play a crucial role in combining related data and facilitating efficient data retrieval in modern software systems. However, generating these files manually can be time-consuming and error-prone. AggregationGenerator aims to provide a seamless solution to this challenge by automating.
 
 ## Getting Started:
 Getting started with AggregationGenerator is straightforward. Simply install the NuGet package into your API project and follow the provided documentation to configure and utilize the package effectively. With AggregationGenerator, you'll experience improved code organization, enhanced data retrieval capabilities, and an optimized development workflow.
