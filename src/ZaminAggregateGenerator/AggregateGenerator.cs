@@ -36,7 +36,7 @@ public class AggregateGenerator
                     classPath = ReplaceAggregateName(classPath);
                     sourceCode = ReplaceAggregateName(sourceCode);
                     sourceCode = TemplateContentChange(sourceCode);
-                    var targetFileName = GetCurrectClassName(templateLayerFile.GetType().Name);
+                    var targetFileName = GetCorrectClassName(templateLayerFile.GetType().Name);
 
                     DirectoryTools.CreateNestedDirectories(classPath, csprojFileDirectoryPath);
 
@@ -119,7 +119,7 @@ public class AggregateGenerator
         AggregatePropertyAdder replacementMethods = new(c, PropertyArray, GenModel);
         return replacementMethods.AddProperties();
     }
-    public string GetCurrectClassName(string className)
+    public string GetCorrectClassName(string className)
     {
         var name = className.Contains('_') ? className.Split('_')[0] + ".cs" : className + ".cs";
         return ReplaceAggregateName(name);
