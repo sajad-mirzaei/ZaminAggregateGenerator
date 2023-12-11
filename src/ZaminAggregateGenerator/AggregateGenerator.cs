@@ -95,7 +95,6 @@ public class AggregateGenerator
         GenModel.CommandDbContextPath ??= dbContextFilesList["CommandDbContext"];
         GenModel.QueryDbContextPath ??= dbContextFilesList["QueryDbContext"];
 
-        GenModel.CommandDbContextPath = ReplaceAggregateName(GenModel.CommandDbContextPath);
         string content1 = File.ReadAllText(GenModel.CommandDbContextPath, Encoding.Default);
         content1 = content1.Replace("//SqlCommandsCommandDbContextDbSet", "        public DbSet<" + GenModel.AggregateName + "> " + GenModel.AggregatePlural + " { get; set; }\n//SqlCommandsCommandDbContextDbSet");
         content1 = content1.Replace("//SqlCommandsCommandDbContextUsing", "using " + GenModel.ProjectName + ".Core.Domain." + GenModel.AggregatePlural + ".Entities;\n//SqlCommandsCommandDbContextUsing");
