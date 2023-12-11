@@ -1,11 +1,11 @@
 # A Package to quickly create the files of an aggregate in the [Zamin project](https://github.com/oroumand/Zamin)
 
 
-[Zamin](https://github.com/oroumand/Zamin)AggregationGenerator is a NuGet package designed to streamline and accelerate the process of creating Aggregation files across various layers of your API project. Aggregation files play a crucial role in combining related data and facilitating efficient data retrieval in modern software systems. However, generating these files manually can be time-consuming and error-prone. AggregationGenerator aims to provide a seamless solution to this challenge by automating.
+[Zamin](https://github.com/oroumand/Zamin)AggregationGenerator is a NuGet package designed to streamline and accelerate the process of creating Aggregation files across various layers of your [Api project](https://github.com/sajad-mirzaei/ZaminSample1). Aggregation files play a crucial role in combining related data and facilitating efficient data retrieval in modern software systems. However, generating these files manually can be time-consuming and error-prone. AggregationGenerator aims to provide a seamless solution to this challenge by automating.
 
 ## Getting Started:
-Getting started with AggregationGenerator is straightforward. Simply install the NuGet package into your API project and follow the provided documentation to configure and utilize the package effectively. With AggregationGenerator, you'll experience improved code organization, enhanced data retrieval capabilities, and an optimized development workflow.
-Getting started with Aggregation Gen is simple. Simply install the NuGet package into your API project and follow these steps:
+Getting started with AggregationGenerator is straightforward. Simply install the NuGet package into your [Api project](https://github.com/sajad-mirzaei/ZaminSample1) and follow the provided documentation to configure and utilize the package effectively. With AggregationGenerator, you'll experience improved code organization, enhanced data retrieval capabilities, and an optimized development workflow.
+Getting started with Aggregation Gen is simple. Simply install the NuGet package into your [Api project](https://github.com/sajad-mirzaei/ZaminSample1) and follow these steps:
 
 **If we have an aggregate with "Users" names and two properties p1 and p2::**
 
@@ -73,7 +73,7 @@ AggregateGenerator oAggregateGenerator = new(oAggregateGeneratorModel);
 oAggregateGenerator.Generate();
 ```
 
-## Project Structure:
+## Project Structure ([Api Sample](https://github.com/sajad-mirzaei/ZaminSample1)):
 
 This repository contains a Class Library project that is designed to work within the following directory structure:
 ```Tree
