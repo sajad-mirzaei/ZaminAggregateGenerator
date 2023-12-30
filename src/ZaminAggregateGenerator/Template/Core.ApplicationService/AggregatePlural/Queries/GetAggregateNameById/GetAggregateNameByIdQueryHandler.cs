@@ -1,6 +1,6 @@
 ﻿using ZaminAggregateGenerator.Services;
 
-internal class GetAggregateNameByIdHandler : ISourceCode
+internal class GetAggregateNameByIdQueryHandler : ISourceCode
 {
     public string GetClassPath() => @"AggregatePlural\Queries\GetAggregateNameById";
     public string GetSourceCode() => @"using ProjectName.Core.Contracts.AggregatePlural.Queries;
@@ -11,11 +11,11 @@ using Zamin.Utilities;
 
 namespace ProjectName.Core.ApplicationService.AggregatePlural.Queries.GetAggregateNameById;
 
-public class GetAggregateNameByIdHandler : QueryHandler<GetAggregateNameByIdQuery, AggregateNameByIdDto>
+public class GetAggregateNameByIdQueryHandler : QueryHandler<GetAggregateNameByIdQuery, AggregateNameByIdDto>
 {
     private readonly IAggregateNameQueryRepository _aggregateNameQueryRepository;
 
-    public GetAggregateNameByIdHandler(ZaminServices zaminServices,
+    public GetAggregateNameByIdQueryHandler(ZaminServices zaminServices,
                                       IAggregateNameQueryRepository aggregateNameQueryRepository) : base(zaminServices)
     {
         _aggregateNameQueryRepository = aggregateNameQueryRepository;

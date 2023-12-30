@@ -1,6 +1,6 @@
 ﻿using ZaminAggregateGenerator.Services;
 
-internal class GetAggregateNameQueryValidator : ISourceCode
+internal class GetAggregateNameValidator : ISourceCode
 {
     public string GetClassPath() => @"AggregatePlural\Queries\GetAggregatePlural";
     public string GetSourceCode() => @"using FluentValidation;
@@ -10,9 +10,9 @@ using Zamin.Extensions.Translations.Abstractions;
 
 namespace ProjectName.Core.ApplicationService.AggregatePlural.Queries.GetAggregatePlural;
 
-public class GetAggregateNameQueryValidator : AbstractValidator<GetAggregateNameQuery>
+public class GetAggregateNameValidator : AbstractValidator<GetAggregateNameQuery>
 {
-    public GetAggregateNameQueryValidator(ITranslator translator)
+    public GetAggregateNameValidator(ITranslator translator)
     {
         //RuleFor(p => p.FirstName).MinimumLength(2).WithMessage(translator[ResourceKeys.InValidMinLengthError]);
         //RuleFor(p => p.LastName).MinimumLength(2).WithMessage(translator[ResourceKeys.InValidMinLengthError]);

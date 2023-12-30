@@ -12,9 +12,8 @@ public class GetAggregateNameByIdValidator : AbstractValidator<GetAggregateNameB
 {
     public GetAggregateNameByIdValidator(ITranslator translator)
     {
-        RuleFor(query => query.BusinessId)
-            .NotEmpty()
-            .WithMessage(translator[""Required"", nameof(GetAggregateNameByIdQuery.BusinessId)]);
+       /*RuleFor(query => query.BusinessId)
+        .NotEmpty().WithMessage(translator[ResourceKeys.MustNotNullError]);*/
     }
 }
 ";

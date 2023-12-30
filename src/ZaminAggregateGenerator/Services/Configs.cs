@@ -40,10 +40,10 @@ internal static class Configs
             {
                 new CreateAggregateNameCommandHandler(),
                 new CreateAggregateNameValidator(),
-                new GetAggregateNameByIdHandler(),
+                new GetAggregateNameByIdQueryHandler(),
                 new GetAggregateNameByIdValidator(),
                 new GetAggregateNameQueryHandler(),
-                new GetAggregateNameQueryValidator()
+                new GetAggregateNameValidator()
             }
         },
         {

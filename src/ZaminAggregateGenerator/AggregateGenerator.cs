@@ -58,7 +58,7 @@ public class AggregateGenerator
         {
             string s when s.Contains("Core.ApplicationService") => "Core.ApplicationService",
             string s when s.Contains("Core.Contracts") => "Core.Contracts",
-            string s when s.Contains("Core.Domain") => "Core.Domain",
+            string s when s.Contains("Core.Domain") && !s.ToLower().Contains("domainservice") => "Core.Domain",
             string s when s.Contains("Sql.Commands") => "Sql.Commands",
             string s when s.Contains("Sql.Queries") => "Sql.Queries",
             string s when s.Contains("Endpoints") => "Endpoints",
@@ -67,7 +67,7 @@ public class AggregateGenerator
             string s when s.Contains("Core.ApplicatoinService") => "Core.ApplicationService",
             string s when s.Contains("Core.ApplicationServices") => "Core.ApplicationService",
             string s when s.Contains("Core.Contract") => "Core.ApplicationService",
-            string s when s.Contains("Core.Domains") => "Core.Domain",
+            string s when s.Contains("Core.Domains") && !s.ToLower().Contains("domainservice") => "Core.Domain",
             string s when s.Contains("Sql.Command") => "Sql.Commands",
             string s when s.Contains("Sql.Querie") => "Sql.Queries",
             string s when s.Contains("Sql.Query") => "Sql.Queries",
@@ -78,7 +78,7 @@ public class AggregateGenerator
             //ToLower
             string s when s.Contains(("Core.ApplicationService").ToLower()) => "Core.ApplicationService",
             string s when s.Contains(("Core.Contracts").ToLower()) => "Core.Contracts",
-            string s when s.Contains(("Core.Domain").ToLower()) => "Core.Domain",
+            string s when s.Contains(("Core.Domain").ToLower()) && !s.ToLower().Contains("domainservice") => "Core.Domain",
             string s when s.Contains(("Core.Commands").ToLower()) => "Core.Commands",
             string s when s.Contains(("Core.Queries").ToLower()) => "Core.Queries",
             string s when s.Contains(("Core.Endpoints").ToLower()) => "Core.Endpoints",
