@@ -31,7 +31,7 @@ internal static class Configs
                 new AggregateNameDto(),
                 new GetAggregateNameQuery(),
                 new IAggregateNameQueryRepository(),
-                new IAggregateNameDomainService()
+                new IAggregateNameService()
             }
         },
         {
