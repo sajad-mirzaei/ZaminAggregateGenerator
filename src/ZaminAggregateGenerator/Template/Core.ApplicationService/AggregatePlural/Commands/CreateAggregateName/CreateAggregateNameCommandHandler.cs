@@ -13,7 +13,7 @@ using Zamin.Utilities;
 namespace ProjectName.Core.ApplicationService.AggregatePlural.Commands.CreateAggregateName;
 public class CreateAggregateNameCommandHandler : CommandHandler<CreateAggregateNameCommand, Guid>
 {
-    public IAggregateNameCommandRepository _aggregateNameCommandRepository { get; set; }
+    private readonly IAggregateNameCommandRepository _aggregateNameCommandRepository;
     public CreateAggregateNameCommandHandler(ZaminServices zaminServices, IAggregateNameCommandRepository aggregateNameCommandRepository) : base(zaminServices)
     {
         _aggregateNameCommandRepository = aggregateNameCommandRepository;
