@@ -78,7 +78,7 @@ oAggregateGenerator.Generate();
 This repository contains a Class Library project that is designed to work within the following directory structure:
 ```Tree
 ├───1.Core
-│   ├───ProjectName.Core.ApplicationService
+│   ├───ProjectName.Core.ApplicationServices
 │   │   └───Users
 │   │       ├───Commands
 │   │       │   └───CreateUser

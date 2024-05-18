@@ -8,7 +8,7 @@ using Zamin.Core.Domain.Entities;
 using Zamin.Core.Domain.ValueObjects;
 
 namespace ProjectName.Core.Domain.AggregatePlural.Entities;
-public class AggregateName : AggregateRoot
+public class AggregateName : AggregateRoot<int>
 {
     #region Properties
 DomainReplacementText1
@@ -20,25 +20,22 @@ DomainReplacementText1
     {
     }
 
-    private AggregateName(BusinessId businessId, 
+    private AggregateName(
 DomainReplacementText2
     )
     {
-        BusinessId = businessId;
 DomainReplacementText3
-        new AggregateNameCreated(
-            businessId.Value, 
+        AddEvent(new AggregateNameCreated(
+            Id,
 DomainReplacementText4
-        );
+        ));
     }
     #endregion
 
     #region Commands
     public static AggregateName Create(
-        BusinessId businessId, 
 DomainReplacementText2
         ) => new(
-            businessId, 
 DomainReplacementText4
         );
     #endregion

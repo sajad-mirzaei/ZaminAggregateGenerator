@@ -10,8 +10,7 @@ public class AggregateGeneratorModel
     [StringLength(100, ErrorMessage = "فیلد ضروری است.")]
     public string AggregateName { get; set; } = string.Empty;
 
-    [StringLength(100, ErrorMessage = "فیلد ضروری است.")]
-    public string ProjectName { get; set; } = string.Empty;
+    public string? ProjectName { get; set; }
 
     [Required(ErrorMessage = "فیلد ضروری است.")]
     public string ProjectPath { get; set; } = string.Empty;

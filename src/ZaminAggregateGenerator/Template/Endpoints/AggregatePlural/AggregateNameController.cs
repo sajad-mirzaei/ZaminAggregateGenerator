@@ -6,7 +6,6 @@ internal class AggregateNameController : ISourceCode
     public string GetSourceCode() => @"using Microsoft.AspNetCore.Mvc;
 using ProjectName.Core.Contracts.AggregatePlural.Commands.CreateAggregateName;
 using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregatePlural;
-using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateName;
 using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateNameById;
 using Zamin.Core.Contracts.Data.Queries;
 using Zamin.EndPoints.Web.Controllers;
@@ -19,7 +18,7 @@ public class AggregateNameController : BaseController
     [HttpPost(""[action]"")]
     public async Task<IActionResult> CreateAggregateName([FromBody] CreateAggregateNameCommand createAggregateName)
     {
-        return await Create<CreateAggregateNameCommand, Guid>(createAggregateName);
+        return await Create<CreateAggregateNameCommand, int>(createAggregateName);
     }
 
     [HttpGet(""[action]"")]

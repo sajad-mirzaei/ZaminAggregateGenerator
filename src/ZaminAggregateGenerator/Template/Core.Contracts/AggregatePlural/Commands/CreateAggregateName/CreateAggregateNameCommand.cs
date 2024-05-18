@@ -7,7 +7,7 @@ internal class CreateAggregateNameCommand : ISourceCode
 
 namespace ProjectName.Core.Contracts.AggregatePlural.Commands.CreateAggregateName;
 
-public class CreateAggregateNameCommand : ICommand<Guid>
+public class CreateAggregateNameCommand : ICommand<int>
 {
 ContractsReplacementText1
 }

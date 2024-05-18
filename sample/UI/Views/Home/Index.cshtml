@@ -4,39 +4,39 @@
 {
     <div class="text-center @Model.AlertClass" dir="rtl">@Model.FormMessage</div>
 }
-<div class="container" dir="rtl">
+<div class="row">
     @using (Html.BeginForm("Index", "Home", FormMethod.Post))
     {
-        <div class="form-group">
-            @Html.LabelFor(model => model.AggregateGeneratorModel.AggregatePlural, new { @class = "form-label" })
-            @Html.TextBoxFor(model => model.AggregateGeneratorModel.AggregatePlural, new { @class = "form-control", dir = "ltr", placeholder = "AggregatePlural" })
+        <div class="input-group mb-2">
+            @Html.LabelFor(model => model.AggregateGeneratorModel.AggregatePlural, new { @class = "input-group-text" })
+            @Html.TextBoxFor(model => model.AggregateGeneratorModel.AggregatePlural, new { @class = "form-control", placeholder = "AggregatePlural" })
             @Html.ValidationMessageFor(model => model.AggregateGeneratorModel.AggregatePlural, "فیلد ضروری", new { @class = "text-danger" })
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AggregateGeneratorModel.AggregateName, new { @class = "form-label" })
-            @Html.TextBoxFor(model => model.AggregateGeneratorModel.AggregateName, new { @class = "form-control", dir = "ltr", placeholder = "AggregateName" })
+        <div class="input-group mb-2">
+            @Html.LabelFor(model => model.AggregateGeneratorModel.AggregateName, new { @class = "input-group-text" })
+            @Html.TextBoxFor(model => model.AggregateGeneratorModel.AggregateName, new { @class = "form-control", placeholder = "AggregateName" })
             @Html.ValidationMessageFor(model => model.AggregateGeneratorModel.AggregateName, "فیلد ضروری", new { @class = "text-danger" })
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AggregateGeneratorModel.ProjectName, new { @class = "form-label" })
-            @Html.TextBoxFor(model => model.AggregateGeneratorModel.ProjectName, new { @class = "form-control", dir = "ltr", placeholder = "ProjectName" })
-            @Html.ValidationMessageFor(model => model.AggregateGeneratorModel.ProjectName, "فیلد ضروری", new { @class = "text-danger" })
+        <div class="input-group mb-2">
+            @Html.LabelFor(model => model.AggregateGeneratorModel.ProjectName, "ProjectName", new { @class = "input-group-text", dir = "ltr" })
+            @Html.TextBoxFor(model => model.AggregateGeneratorModel.ProjectName, new { @class = "form-control", placeholder = "Example: in \"x.y.Core.ApplicationServices\" --> \"x.y.\" is projectName" })
+            @* @Html.ValidationMessageFor(model => model.AggregateGeneratorModel.ProjectName, "فیلد ضروری", new { @class = "text-danger" }) *@
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AggregateGeneratorModel.ProjectPath, new { @class = "form-label" })
-            @Html.TextBoxFor(model => model.AggregateGeneratorModel.ProjectPath, new { @class = "form-control", dir = "ltr", placeholder = "ProjectPath" })
+        <div class="input-group mb-2">
+            @Html.LabelFor(model => model.AggregateGeneratorModel.ProjectPath, new { @class = "input-group-text" })
+            @Html.TextBoxFor(model => model.AggregateGeneratorModel.ProjectPath, new { @class = "form-control", placeholder = "ProjectPath" })
             @Html.ValidationMessageFor(model => model.AggregateGeneratorModel.ProjectPath, "فیلد ضروری", new { @class = "text-danger" })
         </div>
 
-        <div class="form-group">
+        <div class="col-12 bg-light p-2 mb-2">
             @Html.LabelFor(model => model.AggregateGeneratorModel.AggregateClass, new { @class = "form-label" })
-            @Html.TextAreaFor(model => model.AggregateGeneratorModel.AggregateClass, new { @class = "form-control", dir = "ltr", placeholder = "AggregateClass", rows = 10 })
+            @Html.TextAreaFor(model => model.AggregateGeneratorModel.AggregateClass, new { @class = "form-control", placeholder = "AggregateClass", rows = 10 })
         </div>
 
-        <div class="form-group m-2 w-100">
+        <div class="m-2 col-12 bg-light p-2 mb-2">
             <input type="submit" value="ثبت" class="btn btn-primary" />
         </div>
     }

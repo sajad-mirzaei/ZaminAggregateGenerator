@@ -6,7 +6,6 @@ internal class AggregateNameQueryRepository : ISourceCode
     public string GetSourceCode() => @"using Microsoft.EntityFrameworkCore;
 using ProjectName.Core.Contracts.AggregatePlural.Queries;
 using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregatePlural;
-using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateName;
 using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateNameById;
 using ProjectName.Infra.Data.Sql.Queries.Common;
 using Zamin.Core.Contracts.Data.Queries;
@@ -27,9 +26,8 @@ public class AggregateNameQueryRepository : BaseQueryRepository<ProjectNameQuery
         return await _dbContext.AggregatePlural.Select(c => new AggregateNameByIdDto()
         {
             Id = c.Id,
-            BusinessId = c.BusinessId,
 SqlQueriesReplacementText1
-        }).FirstOrDefaultAsync(c => c.BusinessId.Equals(query.BusinessId));
+        }).FirstOrDefaultAsync(c => c.Id.Equals(query.Id));
     }
     public async Task<PagedData<AggregateNameDto>> SelectAsync(GetAggregateNameQuery dto)
     {
@@ -39,7 +37,7 @@ SqlQueriesReplacementText1
 
         #region Filters
 SqlQueriesReplacementText2
-        query = query.WhereIf(dto.BusinessId != Guid.Empty, m => m.BusinessId == dto.BusinessId);
+        query = query.WhereIf(dto.Id != 0, m => m.Id == dto.Id);
 
         query = query.WhereIf(dto.CreatedDateTime != null, m => m.CreatedDateTime == dto.CreatedDateTime);
         query = query.WhereIf(dto.ModifiedDateTime != null, m => m.ModifiedDateTime == dto.ModifiedDateTime);
@@ -52,7 +50,6 @@ SqlQueriesReplacementText2
         PagedData<AggregateNameDto> result = await query.ToPagedData(dto, c => new AggregateNameDto
         {
             Id = c.Id,
-            BusinessId = c.BusinessId,
 SqlQueriesReplacementText1 ,
 
             CreatedByUserId = c.CreatedByUserId,

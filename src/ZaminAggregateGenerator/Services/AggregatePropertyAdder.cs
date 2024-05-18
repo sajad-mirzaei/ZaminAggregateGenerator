@@ -106,7 +106,7 @@ internal class AggregatePropertyAdder
         switch (m.PropertyModel.PropertyType.TrimEnd('?'))
         {
             case "string":
-                con = $"{m.LeftPadding}entities = entities.WhereIf(dto.{m.PropertyModel.PropertyName} != null, p => p.{m.PropertyModel.PropertyName}.Contains(dto.{m.PropertyModel.PropertyName}));{m.LineBreak}";
+                con = $"{m.LeftPadding}query = query.WhereIf(dto.{m.PropertyModel.PropertyName} != null, p => p.{m.PropertyModel.PropertyName}.Contains(dto.{m.PropertyModel.PropertyName}));{m.LineBreak}";
                 break;
             case "DateTime":
             case "long":
@@ -114,7 +114,7 @@ internal class AggregatePropertyAdder
             case "double":
             case "bool":
             case "int":
-                con = $"{m.LeftPadding}entities = entities.WhereIf(dto.{m.PropertyModel.PropertyName} != null, m => m.{m.PropertyModel.PropertyName} == dto.{m.PropertyModel.PropertyName});{m.LineBreak}";
+                con = $"{m.LeftPadding}query = query.WhereIf(dto.{m.PropertyModel.PropertyName} != null, m => m.{m.PropertyModel.PropertyName} == dto.{m.PropertyModel.PropertyName});{m.LineBreak}";
                 break;
             default:
                 break;

@@ -9,7 +9,7 @@ using Zamin.Core.ApplicationServices.Queries;
 using Zamin.Core.Contracts.ApplicationServices.Queries;
 using Zamin.Utilities;
 
-namespace ProjectName.Core.ApplicationService.AggregatePlural.Queries.GetAggregateNameById;
+namespace ProjectName.Core.ApplicationServices.AggregatePlural.Queries.GetAggregateNameById;
 
 public class GetAggregateNameByIdQueryHandler : QueryHandler<GetAggregateNameByIdQuery, AggregateNameByIdDto>
 {
@@ -24,7 +24,7 @@ public class GetAggregateNameByIdQueryHandler : QueryHandler<GetAggregateNameByI
     public override async Task<QueryResult<AggregateNameByIdDto>> Handle(GetAggregateNameByIdQuery query)
     {
         var aggregateName = await _aggregateNameQueryRepository.SelectAsync(query);
-        return Result(aggregateName);
+        return await ResultAsync(aggregateName);
     }
 }
 ";

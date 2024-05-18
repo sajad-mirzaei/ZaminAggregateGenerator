@@ -11,7 +11,7 @@ using Zamin.Infra.Data.Sql.Commands;
 namespace ProjectName.Infra.Data.Sql.Commands.AggregatePlural;
 
 public class AggregateNameCommandRepository :
-        BaseCommandRepository<AggregateName, ProjectNameCommandDbContext>,
+        BaseCommandRepository<AggregateName, ProjectNameCommandDbContext, int>,
         IAggregateNameCommandRepository
 {
     public AggregateNameCommandRepository(ProjectNameCommandDbContext dbContext) : base(dbContext)

@@ -9,6 +9,9 @@ public class AggregateGenerator
     internal AggregateGeneratorModel GenModel { get; set; }
     internal List<PropertyModel> PropertyArray { get; set; }
     internal List<string> CsprojFilesList { get; set; }
+    internal string DbContextPrefix { get; set; }
+    internal string CommandDbContextPath { get; set; }
+    internal string QueryDbContextPath { get; set; }
 
     public AggregateGenerator(AggregateGeneratorModel genModel)
     {
@@ -22,6 +25,8 @@ public class AggregateGenerator
         ResultModel resultModel = this.AggregateGeneratorValidation();
         if (resultModel.Result)
         {
+            SetDbContexts();
+            SetDbContextPrefix();
             foreach (string csprojFilePath in CsprojFilesList)
             {
                 var csprojFileDirectoryPath = Path.GetDirectoryName(csprojFilePath) ?? "";
@@ -33,6 +38,7 @@ public class AggregateGenerator
                     var classPath = templateLayerFile.GetClassPath();
                     var sourceCode = templateLayerFile.GetSourceCode();
 
+                    sourceCode = ReplaceDbContextClassNames(sourceCode);
                     classPath = ReplaceAggregateName(classPath);
                     sourceCode = ReplaceAggregateName(sourceCode);
                     sourceCode = TemplateContentChange(sourceCode);
@@ -56,7 +62,7 @@ public class AggregateGenerator
     {
         var layerName = fileName switch
         {
-            string s when s.Contains("Core.ApplicationService") => "Core.ApplicationService",
+            string s when s.Contains("Core.ApplicationService") => "Core.ApplicationServices",
             string s when s.Contains("Core.Contracts") => "Core.Contracts",
             string s when s.Contains("Core.Domain") && !s.ToLower().Contains("domainservice") => "Core.Domain",
             string s when s.Contains("Sql.Commands") => "Sql.Commands",
@@ -64,9 +70,9 @@ public class AggregateGenerator
             string s when s.Contains("Endpoints") => "Endpoints",
 
             //Consider misspellings
-            string s when s.Contains("Core.ApplicatoinService") => "Core.ApplicationService",
-            string s when s.Contains("Core.ApplicationServices") => "Core.ApplicationService",
-            string s when s.Contains("Core.Contract") => "Core.ApplicationService",
+            string s when s.Contains("Core.ApplicatoinService") => "Core.ApplicationServices",
+            string s when s.Contains("Core.ApplicationService") => "Core.ApplicationServices",
+            string s when s.Contains("Core.Contract") => "Core.Contracts",
             string s when s.Contains("Core.Domains") && !s.ToLower().Contains("domainservice") => "Core.Domain",
             string s when s.Contains("Sql.Command") => "Sql.Commands",
             string s when s.Contains("Sql.Querie") => "Sql.Queries",
@@ -76,28 +82,25 @@ public class AggregateGenerator
             string s when s.Contains("Endpoint") => "Endpoints",
 
             //ToLower
-            string s when s.Contains(("Core.ApplicationService").ToLower()) => "Core.ApplicationService",
+            string s when s.Contains(("Core.ApplicationService").ToLower()) => "Core.ApplicationServices",
             string s when s.Contains(("Core.Contracts").ToLower()) => "Core.Contracts",
             string s when s.Contains(("Core.Domain").ToLower()) && !s.ToLower().Contains("domainservice") => "Core.Domain",
             string s when s.Contains(("Core.Commands").ToLower()) => "Core.Commands",
             string s when s.Contains(("Core.Queries").ToLower()) => "Core.Queries",
             string s when s.Contains(("Core.Endpoints").ToLower()) => "Core.Endpoints",
-
-
-
             _ => null
         };
         return layerName == null ? null : Configs.LayerMappings[layerName];
     }
     void AddDbSetToDbContexts()
     {
-        var dbContextFilesList = FileTools.DbContextFilesList(GenModel.ProjectPath);
-        GenModel.CommandDbContextPath ??= dbContextFilesList["CommandDbContext"];
-        GenModel.QueryDbContextPath ??= dbContextFilesList["QueryDbContext"];
+        GenModel.CommandDbContextPath = CommandDbContextPath;
+        GenModel.QueryDbContextPath = QueryDbContextPath;
+        var projectName = GenModel.ProjectName != null ? GenModel.ProjectName + "." : "";
 
         string content1 = File.ReadAllText(GenModel.CommandDbContextPath, Encoding.Default);
         content1 = content1.Replace("//SqlCommandsCommandDbContextDbSet", "        public DbSet<" + GenModel.AggregateName + "> " + GenModel.AggregatePlural + " { get; set; }\n//SqlCommandsCommandDbContextDbSet");
-        content1 = content1.Replace("//SqlCommandsCommandDbContextUsing", "using " + GenModel.ProjectName + ".Core.Domain." + GenModel.AggregatePlural + ".Entities;\n//SqlCommandsCommandDbContextUsing");
+        content1 = content1.Replace("//SqlCommandsCommandDbContextUsing", "using " + projectName + "Core.Domain." + GenModel.AggregatePlural + ".Entities;\n//SqlCommandsCommandDbContextUsing");
         File.WriteAllText(GenModel.CommandDbContextPath, content1, Encoding.Default);
 
         string content2 = File.ReadAllText(GenModel.QueryDbContextPath, Encoding.Default);
@@ -106,13 +109,13 @@ public class AggregateGenerator
     }
     internal string ReplaceAggregateName(string input)
     {
+        var projectName = GenModel.ProjectName != null ? GenModel.ProjectName + "." : "";
+        input = input.Replace("ProjectName.", projectName);
         return input
                     .Replace("AggregatePlural", GenModel.AggregatePlural)
                     .Replace("aggregatePlural", GenModel.AggregatePlural.ToLowerFirstChar())
                     .Replace("AggregateName", GenModel.AggregateName)
-                    .Replace("aggregateName", GenModel.AggregateName.ToLowerFirstChar())
-                    .Replace("ProjectName", GenModel.ProjectName)
-                    .Replace("projectName", GenModel.ProjectName.ToLowerFirstChar());
+                    .Replace("aggregateName", GenModel.AggregateName.ToLowerFirstChar());
     }
     internal string TemplateContentChange(string c)
     {
@@ -123,5 +126,24 @@ public class AggregateGenerator
     {
         var name = className.Contains('_') ? className.Split('_')[0] + ".cs" : className + ".cs";
         return ReplaceAggregateName(name);
+    }
+
+    public void SetDbContexts()
+    {
+        var dbContextFilesList = FileTools.DbContextFilesList(GenModel.ProjectPath);
+        CommandDbContextPath ??= dbContextFilesList["CommandDbContext"];
+        QueryDbContextPath ??= dbContextFilesList["QueryDbContext"];
+    }
+    public void SetDbContextPrefix()
+    {
+        var fileName = Path.GetFileNameWithoutExtension(CommandDbContextPath);
+        var p = fileName.Replace("CommandDbContext", "");
+        DbContextPrefix = p.Replace("QueryDbContext", "");
+    }
+    public string ReplaceDbContextClassNames(string input)
+    {
+        input = input.Replace("ProjectNameCommandDbContext", DbContextPrefix + "CommandDbContext");
+        input = input.Replace("ProjectNameQueryDbContext", DbContextPrefix + "QueryDbContext");
+        return input;
     }
 }

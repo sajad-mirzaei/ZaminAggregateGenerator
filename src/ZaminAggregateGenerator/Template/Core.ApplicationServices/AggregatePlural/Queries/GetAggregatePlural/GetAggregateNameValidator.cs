@@ -8,7 +8,7 @@ using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregatePlural;
 using ProjectName.Core.Domain.Common;
 using Zamin.Extensions.Translations.Abstractions;
 
-namespace ProjectName.Core.ApplicationService.AggregatePlural.Queries.GetAggregatePlural;
+namespace ProjectName.Core.ApplicationServices.AggregatePlural.Queries.GetAggregatePlural;
 
 public class GetAggregateNameValidator : AbstractValidator<GetAggregateNameQuery>
 {

@@ -7,7 +7,7 @@ internal class AggregateName_Models : ISourceCode
 
 public partial class AggregateName
 {
-    public long Id { get; set; }
+    public int Id { get; set; }
    
 SqlQueriesReplacementText3
 
@@ -15,7 +15,6 @@ SqlQueriesReplacementText3
     public DateTime? CreatedDateTime { get; set; }
     public string? ModifiedByUserId { get; set; }
     public DateTime? ModifiedDateTime { get; set; }
-    public Guid BusinessId { get; set; }
 }
 ";
 }

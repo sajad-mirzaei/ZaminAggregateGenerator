@@ -6,8 +6,7 @@ internal class AggregateNameByIdDto : ISourceCode
     public string GetSourceCode() => @"namespace ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateNameById;
 public class AggregateNameByIdDto
 {
-    public long Id { get; set; }
-    public Guid BusinessId { get; set; }
+    public int Id { get; set; }
 
 ContractsReplacementText1
 

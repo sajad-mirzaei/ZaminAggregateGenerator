@@ -9,7 +9,7 @@ using ProjectName.Core.Contracts.AggregatePlural.Commands.CreateAggregateName;
 using ProjectName.Core.Domain.Common;
 using Zamin.Extensions.Translations.Abstractions;
 
-namespace ProjectName.Core.ApplicationService.AggregatePlural.Commands.CreateAggregateName;
+namespace ProjectName.Core.ApplicationServices.AggregatePlural.Commands.CreateAggregateName;
 
 public class CreateAggregateNameValidator : AbstractValidator<CreateAggregateNameCommand>
 {

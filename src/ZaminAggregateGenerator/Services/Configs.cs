@@ -2,14 +2,14 @@
 
 internal static class Configs
 {
-    internal static List<string> TargetCsprojFiles { get; set; } = new() {
-        "ApplicationService.csproj",
+    /*internal static List<string> TargetCsprojFiles { get; set; } = new() {
+        "ApplicationServices.csproj",
         "Contracts.csproj",
         "Domain.csproj",
         "Sql.Commands.csproj",
         "Sql.Queries.csproj",
         "Endpoints.API.csproj"
-    };
+    };*/
     internal static Dictionary<string, List<ISourceCode>> LayerMappings { get; set; } = new()
     {
         {
@@ -35,7 +35,7 @@ internal static class Configs
             }
         },
         {
-            "Core.ApplicationService",
+            "Core.ApplicationServices",
             new List<ISourceCode>
             {
                 new CreateAggregateNameCommandHandler(),

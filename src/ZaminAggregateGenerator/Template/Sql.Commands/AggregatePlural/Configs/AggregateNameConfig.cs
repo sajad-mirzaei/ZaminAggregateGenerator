@@ -14,7 +14,7 @@ public class AggregateNameConfig : IEntityTypeConfiguration<AggregateName>
 {
 	public void Configure(EntityTypeBuilder<AggregateName> builder)
 	{
-		builder.ToTable(""AggregatePlural"");
+		builder.ToTable(""AggregatePlural"", ""dbo"");
 		//builder.Property(c => c.Id).HasColumnName(""ccAggregateName"");
 
 		//builder.DisableShadowProperty();
