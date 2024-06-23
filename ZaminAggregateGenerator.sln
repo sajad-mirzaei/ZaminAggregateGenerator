@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{E3387B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI", "sample\UI\UI.csproj", "{FC6A1D00-618F-4B3D-99CB-583314F63D9D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorAggregateGenerator", "src\RazorAggregateGenerator\RazorAggregateGenerator.csproj", "{DD26D215-BD61-456A-96E5-9122C123C303}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{FC6A1D00-618F-4B3D-99CB-583314F63D9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC6A1D00-618F-4B3D-99CB-583314F63D9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC6A1D00-618F-4B3D-99CB-583314F63D9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD26D215-BD61-456A-96E5-9122C123C303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD26D215-BD61-456A-96E5-9122C123C303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD26D215-BD61-456A-96E5-9122C123C303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD26D215-BD61-456A-96E5-9122C123C303}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1FA46E7E-DABB-4839-89A2-70DA848BEDA5} = {C03D9227-FF8C-451B-B701-E86170ECEF53}
 		{FC6A1D00-618F-4B3D-99CB-583314F63D9D} = {E3387B44-3A19-4327-9A1E-267F44FEAD6E}
+		{DD26D215-BD61-456A-96E5-9122C123C303} = {C03D9227-FF8C-451B-B701-E86170ECEF53}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BB5A7030-A8BA-4EBA-ACAA-CBF1BD75E231}

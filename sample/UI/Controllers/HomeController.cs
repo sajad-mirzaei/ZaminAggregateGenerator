@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RazorAggregateGenerator.Models;
 using System.Diagnostics;
 using UI.Models;
 using ZaminAggregateGenerator;
@@ -25,6 +26,48 @@ public class HomeController : Controller
             }
         };
         return View(indexViewModel);
+    }
+
+    public IActionResult RazorGenerator()
+    {
+        RazorGeneratorViewModel razorGeneratorViewModel = new()
+        {
+            RazorAggregateGeneratorModel = new RazorAggregateGeneratorModel()
+            {
+                AggregateClass = "class SampleClass {\n    public int P1 { get; set; }\n    public string P2 { get; set; }\n}"
+            }
+        };
+        return View(razorGeneratorViewModel);
+    }
+
+    [HttpPost]
+    public IActionResult RazorGenerator(RazorAggregateGeneratorModel razorAggregateGeneratorModel)
+    {
+        RazorGeneratorViewModel razorGeneratorViewModel = new()
+        {
+            FormMessage = "مشکلی وجود دارد",
+            FormSubmit = true,
+            FormValidation = false
+        };
+        if (ModelState.IsValid)
+        {
+            RazorAggregateGeneratorModel oRazorAggregateGeneratorModel = new()
+            {
+                AggregatePlural = razorAggregateGeneratorModel.AggregatePlural,
+                AggregateName = razorAggregateGeneratorModel.AggregateName,
+                ProjectName = razorAggregateGeneratorModel.ProjectName,
+                ProjectPath = razorAggregateGeneratorModel.ProjectPath,
+                AggregateClass = razorAggregateGeneratorModel.AggregateClass,
+                ModuleName = razorAggregateGeneratorModel.ModuleName
+            };
+            RazorAggregateGenerator.RazorAggregateGenerator oRazorAggregateGenerator = new(oRazorAggregateGeneratorModel);
+            oRazorAggregateGenerator.Generate();
+            razorGeneratorViewModel.FormMessage = "فایل ها با موفقیت ساخته شدند";
+            razorGeneratorViewModel.FormValidation = true;
+            razorGeneratorViewModel.AlertClass = "alert alert-success";
+            razorGeneratorViewModel.RazorAggregateGeneratorModel = oRazorAggregateGeneratorModel;
+        }
+        return View(razorGeneratorViewModel);
     }
 
     [HttpPost]

@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\RazorAggregateGenerator\RazorAggregateGenerator.csproj" />
     <ProjectReference Include="..\..\src\ZaminAggregateGenerator\ZaminAggregateGenerator.csproj" />
   </ItemGroup>
 
