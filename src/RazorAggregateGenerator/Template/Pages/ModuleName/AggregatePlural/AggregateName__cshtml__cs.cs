@@ -10,6 +10,7 @@ using ProjectName.AppCode.Compacts.AggregatePlural.Interfaces;
 using ProjectName.AppCode.Compacts.AggregatePlural.Queries.GetAggregateNameById;
 using ProjectName.AppCode.Compacts.AggregatePlural.ViewModels.CreateAggregateName;
 using ProjectName.AppCode.Compacts.AggregatePlural.ViewModels.GetAggregatePlural;
+using WWWPGrids;
 
 namespace ProjectName.Pages.Compacts.AggregatePlural;
 
@@ -35,6 +36,21 @@ public class AggregateNameModel : PageModel
         var result = await _aggregateNameService.GetAggregateNameById(new GetAggregateNameViewModel());
         if (result.IsSuccess)
             AggregateNameByIds = result.Value;
+
+        SAPGridView oSGV = CreateGrid();
+        TempData[""SAPGridView""] = oSGV.GridBind(""MyGrid1"");
+    }
+
+    protected SAPGridView CreateGrid()
+    {
+        SAPGridView oSGV = new();
+        oSGV.Grids[""MyGrid1""] = new Grid()
+        {
+            ContainerId = ""MyGridId"",
+            ContainerHeight = 400,
+            Data = TestByIds
+        };
+        return oSGV;
     }
 
     public async Task<IActionResult> OnPost()

@@ -17,16 +17,12 @@ internal class AggregateName__cshtml : ISourceCode
         AggregateName
     </div>
     <div class=""ContentBox"">
-        <div>
-            @foreach (var item in Model.AggregateNameByIds)
-            {
-PagesReplacementText1
-                <hr />
-            }
-        </div>
         <form method=""post"">
             <input type=""submit"" class=""btn btn-primary"" value=""Create"" />
         </form>
+        <hr>
+        <div id=""MyGridId""></div>
+        @TempData[""SAPGridView""]
     </div>
 </div>
 
