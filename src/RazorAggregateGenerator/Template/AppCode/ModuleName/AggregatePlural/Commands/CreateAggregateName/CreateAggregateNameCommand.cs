@@ -7,11 +7,7 @@ internal class CreateAggregateNameCommand : ISourceCode
 
 public class CreateAggregateNameCommand
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public int? DetailId { get; set; }
-    public byte StatusId { get; set; }
-    public int? PictureId { get; set; }
+AppCodeReplacementText1
 }
 ";
 }

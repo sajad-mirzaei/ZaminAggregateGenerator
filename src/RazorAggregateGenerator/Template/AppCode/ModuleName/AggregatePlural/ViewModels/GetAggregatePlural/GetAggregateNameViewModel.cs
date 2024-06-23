@@ -7,11 +7,7 @@ internal class GetAggregateNameViewModel : ISourceCode
 
 public class GetAggregateNameViewModel : BaseViewModel
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public int? DetailId { get; set; }
-    public byte StatusId { get; set; }
-    public int? PictureId { get; set; }
+AppCodeReplacementText1
 }
 ";
 }

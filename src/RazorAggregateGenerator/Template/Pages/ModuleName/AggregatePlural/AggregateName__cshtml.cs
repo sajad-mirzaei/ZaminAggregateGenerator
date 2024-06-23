@@ -20,8 +20,7 @@ internal class AggregateName__cshtml : ISourceCode
         <div>
             @foreach (var item in Model.AggregateNameByIds)
             {
-                <p>@item.FirstName</p>
-                <p>@item.LastName</p>
+PagesReplacementText1
                 <hr />
             }
         </div>

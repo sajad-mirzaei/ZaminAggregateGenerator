@@ -44,11 +44,7 @@ public class AggregateNameModel : PageModel
         {
             AggregateNameViewModel = new CreateAggregateNameViewModel()
             {
-                FirstName = ""Ali"",
-                LastName = ""Reza"",
-                PictureId = 1,
-                DetailId = 1,
-                StatusId = 1
+PagesReplacementText3
             };
 
             var result = await _aggregateNameService.CreateAggregateName(AggregateNameViewModel);

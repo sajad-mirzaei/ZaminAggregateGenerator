@@ -22,11 +22,7 @@ public class AggregateNameService : BaseHttpClient, IAggregateNameService
     {
         var query = new GetAggregateNameViewModel()
         {
-            FirstName = viewModel.FirstName,
-            LastName = viewModel.LastName,
-            DetailId = viewModel.DetailId,
-            PictureId = viewModel.PictureId,
-            StatusId = viewModel.StatusId
+AppCodeReplacementText2
         };
 
         var url = AggregateNameConfig.GetAggregateNameByIdRoute.ObjectToQueryString(query);
@@ -38,11 +34,7 @@ public class AggregateNameService : BaseHttpClient, IAggregateNameService
         var url = AggregateNameConfig.CreateAggregateNameRoute;
         var command = new CreateAggregateNameCommand()
         {
-            FirstName = viewModel.FirstName,
-            LastName = viewModel.LastName,
-            DetailId = viewModel.DetailId,
-            PictureId = viewModel.PictureId,
-            StatusId = viewModel.StatusId
+AppCodeReplacementText2
         };
         return await PostAsync<CreateAggregateNameCommand, string>(command, url);
     }
