@@ -17,6 +17,7 @@ internal static class Configs
                 new CreateAggregateNameValidator(),
                 new CreateAggregateNameViewModel(),
                 new GetAggregateNameViewModel(),
+                new GetAggregateNameValidator(),
                 new AggregateNameConfig(),
                 new AggregateNameService()
             }

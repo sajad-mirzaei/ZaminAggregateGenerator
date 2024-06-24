@@ -3,7 +3,7 @@
 internal class GetAggregateNameByIdQuery : ISourceCode
 {
     public string GetClassPath() => @"ModuleName\AggregatePlural\Queries\GetAggregateNameById";
-    public string GetSourceCode() => @"namespace ProjectName.AppCode.Compacts.AggregatePlural.Queries.GetAggregateNameById;
+    public string GetSourceCode() => @"namespace ProjectName.AppCode.ModuleName.AggregatePlural.Queries.GetAggregateNameById;
 
 public class GetAggregateNameByIdQuery
 {

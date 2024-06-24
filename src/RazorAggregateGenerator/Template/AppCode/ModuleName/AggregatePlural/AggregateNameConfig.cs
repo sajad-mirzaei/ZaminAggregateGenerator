@@ -3,7 +3,7 @@
 internal class AggregateNameConfig : ISourceCode
 {
     public string GetClassPath() => @"ModuleName\AggregatePlural";
-    public string GetSourceCode() => @"namespace ProjectName.AppCode.Compacts.AggregatePlural
+    public string GetSourceCode() => @"namespace ProjectName.AppCode.ModuleName.AggregatePlural
 {
     public class AggregateNameConfig
     {

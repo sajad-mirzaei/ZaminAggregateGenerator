@@ -6,13 +6,13 @@ internal class AggregateName__cshtml__cs : ISourceCode
     public string GetSourceCode() => @"using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ProjectName.AppCode.Compacts.AggregatePlural.Interfaces;
-using ProjectName.AppCode.Compacts.AggregatePlural.Queries.GetAggregateNameById;
-using ProjectName.AppCode.Compacts.AggregatePlural.ViewModels.CreateAggregateName;
-using ProjectName.AppCode.Compacts.AggregatePlural.ViewModels.GetAggregatePlural;
+using ProjectName.AppCode.ModuleName.AggregatePlural.Interfaces;
+using ProjectName.AppCode.ModuleName.AggregatePlural.Queries.GetAggregateNameById;
+using ProjectName.AppCode.ModuleName.AggregatePlural.ViewModels.CreateAggregateName;
+using ProjectName.AppCode.ModuleName.AggregatePlural.ViewModels.GetAggregatePlural;
 using WWWPGrids;
 
-namespace ProjectName.Pages.Compacts.AggregatePlural;
+namespace ProjectName.Pages.ModuleName.AggregatePlural;
 
 public class AggregateNameModel : PageModel
 {

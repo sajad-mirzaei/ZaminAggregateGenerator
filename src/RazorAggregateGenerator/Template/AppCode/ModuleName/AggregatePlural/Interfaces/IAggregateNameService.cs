@@ -3,11 +3,11 @@
 internal class IAggregateNameService : ISourceCode
 {
     public string GetClassPath() => @"ModuleName\AggregatePlural\Interfaces";
-    public string GetSourceCode() => @"using ProjectName.AppCode.Compacts.AggregatePlural.Queries.GetAggregateNameById;
-using ProjectName.AppCode.Compacts.AggregatePlural.ViewModels.CreateAggregateName;
-using ProjectName.AppCode.Compacts.AggregatePlural.ViewModels.GetAggregatePlural;
+    public string GetSourceCode() => @"using ProjectName.AppCode.ModuleName.AggregatePlural.Queries.GetAggregateNameById;
+using ProjectName.AppCode.ModuleName.AggregatePlural.ViewModels.CreateAggregateName;
+using ProjectName.AppCode.ModuleName.AggregatePlural.ViewModels.GetAggregatePlural;
 
-namespace ProjectName.AppCode.Compacts.AggregatePlural.Interfaces
+namespace ProjectName.AppCode.ModuleName.AggregatePlural.Interfaces
 {
     public interface IAggregateNameService
     {
