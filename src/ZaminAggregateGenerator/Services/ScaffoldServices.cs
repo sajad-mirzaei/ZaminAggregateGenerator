@@ -65,6 +65,9 @@ public static class ScaffoldServices
             case "smallint":
                 cSharpType = "short";
                 break;
+            case "tinyint":
+                cSharpType = "byte";
+                break;
             case "bit":
                 cSharpType = "bool";
                 break;
