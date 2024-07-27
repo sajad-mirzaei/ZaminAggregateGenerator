@@ -14,7 +14,7 @@ namespace ProjectName.AppCode.ModuleName.AggregatePlural;
 
 public class AggregateNameService : BaseHttpClient, IAggregateNameService
 {
-    public AggregateNameService(RazorUIHttpClient client) : base(client.HttpClient)
+    public AggregateNameService(ModuleNameHttpClient client) : base(client.HttpClient)
     {
     }
 

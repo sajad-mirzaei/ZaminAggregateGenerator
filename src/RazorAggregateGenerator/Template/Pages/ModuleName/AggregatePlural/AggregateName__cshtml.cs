@@ -4,7 +4,6 @@ internal class AggregateName__cshtml : ISourceCode
 {
     public string GetClassPath() => @"ModuleName\AggregatePlural";
     public string GetSourceCode() => @"@page
-@using UiFramework.Resources
 @using Zamin.Extensions.Translations.Abstractions
 @model AggregateNameModel
 @inject ITranslator Translator
