@@ -1,8 +1,19 @@
-﻿@model UI.Models.IndexViewModel
+﻿@using ZaminAggregateGenerator.Models;
+@using Microsoft.Identity.Client
+@model UI.Models.IndexViewModel;
 
 @if (@Model.FormSubmit == true)
 {
     <div class="text-center @Model.AlertClass" dir="rtl">@Model.FormMessage</div>
+}
+@{
+    IEnumerable<SelectListItem> IdTypeReplacementOptions = Enum.GetValues(typeof(IdTypeReplacementEnum))
+        .Cast<IdTypeReplacementEnum>()
+        .Select(e => new SelectListItem
+                {
+                    Value = e.ToString(),
+                    Text = e.ToString()
+                }).ToList();
 }
 <div class="row">
     @using (Html.BeginForm("Index", "Home", FormMethod.Post))
@@ -29,6 +40,12 @@
             @Html.LabelFor(model => model.AggregateGeneratorModel.ProjectPath, new { @class = "input-group-text" })
             @Html.TextBoxFor(model => model.AggregateGeneratorModel.ProjectPath, new { @class = "form-control", placeholder = "ProjectPath" })
             @Html.ValidationMessageFor(model => model.AggregateGeneratorModel.ProjectPath, "فیلد ضروری", new { @class = "text-danger" })
+        </div>
+
+        <div class="input-group mb-2">
+            @Html.LabelFor(model => model.AggregateGeneratorModel.IdTypeReplacement, new { @class = "input-group-text" })
+            @Html.DropDownListFor(model => model.AggregateGeneratorModel.IdTypeReplacement, Html.GetEnumSelectList(typeof(IdTypeReplacementEnum)), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.AggregateGeneratorModel.IdTypeReplacement, "فیلد ضروری", new { @class = "text-danger" })
         </div>
 
         <div class="col-12 bg-light p-2 mb-2">

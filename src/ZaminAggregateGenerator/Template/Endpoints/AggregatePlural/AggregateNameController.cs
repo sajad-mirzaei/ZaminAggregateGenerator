@@ -18,7 +18,7 @@ public class AggregateNameController : BaseController
     [HttpPost(""[action]"")]
     public async Task<IActionResult> CreateAggregateName([FromBody] CreateAggregateNameCommand createAggregateName)
     {
-        return await Create<CreateAggregateNameCommand, int>(createAggregateName);
+        return await Create<CreateAggregateNameCommand, IdTypeReplacement>(createAggregateName);
     }
 
     [HttpGet(""[action]"")]

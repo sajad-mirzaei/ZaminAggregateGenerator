@@ -8,7 +8,7 @@ using Zamin.Core.Domain.Entities;
 using Zamin.Core.Domain.ValueObjects;
 
 namespace ProjectName.Core.Domain.AggregatePlural.Entities;
-public class AggregateName : AggregateRoot<int>
+public class AggregateName : AggregateRoot<IdTypeReplacement>
 {
     #region Properties
 DomainReplacementText1

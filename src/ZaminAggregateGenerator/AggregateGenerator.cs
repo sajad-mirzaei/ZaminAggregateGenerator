@@ -112,6 +112,7 @@ public class AggregateGenerator
         var projectName = GenModel.ProjectName != null ? GenModel.ProjectName + "." : "";
         input = input.Replace("ProjectName.", projectName);
         return input
+                    .Replace("IdTypeReplacement", GenModel.IdTypeReplacement.ToString().ToLower())
                     .Replace("AggregatePlural", GenModel.AggregatePlural)
                     .Replace("aggregatePlural", GenModel.AggregatePlural.ToLowerFirstChar())
                     .Replace("AggregateName", GenModel.AggregateName)

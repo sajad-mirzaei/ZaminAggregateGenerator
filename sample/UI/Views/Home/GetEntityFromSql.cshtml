@@ -1,0 +1,32 @@
+﻿@model UI.Models.GetEntityFromSqlViewModel
+
+@if (@Model.FormSubmit == true)
+{
+    <div class="text-center @Model.AlertClass" dir="rtl">@Model.FormMessage</div>
+}
+<div class="row">
+    @using (Html.BeginForm("GetEntityFromSql", "Home", FormMethod.Post))
+    {
+        <div class="input-group mb-2">
+            @Html.LabelFor(model => model.ScaffoldServiceModel.ConnectionString, new { @class = "input-group-text" })
+            @Html.TextBoxFor(model => model.ScaffoldServiceModel.ConnectionString, new { @class = "form-control", placeholder = "ConnectionString" })
+            @Html.ValidationMessageFor(model => model.ScaffoldServiceModel.ConnectionString, "فیلد ضروری", new { @class = "text-danger" })
+        </div>
+
+        <div class="input-group mb-2">
+            @Html.LabelFor(model => model.ScaffoldServiceModel.SchemaName, new { @class = "input-group-text" })
+            @Html.TextBoxFor(model => model.ScaffoldServiceModel.SchemaName, new { @class = "form-control", placeholder = "SchemaName" })
+            @Html.ValidationMessageFor(model => model.ScaffoldServiceModel.SchemaName, "فیلد ضروری", new { @class = "text-danger" })
+        </div>
+
+        <div class="input-group mb-2">
+            @Html.LabelFor(model => model.ScaffoldServiceModel.TableName, new { @class = "input-group-text" })
+            @Html.TextBoxFor(model => model.ScaffoldServiceModel.TableName, new { @class = "form-control", placeholder = "TableName" })
+            @Html.ValidationMessageFor(model => model.ScaffoldServiceModel.TableName, "فیلد ضروری", new { @class = "text-danger" })
+        </div>
+        
+        <div class="m-2 col-12 bg-light p-2 mb-2">
+            <input type="submit" value="ثبت" class="btn btn-primary" />
+        </div>
+    }
+</div>

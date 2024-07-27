@@ -11,7 +11,7 @@ using Zamin.Core.Contracts.ApplicationServices.Commands;
 using Zamin.Utilities;
 
 namespace ProjectName.Core.ApplicationServices.AggregatePlural.Commands.CreateAggregateName;
-public class CreateAggregateNameCommandHandler : CommandHandler<CreateAggregateNameCommand, int>
+public class CreateAggregateNameCommandHandler : CommandHandler<CreateAggregateNameCommand, IdTypeReplacement>
 {
     private readonly IAggregateNameCommandRepository _aggregateNameCommandRepository;
     public CreateAggregateNameCommandHandler(ZaminServices zaminServices, IAggregateNameCommandRepository aggregateNameCommandRepository) : base(zaminServices)
@@ -19,7 +19,7 @@ public class CreateAggregateNameCommandHandler : CommandHandler<CreateAggregateN
         _aggregateNameCommandRepository = aggregateNameCommandRepository;
     }
 
-    public override async Task<CommandResult<int>> Handle(CreateAggregateNameCommand createAggregateNameCommand)
+    public override async Task<CommandResult<IdTypeReplacement>> Handle(CreateAggregateNameCommand createAggregateNameCommand)
     {
         AggregateName aggregateName = AggregateName.Create(
 ApplicationServiceReplacementText1

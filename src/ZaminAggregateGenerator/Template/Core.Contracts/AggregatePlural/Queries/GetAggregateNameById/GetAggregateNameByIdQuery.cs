@@ -9,7 +9,7 @@ namespace ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateNameByI
 
 public class GetAggregateNameByIdQuery : IQuery<AggregateNameByIdDto>
 {
-    public int Id { get; set; }
+    public IdTypeReplacement Id { get; set; }
 }
 ";
 }

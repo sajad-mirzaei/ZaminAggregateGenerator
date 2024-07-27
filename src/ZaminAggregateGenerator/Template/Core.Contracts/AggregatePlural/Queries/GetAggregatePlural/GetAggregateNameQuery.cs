@@ -10,7 +10,7 @@ using Zamin.Core.Contracts.Data.Queries;
 namespace ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregatePlural;
 public class GetAggregateNameQuery : PageQuery<PagedData<AggregateNameDto>>
 {
-    public int Id { get; set; }
+    public IdTypeReplacement Id { get; set; }
 
 ContractsReplacementText1
 

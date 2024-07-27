@@ -7,7 +7,7 @@ internal class AggregateName_Models : ISourceCode
 
 public partial class AggregateName
 {
-    public int Id { get; set; }
+    public IdTypeReplacement Id { get; set; }
    
 SqlQueriesReplacementText3
 

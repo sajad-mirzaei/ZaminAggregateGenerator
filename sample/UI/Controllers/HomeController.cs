@@ -4,6 +4,7 @@ using System.Diagnostics;
 using UI.Models;
 using ZaminAggregateGenerator;
 using ZaminAggregateGenerator.Models;
+using ZaminAggregateGenerator.Services;
 
 namespace UI.Controllers;
 
@@ -26,6 +27,61 @@ public class HomeController : Controller
             }
         };
         return View(indexViewModel);
+    }
+
+    [HttpPost]
+    public IActionResult Index(AggregateGeneratorModel aggregateGeneratorModel)
+    {
+        IndexViewModel indexViewModel = new()
+        {
+            FormMessage = "مشکلی وجود دارد",
+            FormSubmit = true,
+            FormValidation = false
+        };
+        if (ModelState.IsValid)
+        {
+            AggregateGeneratorModel oAggregateGeneratorModel = new()
+            {
+                AggregatePlural = aggregateGeneratorModel.AggregatePlural,
+                AggregateName = aggregateGeneratorModel.AggregateName,
+                ProjectName = aggregateGeneratorModel.ProjectName,
+                ProjectPath = aggregateGeneratorModel.ProjectPath,
+                AggregateClass = aggregateGeneratorModel.AggregateClass
+            };
+            AggregateGenerator oAggregateGenerator = new(oAggregateGeneratorModel);
+            oAggregateGenerator.Generate();
+            indexViewModel.FormMessage = "فایل ها با موفقیت ساخته شدند";
+            indexViewModel.FormValidation = true;
+            indexViewModel.AlertClass = "alert alert-success";
+            indexViewModel.AggregateGeneratorModel = oAggregateGeneratorModel;
+        }
+        return View(indexViewModel);
+    }
+
+    [HttpPost]
+    public IActionResult GetEntityFromSql(GetEntityFromSqlViewModel vm)
+    {
+        if (ModelState.IsValid)
+        {
+            var aggregateClass = ScaffoldServices.GetFromSql(vm.ScaffoldServiceModel);
+            IndexViewModel indexViewModel = new()
+            {
+                AggregateGeneratorModel = new AggregateGeneratorModel()
+                {
+                    AggregatePlural = vm.ScaffoldServiceModel.TableName + "s",
+                    AggregateName = vm.ScaffoldServiceModel.TableName,
+                    AggregateClass = aggregateClass
+                }
+            };
+            return View("Index", indexViewModel);
+        }
+        return View(vm);
+    }
+
+    public IActionResult GetEntityFromSql()
+    {
+        GetEntityFromSqlViewModel getEntityFromSqlViewModel = new();
+        return View(getEntityFromSqlViewModel);
     }
 
     public IActionResult RazorGenerator()
@@ -68,35 +124,6 @@ public class HomeController : Controller
             razorGeneratorViewModel.RazorAggregateGeneratorModel = oRazorAggregateGeneratorModel;
         }
         return View(razorGeneratorViewModel);
-    }
-
-    [HttpPost]
-    public IActionResult Index(AggregateGeneratorModel aggregateGeneratorModel)
-    {
-        IndexViewModel indexViewModel = new()
-        {
-            FormMessage = "مشکلی وجود دارد",
-            FormSubmit = true,
-            FormValidation = false
-        };
-        if (ModelState.IsValid)
-        {
-            AggregateGeneratorModel oAggregateGeneratorModel = new()
-            {
-                AggregatePlural = aggregateGeneratorModel.AggregatePlural,
-                AggregateName = aggregateGeneratorModel.AggregateName,
-                ProjectName = aggregateGeneratorModel.ProjectName,
-                ProjectPath = aggregateGeneratorModel.ProjectPath,
-                AggregateClass = aggregateGeneratorModel.AggregateClass
-            };
-            AggregateGenerator oAggregateGenerator = new(oAggregateGeneratorModel);
-            oAggregateGenerator.Generate();
-            indexViewModel.FormMessage = "فایل ها با موفقیت ساخته شدند";
-            indexViewModel.FormValidation = true;
-            indexViewModel.AlertClass = "alert alert-success";
-            indexViewModel.AggregateGeneratorModel = oAggregateGeneratorModel;
-        }
-        return View(indexViewModel);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
