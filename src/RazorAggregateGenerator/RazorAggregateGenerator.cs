@@ -74,9 +74,9 @@ public class RazorAggregateGenerator
             .Replace("ProjectName.", projectName)
             .Replace("ModuleName", GenModel.ModuleName)
             .Replace("AggregatePlural", GenModel.AggregatePlural)
-            .Replace("aggregatePlural", GenModel.AggregatePlural)
+            .Replace("aggregatePlural", GenModel.AggregatePlural.ToLowerFirstChar())
             .Replace("AggregateName", GenModel.AggregateName)
-            .Replace("aggregateName", GenModel.AggregateName)
+            .Replace("aggregateName", GenModel.AggregateName.ToLowerFirstChar())
             .Replace("UiFramework", GenModel.UiFrameworkProjectName);
     }
     internal string TemplateContentChange(string c)
