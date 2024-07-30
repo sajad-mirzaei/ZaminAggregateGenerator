@@ -11,7 +11,7 @@ internal class TextReplacementModel
     public TextReplacementModel(
         int leftPadding = 4,
         char[]? trimEnd = null,
-        string lineBreak = "\n"
+        string lineBreak = "\r\n"
         )
     {
         LeftPadding = GetSpaces(leftPadding);

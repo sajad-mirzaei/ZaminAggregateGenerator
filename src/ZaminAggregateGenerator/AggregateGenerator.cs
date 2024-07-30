@@ -99,24 +99,25 @@ public class AggregateGenerator
         var projectName = GenModel.ProjectName != null ? GenModel.ProjectName + "." : "";
 
         string content1 = File.ReadAllText(GenModel.CommandDbContextPath, Encoding.Default);
-        content1 = content1.Replace("//SqlCommandsCommandDbContextDbSet", "        public DbSet<" + GenModel.AggregateName + "> " + GenModel.AggregatePlural + " { get; set; }\n//SqlCommandsCommandDbContextDbSet");
-        content1 = content1.Replace("//SqlCommandsCommandDbContextUsing", "using " + projectName + "Core.Domain." + GenModel.AggregatePlural + ".Entities;\n//SqlCommandsCommandDbContextUsing");
+        content1 = content1.Replace("//SqlCommandsCommandDbContextDbSet", "        public DbSet<" + GenModel.AggregateName + "> " + GenModel.AggregatePlural + " { get; set; }\r\n//SqlCommandsCommandDbContextDbSet");
+        content1 = content1.Replace("//SqlCommandsCommandDbContextUsing", "using " + projectName + "Core.Domain." + GenModel.AggregatePlural + ".Entities;\r\n//SqlCommandsCommandDbContextUsing");
         File.WriteAllText(GenModel.CommandDbContextPath, content1, Encoding.Default);
 
         string content2 = File.ReadAllText(GenModel.QueryDbContextPath, Encoding.Default);
-        content2 = content2.Replace("//SqlQueriesQueryDbContextDbSet", "        public virtual DbSet<" + GenModel.AggregateName + "> " + GenModel.AggregatePlural + " { get; set; }\n//SqlQueriesQueryDbContextDbSet");
+        content2 = content2.Replace("//SqlQueriesQueryDbContextDbSet", "        public virtual DbSet<" + GenModel.AggregateName + "> " + GenModel.AggregatePlural + " { get; set; }\r\n//SqlQueriesQueryDbContextDbSet");
         File.WriteAllText(GenModel.QueryDbContextPath, content2, Encoding.Default);
     }
     internal string ReplaceAggregateName(string input)
     {
         var projectName = GenModel.ProjectName != null ? GenModel.ProjectName + "." : "";
         input = input.Replace("ProjectName.", projectName);
-        return input
+        var o = input
                     .Replace("IdTypeReplacement", GenModel.IdTypeReplacement.ToString().ToLower())
                     .Replace("AggregatePlural", GenModel.AggregatePlural)
                     .Replace("aggregatePlural", GenModel.AggregatePlural.ToLowerFirstChar())
                     .Replace("AggregateName", GenModel.AggregateName)
                     .Replace("aggregateName", GenModel.AggregateName.ToLowerFirstChar());
+        return o;
     }
     internal string TemplateContentChange(string c)
     {

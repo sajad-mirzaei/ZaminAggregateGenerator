@@ -8,6 +8,5 @@ internal class CreateAggregateNameCommand : ISourceCode
 public class CreateAggregateNameCommand
 {
 AppCodeReplacementText1
-}
-";
+}";
 }

@@ -14,6 +14,5 @@ namespace ProjectName.AppCode.ModuleName.AggregatePlural.Interfaces
         Task<Result<IEnumerable<AggregateNameByIdDto>>> GetAggregateNameById(GetAggregateNameViewModel viewModel);
         Task<Result> CreateAggregateName(CreateAggregateNameViewModel viewModel);
     }
-}
-";
+}";
 }

@@ -19,4 +19,7 @@ public class RazorAggregateGeneratorModel
 
     [Required(ErrorMessage = "فیلد ضروری است.")]
     public string ModuleName { get; set; }
+
+    [Required(ErrorMessage = "فیلد ضروری است.")]
+    public string UiFrameworkProjectName { get; set; } = String.Empty;
 }

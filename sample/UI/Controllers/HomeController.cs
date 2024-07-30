@@ -46,7 +46,8 @@ public class HomeController : Controller
                 AggregateName = aggregateGeneratorModel.AggregateName,
                 ProjectName = aggregateGeneratorModel.ProjectName,
                 ProjectPath = aggregateGeneratorModel.ProjectPath,
-                AggregateClass = aggregateGeneratorModel.AggregateClass
+                AggregateClass = aggregateGeneratorModel.AggregateClass,
+                IdTypeReplacement = aggregateGeneratorModel.IdTypeReplacement
             };
             AggregateGenerator oAggregateGenerator = new(oAggregateGeneratorModel);
             oAggregateGenerator.Generate();
@@ -90,7 +91,8 @@ public class HomeController : Controller
         {
             RazorAggregateGeneratorModel = new RazorAggregateGeneratorModel()
             {
-                AggregateClass = "class SampleClass {\n    public int P1 { get; set; }\n    public string P2 { get; set; }\n}"
+                AggregateClass = "class SampleClass {\n    public int P1 { get; set; }\n    public string P2 { get; set; }\n}",
+                UiFrameworkProjectName = "Saapp.Framework"
             }
         };
         return View(razorGeneratorViewModel);
@@ -114,7 +116,8 @@ public class HomeController : Controller
                 ProjectName = razorAggregateGeneratorModel.ProjectName,
                 ProjectPath = razorAggregateGeneratorModel.ProjectPath,
                 AggregateClass = razorAggregateGeneratorModel.AggregateClass,
-                ModuleName = razorAggregateGeneratorModel.ModuleName
+                ModuleName = razorAggregateGeneratorModel.ModuleName,
+                UiFrameworkProjectName = razorAggregateGeneratorModel.UiFrameworkProjectName
             };
             RazorAggregateGenerator.RazorAggregateGenerator oRazorAggregateGenerator = new(oRazorAggregateGeneratorModel);
             oRazorAggregateGenerator.Generate();

@@ -36,6 +36,12 @@
             @Html.TextBoxFor(model => model.RazorAggregateGeneratorModel.ModuleName, new { @class = "form-control", placeholder = "ModuleName" })
             @Html.ValidationMessageFor(model => model.RazorAggregateGeneratorModel.ModuleName, "فیلد ضروری", new { @class = "text-danger" })
         </div>
+        
+        <div class="input-group mb-2">
+            @Html.LabelFor(model => model.RazorAggregateGeneratorModel.UiFrameworkProjectName, new { @class = "input-group-text" })
+            @Html.TextBoxFor(model => model.RazorAggregateGeneratorModel.UiFrameworkProjectName, new { @class = "form-control", placeholder = "ModuleName" })
+            @Html.ValidationMessageFor(model => model.RazorAggregateGeneratorModel.UiFrameworkProjectName, "فیلد ضروری", new { @class = "text-danger" })
+        </div>
 
         <div class="col-12 bg-light p-2 mb-2">
             @Html.LabelFor(model => model.RazorAggregateGeneratorModel.AggregateClass, new { @class = "form-label" })
