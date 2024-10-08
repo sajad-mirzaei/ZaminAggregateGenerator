@@ -98,7 +98,8 @@ internal class AggregatePropertyAdder
     }
     private string ContractsReplacementTextGetQuery1(TextReplacementModel m)
     {
-        var t = (m.PropertyModel.PropertyType).Replace("?", "") + "?";
+        var propertyType = m.PropertyModel.PropertyType.TrimEnd('?');
+        var t = propertyType != "string" ? propertyType + "?" : propertyType;
         return $"{m.LeftPadding}public {t} {m.PropertyModel.PropertyName} {{ get; set; }}{m.LineBreak}";
     }
     #endregion
@@ -148,7 +149,7 @@ internal class AggregatePropertyAdder
         _methods.Add(DomainReplacementText1, new TextReplacementModel(4));
         _methods.Add(DomainReplacementTextEvents1, new TextReplacementModel(4));
         _methods.Add(DomainReplacementText2, new TextReplacementModel(8, new char[] { ',' }));
-        _methods.Add(ContractsReplacementTextGetQuery1, new TextReplacementModel(8, new char[] { ',' }));
+        _methods.Add(ContractsReplacementTextGetQuery1, new TextReplacementModel(4, new char[] { ',' }));
         _methods.Add(DomainReplacementText3, new TextReplacementModel(8));
         _methods.Add(DomainReplacementText4, new TextReplacementModel(12, new char[] { ',' }));
         _methods.Add(DomainReplacementText5, new TextReplacementModel(8, new char[] { ',' }));
