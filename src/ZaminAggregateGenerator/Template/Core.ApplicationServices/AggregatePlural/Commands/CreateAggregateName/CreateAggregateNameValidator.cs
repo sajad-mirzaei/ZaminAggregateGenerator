@@ -13,10 +13,8 @@ namespace ProjectName.Core.ApplicationServices.AggregatePlural.Commands.CreateAg
 
 public class CreateAggregateNameValidator : AbstractValidator<CreateAggregateNameCommand>
 {
-    [Obsolete]
     public CreateAggregateNameValidator(ITranslator translator, IAggregateNameCommandRepository aggregateNameCommandRepository)
     {
-        this.CascadeMode = CascadeMode.Stop;
         /*RuleFor(p => p.FirstName).NotNull().WithMessage(translator[ResourceKeys.MustNotNullError]);
         RuleFor(p => p.LastName).NotNull().WithMessage(translator[ResourceKeys.MustNotNullError]);*/
     }

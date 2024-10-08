@@ -47,6 +47,12 @@
             @Html.DropDownListFor(model => model.AggregateGeneratorModel.IdTypeReplacement, Html.GetEnumSelectList(typeof(IdTypeReplacementEnum)), new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.AggregateGeneratorModel.IdTypeReplacement, "فیلد ضروری", new { @class = "text-danger" })
         </div>
+        
+        <div class="input-group mb-2">
+            @Html.LabelFor(model => model.AggregateGeneratorModel.DisableShadowProperty, new { @class = "input-group-text" })
+            @Html.DropDownListFor(model => model.AggregateGeneratorModel.DisableShadowProperty, Html.GetEnumSelectList(typeof(DisableShadowPropertyEnum)), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.AggregateGeneratorModel.DisableShadowProperty, "فیلد ضروری", new { @class = "text-danger" })
+        </div>
 
         <div class="col-12 bg-light p-2 mb-2">
             @Html.LabelFor(model => model.AggregateGeneratorModel.AggregateClass, new { @class = "form-label" })

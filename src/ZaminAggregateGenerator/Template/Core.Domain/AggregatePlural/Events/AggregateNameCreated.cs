@@ -8,8 +8,8 @@ internal class AggregateNameCreated : ISourceCode
 namespace ProjectName.Core.Domain.AggregatePlural.Events;
 public class AggregateNameCreated : IDomainEvent
 {
-    public IdTypeReplacement Id { get; private set; }
-DomainReplacementText1
+    public IdTypeReplacement Id { get; set; }
+DomainReplacementTextEvents1
 
     public AggregateNameCreated(
         IdTypeReplacement id, 

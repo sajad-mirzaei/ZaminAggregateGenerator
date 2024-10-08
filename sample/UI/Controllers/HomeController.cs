@@ -47,7 +47,8 @@ public class HomeController : Controller
                 ProjectName = aggregateGeneratorModel.ProjectName,
                 ProjectPath = aggregateGeneratorModel.ProjectPath,
                 AggregateClass = aggregateGeneratorModel.AggregateClass,
-                IdTypeReplacement = aggregateGeneratorModel.IdTypeReplacement
+                IdTypeReplacement = aggregateGeneratorModel.IdTypeReplacement,
+                DisableShadowProperty = aggregateGeneratorModel.DisableShadowProperty
             };
             AggregateGenerator oAggregateGenerator = new(oAggregateGeneratorModel);
             oAggregateGenerator.Generate();

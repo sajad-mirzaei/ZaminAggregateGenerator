@@ -21,15 +21,15 @@ public class AggregateNameQueryRepository : BaseQueryRepository<ProjectNameQuery
     {
     }
 
-    public async Task<AggregateNameByIdDto?> SelectAsync(GetAggregateNameByIdQuery query)
+    public async Task<AggregateNameByIdDto?> SelectAsync(GetAggregateNameByIdQuery request)
     {
         return await _dbContext.AggregatePlural.Select(c => new AggregateNameByIdDto()
         {
             Id = c.Id,
 SqlQueriesReplacementText1
-        }).FirstOrDefaultAsync(c => c.Id.Equals(query.Id));
+        }).SingleOrDefaultAsync(c => c.Id.Equals(request.Id));
     }
-    public async Task<PagedData<AggregateNameDto>> SelectAsync(GetAggregateNameQuery dto)
+    public async Task<PagedData<AggregateNameDto>> SelectAsync(GetAggregateNameQuery request)
     {
         #region Query
         var query = _dbContext.AggregatePlural.AsQueryable();
@@ -37,27 +37,18 @@ SqlQueriesReplacementText1
 
         #region Filters
 SqlQueriesReplacementText2
-        query = query.WhereIf(dto.Id != 0, m => m.Id == dto.Id);
 
-        query = query.WhereIf(dto.CreatedDateTime != null, m => m.CreatedDateTime == dto.CreatedDateTime);
-        query = query.WhereIf(dto.ModifiedDateTime != null, m => m.ModifiedDateTime == dto.ModifiedDateTime);
-        query = query.WhereIf(dto.CreatedByUserId != null, m => m.CreatedByUserId == dto.CreatedByUserId);
-        query = query.WhereIf(dto.ModifiedByUserId != null, m => m.ModifiedByUserId == dto.ModifiedByUserId);
+DisableShadowPropertyReplacementText7
 
         #endregion
 
         #region Result
-        PagedData<AggregateNameDto> result = await query.ToPagedData(dto, c => new AggregateNameDto
+        PagedData<AggregateNameDto> result = await query.ToPagedData(request, c => new AggregateNameDto
         {
             Id = c.Id,
 SqlQueriesReplacementText1 ,
 
-            CreatedByUserId = c.CreatedByUserId,
-            CreatedByUserName = null,
-            ModifiedByUserId = c.ModifiedByUserId,
-            ModifiedByUserName = null,
-            CreatedDateTime = c.CreatedDateTime,
-            ModifiedDateTime = c.ModifiedDateTime
+DisableShadowPropertyReplacementText4
         });
 
         return result;

@@ -15,19 +15,19 @@ namespace ProjectName.Endpoints.API.AggregatePlural;
 [Route(""api/[controller]"")]
 public class AggregateNameController : BaseController
 {
-    [HttpPost(""[action]"")]
+    [HttpPost(""create"")]
     public async Task<IActionResult> CreateAggregateName([FromBody] CreateAggregateNameCommand createAggregateName)
     {
         return await Create<CreateAggregateNameCommand, IdTypeReplacement>(createAggregateName);
     }
 
-    [HttpGet(""[action]"")]
+    [HttpGet(""get"")]
     public async Task<IActionResult> GetAggregateName([FromQuery] GetAggregateNameQuery query)
     {
         return await Query<GetAggregateNameQuery, PagedData<AggregateNameDto>>(query);
     }
 
-    [HttpGet(""[action]"")]
+    [HttpGet(""getById"")]
     public async Task<IActionResult> GetAggregateNameById([FromQuery] GetAggregateNameByIdQuery query)
     {
         return await Query<GetAggregateNameByIdQuery, AggregateNameByIdDto>(query);

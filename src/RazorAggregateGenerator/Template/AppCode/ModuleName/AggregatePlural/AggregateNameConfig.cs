@@ -7,7 +7,7 @@ internal class AggregateNameConfig : ISourceCode
 {
     public class AggregateNameConfig
     {
-        public const string GetAggregateNameByIdRoute = ""/api/AggregateName/getAggregateNameById"";
+        public const string GetAggregateNameByIdRoute = ""/api/AggregateName/getById"";
         public const string CreateAggregateNameRoute = ""/api/AggregateName/create"";
     }
 }

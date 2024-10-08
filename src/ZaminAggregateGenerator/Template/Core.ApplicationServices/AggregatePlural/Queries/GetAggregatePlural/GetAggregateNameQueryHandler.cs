@@ -14,7 +14,7 @@ namespace ProjectName.Core.ApplicationServices.AggregatePlural.Queries.GetAggreg
 
 public class GetAggregateNameQueryHandler : QueryHandler<GetAggregateNameQuery, PagedData<AggregateNameDto>>
 {
-    public IAggregateNameQueryRepository _aggregateNameQueryRepository { get; }
+    public IAggregateNameQueryRepository _aggregateNameQueryRepository;
     public GetAggregateNameQueryHandler(ZaminServices zaminServices, IAggregateNameQueryRepository aggregateNameQueryRepository) : base(zaminServices)
     {
         _aggregateNameQueryRepository = aggregateNameQueryRepository;

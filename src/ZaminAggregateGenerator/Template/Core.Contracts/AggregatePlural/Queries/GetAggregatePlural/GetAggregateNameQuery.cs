@@ -10,15 +10,9 @@ using Zamin.Core.Contracts.Data.Queries;
 namespace ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregatePlural;
 public class GetAggregateNameQuery : PageQuery<PagedData<AggregateNameDto>>
 {
-    public IdTypeReplacement Id { get; set; }
+ContractsReplacementTextGetQuery1
 
-ContractsReplacementText1
-
-    public string? CreatedByUserId { get; set; }
-    public string? CreatedByUserName { get; set; }
-    public DateTime? CreatedDateTime { get; set; }
-    public string? ModifiedByUserId { get; set; }
-    public DateTime? ModifiedDateTime { get; set; }
+DisableShadowPropertyReplacementText5
 }
 ";
 }

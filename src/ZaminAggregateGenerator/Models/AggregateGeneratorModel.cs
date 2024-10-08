@@ -18,6 +18,7 @@ public class AggregateGeneratorModel
     public string AggregateClass { get; set; } = string.Empty;
     public string? CommandDbContextPath { get; set; }
     public string? QueryDbContextPath { get; set; }
+    public DisableShadowPropertyEnum DisableShadowProperty { get; set; } = DisableShadowPropertyEnum.True;
 
     /// <summary> int or long</summary>
     public IdTypeReplacementEnum IdTypeReplacement { get; set; } = IdTypeReplacementEnum.Int;
@@ -27,4 +28,10 @@ public enum IdTypeReplacementEnum
 {
     Int = 1,
     Long = 2
+}
+
+public enum DisableShadowPropertyEnum
+{
+    True = 1,
+    False = 0
 }

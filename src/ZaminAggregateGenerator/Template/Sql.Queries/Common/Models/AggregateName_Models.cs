@@ -11,10 +11,7 @@ public partial class AggregateName
    
 SqlQueriesReplacementText3
 
-    public string? CreatedByUserId { get; set; }
-    public DateTime? CreatedDateTime { get; set; }
-    public string? ModifiedByUserId { get; set; }
-    public DateTime? ModifiedDateTime { get; set; }
+DisableShadowPropertyReplacementText3
 }
 ";
 }
