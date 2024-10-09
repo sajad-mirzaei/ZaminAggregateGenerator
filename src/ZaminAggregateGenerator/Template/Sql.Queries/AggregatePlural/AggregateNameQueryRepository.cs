@@ -21,7 +21,7 @@ public class AggregateNameQueryRepository : BaseQueryRepository<ProjectNameQuery
     {
     }
 
-    public async Task<AggregateNameByIdDto?> SelectAsync(GetAggregateNameByIdQuery request)
+    public async Task<AggregateNameByIdDto> SelectAsync(GetAggregateNameByIdQuery request)
     {
         return await _dbContext.AggregatePlural.Select(c => new AggregateNameByIdDto()
         {
