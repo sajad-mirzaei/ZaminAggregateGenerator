@@ -79,33 +79,114 @@ This repository contains a Class Library project that is designed to work within
 ```Tree
 ├───1.Core
 │   ├───ProjectName.Core.ApplicationServices
-│   │   └───Users
+│   │   └───Users (AggregatePlural)
 │   │       ├───Commands
-│   │       │   └───CreateUser
+│   │       │   └───CreateUser (CreateAggregateName)
 │   │       └───Queries
-│   │           ├───GetUserById
-│   │           └───GetUsers
+│   │           ├───GetUserById (GetAggregateNameById)
+│   │           └───GetUsers (GetAggregatePlural)
 │   ├───ProjectName.Core.Contracts
-│   │   └───Users
+│   │   └───Users (AggregatePlural)
 │   │       ├───Commands
-│   │       │   └───CreateUser
+│   │       │   └───CreateUser (CreateAggregateName)
 │   │       └───Queries
-│   │           ├───GetUserById
-│   │           └───GetUsers
+│   │           ├───GetUserById (GetAggregateNameById)
+│   │           └───GetUsers (GetAggregatePlural)
 │   └───ProjectName.Core.Domain
-│       └───Users
+│       └───Users (AggregatePlural)
 │           ├───Entities
 │           └───Events
 ├───2.Infra
 │   └───Data
 │       ├───ProjectName.Infra.Data.Sql.Commands
-│       │   └───Users
+│       │   └───Users (AggregatePlural)
 │       │       └───Configs
 │       └───ProjectName.Infra.Data.Sql.Queries
-│           └───Users
+│           └───Users (AggregatePlural)
 └───3.Endpoints
     └───ProjectName.Endpoints.API
-        └───Users
+        └───Users (AggregatePlural)
 ```
 
 This structure is essential for the proper functioning of the Class Library.
+
+## Entity generator configs, change this files:
+1- Core.Contracts/AggregatePlural/Queries/IAggregateNameQueryRepository.cs
+	1-1- Add "//EntityIQueryRepositoryUsingReplacementText" before namespace of IAggregateNameQueryRepository.cs
+	1-2- Add "//EntityIQueryRepositoryReplacementText" to end of your IAggregateNameQueryRepository.cs 
+example:
+```
+//EntityIQueryRepositoryUsingReplacementText
+
+namespace ProjectName.Core.Contracts.AggregatePlural.Queries;
+public interface IAggregateNameQueryRepository : IQueryRepository
+{
+
+//EntityIQueryRepositoryReplacementText
+}
+```
+
+
+2- Core.Domain/AggregatePlural/Entities/AggregateName.cs
+	2-1- Add "//EntityPropertiesReplacementText" to region Properties
+	2-2- Add "//EntityMethodsReplacementText" end of your AggregateName.cs
+example:
+```
+public class AggregateName : AggregateRoot<IdTypeReplacement>
+{
+    #region Properties
+
+//EntityPropertiesReplacementText
+    #endregion
+
+//EntityMethodsReplacementText
+}
+```
+
+3- Endpoints/AggregatePlural/AggregateNameController.cs
+	3-1- Add "//EntityControllerUsingReplacementText" before namespace of AggregateNameController.cs
+	3-2- Add "//EntityControllerMethodsReplacementText" to end of your AggregateNameController.cs 
+example:
+```
+//EntityControllerUsingReplacementText
+
+namespace ProjectName.Endpoints.API.AggregatePlural;
+
+[Route(""api/[controller]"")]
+public class AggregateNameController : BaseController
+{
+
+//EntityControllerMethodsReplacementText
+}
+```
+
+4- Sql.Commands/AggregatePlural/Configs/AggregateNameConfig.cs
+	4-1- Add "//EntityCommandConfigReplacementText" to end of your AggregateNameConfig.cs
+example:
+```
+public class AggregateNameConfig : IEntityTypeConfiguration<AggregateName>
+{
+	public void Configure(EntityTypeBuilder<AggregateName> builder)
+	{
+
+//EntityCommandConfigReplacementText
+	}
+}
+```
+
+5- Sql.Queries/AggregatePlural/AggregateNameQueryRepository.cs
+	3-1- Add "//EntityControllerUsingReplacementText" before namespace of AggregateNameQueryRepository.cs
+	3-2- Add "//EntityControllerMethodsReplacementText" to end of your AggregateNameQueryRepository.cs 
+example:
+```
+//EntityQueryRepositoryUsingReplacementText
+
+namespace ProjectName.Infra.Data.Sql.Queries.AggregatePlural;
+
+public class AggregateNameQueryRepository : BaseQueryRepository<ProjectNameQueryDbContext>,
+    IAggregateNameQueryRepository
+{
+
+//EntityQueryRepositoryReplacementText
+}
+```

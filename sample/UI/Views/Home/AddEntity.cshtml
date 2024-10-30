@@ -1,0 +1,81 @@
+﻿@using ZaminAggregateGenerator.Models;
+@using Microsoft.Identity.Client
+@model UI.Models.AddEntityViewModel;
+@{
+    ViewData["Title"] = "Add Entity";
+}
+
+@if (@Model.FormSubmit == true)
+{
+    <div class="text-center @Model.AlertClass" dir="rtl">@Model.FormMessage</div>
+}
+@{
+    IEnumerable<SelectListItem> IdTypeReplacementOptions = Enum.GetValues(typeof(IdTypeReplacementEnum))
+        .Cast<IdTypeReplacementEnum>()
+        .Select(e => new SelectListItem
+                {
+                    Value = e.ToString(),
+                    Text = e.ToString()
+                }).ToList();
+}
+<div class="row">
+    @using (Html.BeginForm("AddEntity", "Home", FormMethod.Post))
+    {
+        <div class="input-group mb-2">
+            @Html.LabelFor(model => model.EntityGeneratorModel.AggregatePlural, new { @class = "input-group-text" })
+            @Html.TextBoxFor(model => model.EntityGeneratorModel.AggregatePlural, new { @class = "form-control", placeholder = nameof(Model.EntityGeneratorModel.AggregatePlural) })
+            @Html.ValidationMessageFor(model => model.EntityGeneratorModel.AggregatePlural, "فیلد ضروری", new { @class = "text-danger" })
+        </div>
+
+        <div class="input-group mb-2">
+            @Html.LabelFor(model => model.EntityGeneratorModel.AggregateName, new { @class = "input-group-text" })
+            @Html.TextBoxFor(model => model.EntityGeneratorModel.AggregateName, new { @class = "form-control", placeholder = nameof(Model.EntityGeneratorModel.AggregatePlural) })
+            @Html.ValidationMessageFor(model => model.EntityGeneratorModel.AggregateName, "فیلد ضروری", new { @class = "text-danger" })
+        </div>
+        
+        <div class="input-group mb-2">
+            @Html.LabelFor(model => model.EntityGeneratorModel.EntityPlural, new { @class = "input-group-text" })
+            @Html.TextBoxFor(model => model.EntityGeneratorModel.EntityPlural, new { @class = "form-control", placeholder = nameof(Model.EntityGeneratorModel.EntityPlural) })
+            @Html.ValidationMessageFor(model => model.EntityGeneratorModel.EntityPlural, "فیلد ضروری", new { @class = "text-danger" })
+        </div>
+
+        <div class="input-group mb-2">
+            @Html.LabelFor(model => model.EntityGeneratorModel.EntityName, new { @class = "input-group-text" })
+            @Html.TextBoxFor(model => model.EntityGeneratorModel.EntityName, new { @class = "form-control", placeholder = nameof(Model.EntityGeneratorModel.EntityName) })
+            @Html.ValidationMessageFor(model => model.EntityGeneratorModel.EntityName, "فیلد ضروری", new { @class = "text-danger" })
+        </div>
+
+        <div class="input-group mb-2">
+            @Html.LabelFor(model => model.EntityGeneratorModel.ProjectName, "ProjectName", new { @class = "input-group-text", dir = "ltr" })
+            @Html.TextBoxFor(model => model.EntityGeneratorModel.ProjectName, new { @class = "form-control", placeholder = "Example: in \"x.y.Core.ApplicationServices\" --> \"x.y.\" is projectName" })
+            @* @Html.ValidationMessageFor(model => model.EntityGeneratorModel.ProjectName, "فیلد ضروری", new { @class = "text-danger" }) *@
+        </div>
+
+        <div class="input-group mb-2">
+            @Html.LabelFor(model => model.EntityGeneratorModel.ProjectPath, new { @class = "input-group-text" })
+            @Html.TextBoxFor(model => model.EntityGeneratorModel.ProjectPath, new { @class = "form-control", placeholder = nameof(Model.EntityGeneratorModel.ProjectPath) })
+            @Html.ValidationMessageFor(model => model.EntityGeneratorModel.ProjectPath, "فیلد ضروری", new { @class = "text-danger" })
+        </div>
+
+        <div class="input-group mb-2">
+            @Html.LabelFor(model => model.EntityGeneratorModel.IdTypeReplacement, new { @class = "input-group-text" })
+            @Html.DropDownListFor(model => model.EntityGeneratorModel.IdTypeReplacement, Html.GetEnumSelectList(typeof(IdTypeReplacementEnum)), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EntityGeneratorModel.IdTypeReplacement, "فیلد ضروری", new { @class = "text-danger" })
+        </div>
+        
+        <div class="input-group mb-2">
+            @Html.LabelFor(model => model.EntityGeneratorModel.DisableShadowProperty, new { @class = "input-group-text" })
+            @Html.DropDownListFor(model => model.EntityGeneratorModel.DisableShadowProperty, Html.GetEnumSelectList(typeof(DisableShadowPropertyEnum)), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EntityGeneratorModel.DisableShadowProperty, "فیلد ضروری", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-12 bg-light p-2 mb-2">
+            @Html.LabelFor(model => model.EntityGeneratorModel.EntityClass, new { @class = "form-label" })
+            @Html.TextAreaFor(model => model.EntityGeneratorModel.EntityClass, new { @class = "form-control", placeholder = nameof(Model.EntityGeneratorModel.EntityClass), rows = 10 })
+        </div>
+
+        <div class="m-2 col-12 bg-light p-2 mb-2">
+            <input type="submit" value="ثبت" class="btn btn-primary" />
+        </div>
+    }
+</div>

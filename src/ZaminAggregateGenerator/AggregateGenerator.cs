@@ -16,45 +16,43 @@ public class AggregateGenerator
     public AggregateGenerator(AggregateGeneratorModel genModel)
     {
         GenModel = genModel;
-        PropertyArray = Extentoins.ClassParse(GenModel.AggregateClass);
+        PropertyArray = Extensions.ClassParse(GenModel.AggregateClass);
         CsprojFilesList = FileTools.CsprojFilesList(GenModel.ProjectPath);
     }
 
     public string Generate()
     {
         ResultModel resultModel = this.AggregateGeneratorValidation();
-        if (resultModel.Result)
+        if (resultModel.Result == false)
+            return resultModel.GetString();
+        SetDbContexts();
+        SetDbContextPrefix();
+        foreach (string csprojFilePath in CsprojFilesList)
         {
-            SetDbContexts();
-            SetDbContextPrefix();
-            foreach (string csprojFilePath in CsprojFilesList)
+            var csprojFileDirectoryPath = Path.GetDirectoryName(csprojFilePath) ?? "";
+            string csprojFileName = Path.GetFileName(csprojFilePath);
+            List<ISourceCode> templateLayerFiles = GetTemplateLayerFiles(csprojFileName);
+            if (templateLayerFiles == null) continue;
+            foreach (ISourceCode templateLayerFile in templateLayerFiles)
             {
-                var csprojFileDirectoryPath = Path.GetDirectoryName(csprojFilePath) ?? "";
-                string csprojFileName = Path.GetFileName(csprojFilePath);
-                List<ISourceCode> templateLayerFiles = GetTemplateLayerFiles(csprojFileName);
-                if (templateLayerFiles == null) continue;
-                foreach (ISourceCode templateLayerFile in templateLayerFiles)
-                {
-                    var classPath = templateLayerFile.GetClassPath();
-                    var sourceCode = templateLayerFile.GetSourceCode();
+                var classPath = templateLayerFile.GetClassPath();
+                var sourceCode = templateLayerFile.GetSourceCode();
 
-                    sourceCode = ReplaceDbContextClassNames(sourceCode);
-                    classPath = ReplaceAggregateName(classPath);
-                    sourceCode = ReplaceAggregateName(sourceCode);
-                    sourceCode = TemplateContentChange(sourceCode);
-                    var targetFileName = GetCorrectClassName(templateLayerFile.GetType().Name);
+                sourceCode = ReplaceDbContextClassNames(sourceCode);
+                classPath = ReplaceAggregateName(classPath);
+                sourceCode = ReplaceAggregateName(sourceCode);
+                sourceCode = TemplateContentChange(sourceCode);
+                var targetFileName = GetCorrectClassName(templateLayerFile.GetType().Name);
 
-                    DirectoryTools.CreateNestedDirectories(classPath, csprojFileDirectoryPath);
+                DirectoryTools.CreateNestedDirectories(classPath, csprojFileDirectoryPath);
 
-                    var targetDirectoryPath = Path.Combine(csprojFileDirectoryPath, classPath);
-                    var targetFilePath = Path.Combine(targetDirectoryPath, targetFileName);
+                var targetDirectoryPath = Path.Combine(csprojFileDirectoryPath, classPath);
+                var targetFilePath = Path.Combine(targetDirectoryPath, targetFileName);
 
-                    File.WriteAllText(targetFilePath, sourceCode, Encoding.Default);
-                }
+                File.WriteAllText(targetFilePath, sourceCode, Encoding.Default);
             }
-            AddDbSetToDbContexts();
         }
-
+        AddDbSetToDbContexts();
         return resultModel.GetString();
     }
 
@@ -85,12 +83,12 @@ public class AggregateGenerator
             string s when s.Contains(("Core.ApplicationService").ToLower()) => "Core.ApplicationServices",
             string s when s.Contains(("Core.Contracts").ToLower()) => "Core.Contracts",
             string s when s.Contains(("Core.Domain").ToLower()) && !s.ToLower().Contains("domainservice") => "Core.Domain",
-            string s when s.Contains(("Core.Commands").ToLower()) => "Core.Commands",
-            string s when s.Contains(("Core.Queries").ToLower()) => "Core.Queries",
-            string s when s.Contains(("Core.Endpoints").ToLower()) => "Core.Endpoints",
+            string s when s.Contains(("Sql.Commands").ToLower()) => "Sql.Commands",
+            string s when s.Contains(("Sql.Queries").ToLower()) => "Sql.Queries",
+            string s when s.Contains(("Endpoints").ToLower()) => "Endpoints",
             _ => null
         };
-        return layerName == null ? null : Configs.LayerMappings[layerName];
+        return layerName == null ? null : AggregateConfigs.LayerMappings[layerName];
     }
     void AddDbSetToDbContexts()
     {
