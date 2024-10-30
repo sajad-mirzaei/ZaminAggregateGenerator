@@ -1,6 +1,6 @@
 ﻿namespace ZaminAggregateGenerator.Services;
 
-internal static class Configs
+internal static class EntityConfigs
 {
     /*internal static List<string> TargetCsprojFiles { get; set; } = new() {
         "ApplicationServices.csproj",
@@ -16,57 +16,50 @@ internal static class Configs
             "Core.Domain",
             new List<ISourceCode>
             {
-                new AggregateName_Entities(),
-                new AggregateNameCreated()
+                new EntityName_Entities(),
+                new EntityNameAdded()
             }
         },
         {
             "Core.Contracts",
             new List<ISourceCode>
             {
-                new CreateAggregateNameCommand(),
-                new IAggregateNameCommandRepository(),
-                new AggregateNameByIdDto(),
-                new GetAggregateNameByIdQuery(),
-                new AggregateNameDto(),
-                new GetAggregateNameQuery(),
-                new IAggregateNameQueryRepository(),
-                new IAggregateNameService()
+                new AddEntityNameCommand(),
+                new EntityNameByIdDto(),
+                new GetEntityNameByIdQuery(),
+                new EntityNameDto(),
+                new GetEntityNameQuery()
             }
         },
         {
             "Core.ApplicationServices",
             new List<ISourceCode>
             {
-                new CreateAggregateNameCommandHandler(),
-                new CreateAggregateNameValidator(),
-                new GetAggregateNameByIdQueryHandler(),
-                new GetAggregateNameByIdValidator(),
-                new GetAggregateNameQueryHandler(),
-                new GetAggregateNameValidator()
+                new AddEntityNameCommandHandler(),
+                new AddEntityNameValidator(),
+                new GetEntityNameByIdQueryHandler(),
+                new GetEntityNameByIdValidator(),
+                new GetEntityNameQueryHandler(),
+                new GetEntityNameValidator()
             }
         },
         {
             "Sql.Commands",
             new List<ISourceCode>
             {
-                new AggregateNameConfig(),
-                new AggregateNameCommandRepository()
+                new EntityNameConfig()
             }
         },
         {
             "Sql.Queries",
             new List<ISourceCode>
             {
-                new AggregateNameQueryRepository(),
-                new AggregateName_Models()
             }
         },
         {
             "Endpoints",
             new List<ISourceCode>
             {
-                new AggregateNameController()
             }
         }
     };

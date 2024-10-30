@@ -12,6 +12,8 @@ public class AggregateName : AggregateRoot<IdTypeReplacement>
 {
     #region Properties
 DomainReplacementText1
+
+//EntityPropertiesReplacementText
     #endregion
 
     #region Constructors
@@ -39,6 +41,8 @@ DomainReplacementText2
 DomainReplacementText4
         );
     #endregion
+
+//EntityMethodsReplacementText
 }
 ";
 }

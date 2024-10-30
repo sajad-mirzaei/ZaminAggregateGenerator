@@ -19,20 +19,20 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        IndexViewModel indexViewModel = new()
+        AddAggregateViewModel addAggregateViewModel = new()
         {
             AggregateGeneratorModel = new AggregateGeneratorModel()
             {
                 AggregateClass = "class SampleClass {\n    public int P1 { get; set; }\n    public string P2 { get; set; }\n}"
             }
         };
-        return View(indexViewModel);
+        return View(addAggregateViewModel);
     }
 
     [HttpPost]
     public IActionResult Index(AggregateGeneratorModel aggregateGeneratorModel)
     {
-        IndexViewModel indexViewModel = new()
+        AddAggregateViewModel addAggregateViewModel = new()
         {
             FormMessage = "مشکلی وجود دارد",
             FormSubmit = true,
@@ -52,12 +52,57 @@ public class HomeController : Controller
             };
             AggregateGenerator oAggregateGenerator = new(oAggregateGeneratorModel);
             oAggregateGenerator.Generate();
-            indexViewModel.FormMessage = "فایل ها با موفقیت ساخته شدند";
-            indexViewModel.FormValidation = true;
-            indexViewModel.AlertClass = "alert alert-success";
-            indexViewModel.AggregateGeneratorModel = oAggregateGeneratorModel;
+            addAggregateViewModel.FormMessage = "فایل ها با موفقیت ساخته شدند";
+            addAggregateViewModel.FormValidation = true;
+            addAggregateViewModel.AlertClass = "alert alert-success";
+            addAggregateViewModel.AggregateGeneratorModel = oAggregateGeneratorModel;
         }
-        return View(indexViewModel);
+        return View(addAggregateViewModel);
+    }
+
+    public IActionResult AddEntity()
+    {
+        AddEntityViewModel addEntityViewModel = new()
+        {
+            EntityGeneratorModel = new EntityGeneratorModel()
+            {
+                EntityClass = "class SampleClass {\n    public int P1 { get; set; }\n    public string P2 { get; set; }\n}"
+            }
+        };
+        return View(addEntityViewModel);
+    }
+
+    [HttpPost]
+    public IActionResult AddEntity(EntityGeneratorModel entityGeneratorModel)
+    {
+        AddEntityViewModel addEntityViewModel = new()
+        {
+            FormMessage = "مشکلی وجود دارد",
+            FormSubmit = true,
+            FormValidation = false
+        };
+        if (ModelState.IsValid)
+        {
+            EntityGeneratorModel oEntityGeneratorModel = new()
+            {
+                AggregatePlural = entityGeneratorModel.AggregatePlural,
+                AggregateName = entityGeneratorModel.AggregateName,
+                EntityPlural = entityGeneratorModel.EntityPlural,
+                EntityName = entityGeneratorModel.EntityName,
+                ProjectName = entityGeneratorModel.ProjectName,
+                ProjectPath = entityGeneratorModel.ProjectPath,
+                EntityClass = entityGeneratorModel.EntityClass,
+                IdTypeReplacement = entityGeneratorModel.IdTypeReplacement,
+                DisableShadowProperty = entityGeneratorModel.DisableShadowProperty
+            };
+            EntityGenerator oEntityGenerator = new(oEntityGeneratorModel);
+            oEntityGenerator.Generate();
+            addEntityViewModel.FormMessage = "فایل ها با موفقیت ساخته شدند";
+            addEntityViewModel.FormValidation = true;
+            addEntityViewModel.AlertClass = "alert alert-success";
+            addEntityViewModel.EntityGeneratorModel = oEntityGeneratorModel;
+        }
+        return View(addEntityViewModel);
     }
 
     [HttpPost]
@@ -66,7 +111,7 @@ public class HomeController : Controller
         if (ModelState.IsValid)
         {
             var aggregateClass = ScaffoldServices.GetFromSql(vm.ScaffoldServiceModel);
-            IndexViewModel indexViewModel = new()
+            AddAggregateViewModel addAggregateViewModel = new()
             {
                 AggregateGeneratorModel = new AggregateGeneratorModel()
                 {
@@ -75,7 +120,7 @@ public class HomeController : Controller
                     AggregateClass = aggregateClass
                 }
             };
-            return View("Index", indexViewModel);
+            return View("Index", addAggregateViewModel);
         }
         return View(vm);
     }

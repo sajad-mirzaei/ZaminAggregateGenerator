@@ -12,22 +12,10 @@ public class EntityNameConfig : IEntityTypeConfiguration<EntityName>
 {
     public void Configure(EntityTypeBuilder<EntityName> builder)
     {
-        builder.DisableShadowProperty();
-        builder.ToTable(""voc_goftegosatr"", ""dbo"");
+DisableShadowPropertyReplacementText6
+        builder.ToTable(""EntityPlural"", ""dbo"");
         builder.HasKey(e => e.Id);
-        builder.Property(c => c.Id).HasColumnName(""ccGoftegoSatr"");
-        builder.Property(""AggregateNameId"").HasColumnName(""ccGoftego"");
-        builder.Property(e => e.CreatedByUserId).HasColumnName(""ccUser"");
-        builder.Property(e => e.Accessible)
-            .HasDefaultValueSql(""('0')"")
-            .HasColumnName(""dastresi"");
-        builder.Property(e => e.Message)
-            .IsRequired()
-            .HasColumnType(""nvarchar(max)"")
-            .HasColumnName(""matn"");
-        builder.Property(e => e.CreatedDate)
-            .HasDefaultValueSql(""(getdate())"")
-            .HasColumnName(""tarikhEjad"");
+		//builder.Property(c => c.Id).HasColumnName(""""ccEntityName"""");
     }
 }
 ";

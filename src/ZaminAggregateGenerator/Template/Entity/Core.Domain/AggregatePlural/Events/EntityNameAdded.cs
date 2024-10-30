@@ -7,32 +7,17 @@ internal class EntityNameAdded : ISourceCode
 
 public class EntityNameAdded : IDomainEvent
 {
-    public long Id { get; set; }
-    public long AggregateNameId { get; set; }
-    public string Message { get; set; }
-    public int CreatedByUserId { get; set; }
-    public int Accessible { get; set; }
-    public DateTime CreatedDate { get; set; }
-
+    public IdTypeReplacement Id { get; set; }
+EntityDomainReplacementTextEvents1
 
     public EntityNameAdded(
-        long id,
-        long aggregateNameId,
-        string message,
-        int createdByUserId,
-        int accessible,
-        DateTime createdDate
+        IdTypeReplacement id, 
+EntityDomainReplacementText2
         )
     {
         Id = id;
-        AggregateNameId = aggregateNameId;
-        Message = message;
-        CreatedByUserId = createdByUserId;
-        Accessible = accessible;
-        CreatedDate = createdDate;
-
+EntityDomainReplacementText3
     }
 }
 ";
 }
-

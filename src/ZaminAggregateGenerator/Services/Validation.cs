@@ -9,7 +9,16 @@ internal static class Validation
             Result.Message = "Project path is empty";
             Result.Result = false;
         }
-        //else if (aggregateGenerator.)
+        return Result;
+    }
+
+    internal static ResultModel EntityGeneratorValidation(this EntityGenerator entityGenerator)
+    {
+        if (entityGenerator.CsprojFilesList.Count == 0)
+        {
+            Result.Message = "Project path is empty";
+            Result.Result = false;
+        }
         return Result;
     }
 }

@@ -2,7 +2,7 @@ using ZaminAggregateGenerator.Models;
 
 namespace UI.Models;
 
-public class IndexViewModel
+public class AddAggregateViewModel
 {
     public bool FormSubmit { get; set; } = false;
     public bool FormValidation { get; set; }

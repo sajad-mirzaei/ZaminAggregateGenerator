@@ -9,6 +9,7 @@ using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregatePlural;
 using ProjectName.Core.Contracts.AggregatePlural.Queries.GetAggregateNameById;
 using Zamin.Core.Contracts.Data.Queries;
 using Zamin.EndPoints.Web.Controllers;
+//EntityControllerUsingReplacementText
 
 namespace ProjectName.Endpoints.API.AggregatePlural;
 
@@ -32,6 +33,9 @@ public class AggregateNameController : BaseController
     {
         return await Query<GetAggregateNameByIdQuery, AggregateNameByIdDto>(query);
     }
+
+
+//EntityControllerMethodsReplacementText
 }
 ";
 }

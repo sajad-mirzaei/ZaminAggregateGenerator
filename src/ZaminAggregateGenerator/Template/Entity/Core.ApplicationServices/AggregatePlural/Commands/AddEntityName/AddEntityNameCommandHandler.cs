@@ -19,8 +19,10 @@ public class AddEntityNameCommandHandler : CommandHandler<AddEntityNameCommand, 
     public override async Task<CommandResult<IdTypeReplacement>> Handle(AddEntityNameCommand request)
     {
         var entity = await _aggregateNameCommandRepository.GetGraphAsync(request.AggregateNameId);
-        var userId = int.Parse(_zaminServices.UserInfoService.UserId());
-        var entityName = entity.AddEntityName(request.Message, userId, request.Accessible);
+        //var userId = int.Parse(_zaminServices.UserInfoService.UserId());
+        var entityName = entity.AddEntityName(
+EntityApplicationServiceReplacementText1
+        );
         await _aggregateNameCommandRepository.CommitAsync();
 
         return await OkAsync(entityName.Id);

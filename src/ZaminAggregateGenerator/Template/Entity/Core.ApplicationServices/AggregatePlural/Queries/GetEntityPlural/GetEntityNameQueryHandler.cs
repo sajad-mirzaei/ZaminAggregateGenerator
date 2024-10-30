@@ -4,9 +4,9 @@ internal class GetEntityNameQueryHandler : ISourceCode
 {
     public string GetClassPath() => @"AggregatePlural\Queries\GetEntityPlural";
     public string GetSourceCode() => @"using ProjectName.Core.Contracts.AggregatePlural.Queries;
-using ProjectName.Core.Contracts.AggregatePlural.Queries.GetEntityNames;
+using ProjectName.Core.Contracts.AggregatePlural.Queries.GetEntityPlural;
 
-namespace ProjectName.Core.ApplicationServices.AggregatePlural.Queries.GetEntityNames;
+namespace ProjectName.Core.ApplicationServices.AggregatePlural.Queries.GetEntityPlural;
 
 public class GetEntityNameQueryHandler : QueryHandler<GetEntityNameQuery, PagedData<EntityNameDto>>
 {

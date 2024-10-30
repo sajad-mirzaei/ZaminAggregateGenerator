@@ -11,6 +11,7 @@ using ProjectName.Infra.Data.Sql.Queries.Common;
 using Zamin.Core.Contracts.Data.Queries;
 using Zamin.Infra.Data.Sql.Queries;
 using Zamin.Utilities.Extensions;
+//EntityQueryRepositoryUsingReplacementText
 
 namespace ProjectName.Infra.Data.Sql.Queries.AggregatePlural;
 
@@ -54,6 +55,8 @@ DisableShadowPropertyReplacementText4
         return result;
         #endregion
     }
+
+//EntityQueryRepositoryReplacementText
 }
 ";
 }

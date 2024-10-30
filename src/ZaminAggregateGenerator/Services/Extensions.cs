@@ -6,7 +6,7 @@ using ZaminAggregateGenerator.Models;
 
 namespace ZaminAggregateGenerator.Services;
 
-internal static class Extentoins
+internal static class Extensions
 {
     public static string ToLowerFirstChar(this string input)
     {

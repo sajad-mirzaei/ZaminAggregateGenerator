@@ -6,9 +6,9 @@ internal class GetEntityNameValidator : ISourceCode
     public string GetSourceCode() => @"using FluentValidation;
 using ProjectName.Core.Domain.Common;
 using Zamin.Extensions.Translations.Abstractions;
-using ProjectName.Core.Contracts.AggregatePlural.Queries.GetEntityNames;
+using ProjectName.Core.Contracts.AggregatePlural.Queries.GetEntityPlural;
 
-namespace ProjectName.Core.ApplicationServices.AggregatePlural.Queries.GetEntityNames;
+namespace ProjectName.Core.ApplicationServices.AggregatePlural.Queries.GetEntityPlural;
 
 public class GetEntityNameValidator : AbstractValidator<GetEntityNameQuery>
 {

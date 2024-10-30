@@ -7,7 +7,7 @@ internal class GetEntityNameByIdQuery : ISourceCode
 
 public class GetEntityNameByIdQuery : IQuery<EntityNameByIdDto>
 {
-    public long Id { get; set; }
+    public IdTypeReplacement Id { get; set; }
 }
 ";
 }

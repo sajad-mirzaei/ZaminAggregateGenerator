@@ -16,7 +16,10 @@ public class AggregateNameConfig : IEntityTypeConfiguration<AggregateName>
 	{
 DisableShadowPropertyReplacementText6
 		builder.ToTable(""AggregatePlural"", ""dbo"");
+        builder.HasKey(e => e.Id);
 		//builder.Property(c => c.Id).HasColumnName(""ccAggregateName"");
+
+//EntityCommandConfigReplacementText
 	}
 }
 ";
