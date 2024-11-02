@@ -180,8 +180,8 @@ public class AggregateNameConfig : IEntityTypeConfiguration<AggregateName>
 
 5- Sql.Queries/AggregatePlural/AggregateNameQueryRepository.cs
 
-	3-1- Add "//EntityControllerUsingReplacementText" before namespace of AggregateNameQueryRepository.cs
-	3-2- Add "//EntityControllerMethodsReplacementText" to end of your AggregateNameQueryRepository.cs 
+	5-1- Add "//EntityControllerUsingReplacementText" before namespace of AggregateNameQueryRepository.cs
+	5-2- Add "//EntityControllerMethodsReplacementText" to end of your AggregateNameQueryRepository.cs 
 example:
 ```
 //EntityQueryRepositoryUsingReplacementText
