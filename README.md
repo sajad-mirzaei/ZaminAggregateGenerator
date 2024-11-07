@@ -113,8 +113,8 @@ This structure is essential for the proper functioning of the Class Library.
 ## Entity generator configs, change this files:
 1- Core.Contracts/AggregatePlural/Queries/IAggregateNameQueryRepository.cs
 ```cs
-	1-1- Add "//EntityIQueryRepositoryUsingReplacementText" before namespace of IAggregateNameQueryRepository.cs
- 	1-2- Add "//EntityIQueryRepositoryReplacementText" to end of your IAggregateNameQueryRepository.cs 
+1-1- Add "//EntityIQueryRepositoryUsingReplacementText" before namespace of IAggregateNameQueryRepository.cs
+1-2- Add "//EntityIQueryRepositoryReplacementText" to end of your IAggregateNameQueryRepository.cs 
 
 example:
 
@@ -131,26 +131,26 @@ public interface IAggregateNameQueryRepository : IQueryRepository
 
 2- Core.Domain/AggregatePlural/Entities/AggregateName.cs
 ```cs
-	2-1- Add "//EntityPropertiesReplacementText" to region Properties
-	2-2- Add "//EntityMethodsReplacementText" end of your AggregateName.cs
+2-1- Add "//EntityPropertiesReplacementText" to region Properties
+2-2- Add "//EntityMethodsReplacementText" end of your AggregateName.cs
 	
 example:
 
-	public class AggregateName : AggregateRoot<IdTypeReplacement>
-	{
-		#region Properties
+public class AggregateName : AggregateRoot<IdTypeReplacement>
+{
+	#region Properties
 
-	//EntityPropertiesReplacementText
-		#endregion
+//EntityPropertiesReplacementText
+	#endregion
 
-	//EntityMethodsReplacementText
-	}
+//EntityMethodsReplacementText
+}
 ``````
 
 3- Endpoints/AggregatePlural/AggregateNameController.cs
 ```cs
-	3-1- Add "//EntityControllerUsingReplacementText" before namespace of AggregateNameController.cs
-	3-2- Add "//EntityControllerMethodsReplacementText" to end of your AggregateNameController.cs 
+3-1- Add "//EntityControllerUsingReplacementText" before namespace of AggregateNameController.cs
+3-2- Add "//EntityControllerMethodsReplacementText" to end of your AggregateNameController.cs 
 
 example:
 
@@ -168,7 +168,7 @@ public class AggregateNameController : BaseController
 
 4- Sql.Commands/AggregatePlural/Configs/AggregateNameConfig.cs
 ```cs
-	4-1- Add "//EntityCommandConfigReplacementText" to end of your AggregateNameConfig.cs
+4-1- Add "//EntityCommandConfigReplacementText" to end of your AggregateNameConfig.cs
 
 example:
 
@@ -184,8 +184,8 @@ public class AggregateNameConfig : IEntityTypeConfiguration<AggregateName>
 
 5- Sql.Queries/AggregatePlural/AggregateNameQueryRepository.cs
 ```cs
-	5-1- Add "//EntityQueryRepositoryUsingReplacementText" before namespace of AggregateNameQueryRepository.cs
-	5-2- Add "//EntityQueryRepositoryReplacementText" to end of your AggregateNameQueryRepository.cs 
+5-1- Add "//EntityQueryRepositoryUsingReplacementText" before namespace of AggregateNameQueryRepository.cs
+5-2- Add "//EntityQueryRepositoryReplacementText" to end of your AggregateNameQueryRepository.cs 
 
 example:
 
