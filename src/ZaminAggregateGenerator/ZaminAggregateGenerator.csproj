@@ -36,6 +36,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Template\Entity\Endpoints\**" />
+    <EmbeddedResource Remove="Template\Entity\Endpoints\**" />
+    <None Remove="Template\Entity\Endpoints\**" />
+  </ItemGroup>
+
+  <ItemGroup>
 	  <None Include="..\..\README.md">
 		  <Pack>True</Pack>
 		  <PackagePath>\</PackagePath>
@@ -44,10 +50,6 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0" />
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Template\Entity\Endpoints\AggregatePlural\" />
-	  <Folder Include="Template\Entity\Sql.Queries\" />
 	</ItemGroup>
 	
 </Project>

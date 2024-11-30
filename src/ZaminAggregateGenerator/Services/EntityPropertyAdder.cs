@@ -92,7 +92,7 @@ internal class EntityPropertyAdder
     /// <summary>Output Sample: createAggregateNameCommand.FirstName </summary>;
     private string EntityApplicationServiceReplacementText1(TextReplacementModel m)
     {
-        return $"{m.LeftPadding}create{_aggregateGeneratorModel.AggregateName}Command.{m.PropertyModel.PropertyName},{m.LineBreak}";
+        return $"{m.LeftPadding}request.{m.PropertyModel.PropertyName},{m.LineBreak}";
     }
     #endregion
 

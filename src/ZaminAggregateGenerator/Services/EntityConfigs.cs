@@ -54,6 +54,7 @@ internal static class EntityConfigs
             "Sql.Queries",
             new List<ISourceCode>
             {
+                new EntityName_Models()
             }
         },
         {
