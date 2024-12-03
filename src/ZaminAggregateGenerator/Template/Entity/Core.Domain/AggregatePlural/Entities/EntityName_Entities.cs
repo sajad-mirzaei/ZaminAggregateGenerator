@@ -4,7 +4,7 @@ internal class EntityName_Entities : ISourceCode
 {
     public string GetClassPath() => @"AggregatePlural\Entities";
     public string GetSourceCode() => @"namespace ProjectName.Core.Domain.AggregatePlural.Entities;
-public class EntityName : Entity<long>
+public class EntityName : Entity<IdTypeReplacement>
 {
     #region Properties
 

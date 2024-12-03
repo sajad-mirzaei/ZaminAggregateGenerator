@@ -144,7 +144,7 @@ public class EntityGenerator
 
         string content1 = File.ReadAllText(GenModel.CommandDbContextPath, Encoding.Default);
         content1 = content1.Replace("//SqlCommandsCommandDbContextDbSet", "        public DbSet<" + GenModel.EntityName + "> " + GenModel.EntityPlural + " { get; set; }\r\n//SqlCommandsCommandDbContextDbSet");
-        content1 = content1.Replace("//SqlCommandsCommandDbContextUsing", "using " + projectName + "Core.Domain." + GenModel.EntityPlural + ".Entities;\r\n//SqlCommandsCommandDbContextUsing");
+        //content1 = content1.Replace("//SqlCommandsCommandDbContextUsing", "using " + projectName + "Core.Domain." + GenModel.EntityPlural + ".Entities;\r\n//SqlCommandsCommandDbContextUsing");
         File.WriteAllText(GenModel.CommandDbContextPath, content1, Encoding.Default);
 
         string content2 = File.ReadAllText(GenModel.QueryDbContextPath, Encoding.Default);
@@ -218,7 +218,7 @@ EntityDomainReplacementText4
     );
     _entityPlural.Add(entity);
     AddEvent(new EntityNameAdded(
-        Id,
+        entity.Id,
 EntityDomainReplacementText6
     ));
 
