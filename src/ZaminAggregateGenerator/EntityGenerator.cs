@@ -218,7 +218,7 @@ EntityDomainReplacementText4
     );
     _entityPlural.Add(entity);
     AddEvent(new EntityNameAdded(
-        entity.Id,
+        Id,
 EntityDomainReplacementText6
     ));
 
@@ -290,7 +290,7 @@ EntitySqlQueriesReplacementText1
 [HttpPost(""createEntityName"")]
 public async Task<IActionResult> CreateEntityName([FromBody] AddEntityNameCommand createEntityName)
 {
-    return await Create<AddEntityNameCommand, long>(createEntityName);
+    return await Create<AddEntityNameCommand, IdTypeReplacement>(createEntityName);
 }
 
 [HttpGet(""getEntityPlural"")]
